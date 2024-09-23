@@ -78,7 +78,7 @@ spm.SentencePieceTrainer.train(
 ###### tokenizer that have been missing from the NLLB tokenizer ##############
 ##############################################################################
 
-
+ 
 from sentencepiece import sentencepiece_model_pb2 as sp_pb2_model
 from transformers import NllbTokenizer
 
@@ -178,4 +178,4 @@ def update_nllb_tokenizer(
 
 
     
-update_nllb_tokenizer(tokenizer_old, "./spm_nllb_tyvan_268k.model", ["tyv_Cyrl"])
+tokenizer = update_nllb_tokenizer(tokenizer_old, "./spm_nllb_tyvan_268k.model", ["tyv_Cyrl"])
