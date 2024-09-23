@@ -1,11 +1,17 @@
 import re
+import os
+import json
+import shutil
 import pandas as pd
 import sentencepiece as spm
+from typing import List, Tuple
 from remove_unk import preproc
 from collections import Counter
 from datasets import load_dataset
 from tqdm.auto import tqdm, trange
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers.models.nllb.tokenization_nllb import FAIRSEQ_LANGUAGE_CODES
+
 
 trans_df = pd.read_csv('./rus_tyv_parallel_50k.tsv', sep="\t")
 
@@ -126,3 +132,50 @@ for t in tqdm(added_vocab):
         tt = [tokenizer_old.unk_token_id]
     idx = tokenizer.convert_tokens_to_ids(t)
     model.model.shared.weight.data[idx] = model.model.shared.weight.data[tt].mean(0)
+
+
+def update_nllb_tokenizer(
+    old_tokenizer: NllbTokenizer,
+    new_spm_path: str,
+    new_lang_codes: List[str],
+) -> NllbTokenizer:
+    """
+    Create a new tokenizer for NLLB, with an updated sentencepiece model and some new language codes.
+    In order to get rid of the old (and wrong) added token encoders/decoders, we save the tokenizer to disk and remove those files.
+    :param old_tokenizer: the original tokenizer
+    :param new_spm_path: path to the file with the sentencepiece model
+    :param new_lang_codes: list of the new codes to add to the tokenizer
+    :return:
+    """
+    TKN_DIR = "old_tokenizer"  # todo: make it a temp dir
+    if not os.path.isfile(f"{TKN_DIR}/tokenizer_config.json"):
+
+        old_tokenizer.save_pretrained(TKN_DIR)
+
+        
+        with open(f"{TKN_DIR}/tokenizer_config.json", "r") as f:
+            cfg = json.load(f)
+        cfg["added_tokens_decoder"] = {
+            k: v
+            for k, v in cfg["added_tokens_decoder"].items()
+            if k in ["0", "1", "2", "3"]
+        }
+        cfg["additional_special_tokens"] = []
+        with open(f"{TKN_DIR}/tokenizer_config.json", "w") as f:
+            json.dump(cfg, f, indent=2)
+
+        # this contains added tokens: language codes and mask
+        os.remove(f"{TKN_DIR}/added_tokens.json")
+        os.remove(f"{TKN_DIR}/special_tokens_map.json")
+        os.remove(f"{TKN_DIR}/sentencepiece.bpe.model")
+        shutil.copy(new_spm_path, f"{TKN_DIR}/sentencepiece.bpe.model")
+
+    new_tokenizer = NllbTokenizer.from_pretrained(
+        TKN_DIR,
+        additional_special_tokens=sorted(FAIRSEQ_LANGUAGE_CODES + new_lang_codes),
+    )
+    return new_tokenizer
+
+
+    
+update_nllb_tokenizer(tokenizer_old, "./spm_nllb_tyvan_268k.model", ["tyv_Cyrl"])
