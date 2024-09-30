@@ -9,21 +9,20 @@ import gc
 import torch
 from tqdm import tqdm
 import numpy as np
+from utility import get_def_train, get_def_dev
 
 model_name = "facebook/nllb-200-distilled-600M"
-tsv_file = '/mnt/storage/hopkins/thesis/data/rus_tyv_parallel_50k.tsv'
 batch_size = 16  # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128  # token sequences will be truncated
 training_steps = 60000  
 train_losses = []  # with this list, I do very simple tracking of average loss
 dev_losses = []  # with this list, I do very simple tracking of average loss
-MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-v1' 
+MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-nah-spa-v1' 
 
 
-trans_df = pd.read_csv(tsv_file, sep="\t")
-df_train = trans_df[trans_df.split=='train'].copy() # 49000 items
-df_dev = trans_df[trans_df.split=='dev'].copy()     # 500 items
-df_test = trans_df[trans_df.split=='test'].copy()   # 500 items
+df_train = get_def_train()
+df_dev = get_def_dev()
+
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -37,7 +36,7 @@ optimizer = Adafactor(
     weight_decay=1e-3,
 )
 scheduler = get_constant_schedule_with_warmup(optimizer, num_warmup_steps=1000)
-LANGS = [('ru', 'rus_Cyrl'), ('tyv', 'kir_Cyrl')]
+LANGS = [('spa', 'spa_Latn'), ('nah', 'gug_Latn')]
 
 def get_batch_pairs(batch_size, data=df_train):
     (l1, long1), (l2, long2) = random.sample(LANGS, 2)
