@@ -1,6 +1,13 @@
 # BLEU = 6.50 28.8/9.0/3.7/1.9 (BP = 1.000 ratio = 1.038 hyp_len = 7524 ref_len = 7247)
 # chrF2++ = 23.78
 
+"""
+NLLB-1.3B (single best)         30.1
+1.3B random initialisation      24.3
+NLLB-1.3B + bibles              28.0
+"""
+
+
 from tqdm import tqdm
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from utility import get_def_train, get_def_dev

@@ -19,7 +19,6 @@ train_losses = []  # with this list, I do very simple tracking of average loss
 dev_losses = []  # with this list, I do very simple tracking of average loss
 MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-v1' 
 
-
 trans_df = pd.read_csv(tsv_file, sep="\t")
 df_train = trans_df[trans_df.split=='train'].copy() # 49000 items
 df_dev = trans_df[trans_df.split=='dev'].copy()     # 500 items

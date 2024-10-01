@@ -1,7 +1,10 @@
+# BLEU = 6.36 29.2/10.0/3.7/1.5 (BP = 1.000 ratio = 1.169 hyp_len = 2716 ref_len = 2324)
+# chrF2++ = 32.99
+
 from tqdm import tqdm
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 # model_load_name = 'facebook/nllb-200-distilled-600M'
-model_load_name = '/mnt/storage/hopkins/models/nllb-rus-tyv-v3'
+model_load_name = '/mnt/storage/fking/models/nllb-rus-tyv-v1'
 model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
 model_tok_name = "facebook/nllb-200-distilled-600M"
 tokenizer = AutoTokenizer.from_pretrained(model_tok_name)
