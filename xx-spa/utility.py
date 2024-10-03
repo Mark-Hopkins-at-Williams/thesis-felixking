@@ -51,7 +51,7 @@ def get_def_dev(path, code):
     df_src_train = pd.DataFrame(train_src, columns=[code])
 
     result = pd.concat([df_src_train, df_tgt_train], axis=1)
-    result["split"] = "train"
+    result["split"] = "dev"
 
     return result
 

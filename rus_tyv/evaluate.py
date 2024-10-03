@@ -1,12 +1,15 @@
 # BLEU = 6.36 29.2/10.0/3.7/1.5 (BP = 1.000 ratio = 1.169 hyp_len = 2716 ref_len = 2324)
 # chrF2++ = 32.99
 
+import os
 from tqdm import tqdm
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-# model_load_name = 'facebook/nllb-200-distilled-600M'
+
 model_load_name = '/mnt/storage/fking/models/nllb-rus-tyv-v1'
-model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
 model_tok_name = "facebook/nllb-200-distilled-600M"
+results_path = "/mnt/storage/fking/thesis-felixking/results/rus_tyv_results.txt"
+
+model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
 tokenizer = AutoTokenizer.from_pretrained(model_tok_name)
 
 
@@ -52,5 +55,15 @@ df_test = trans_df[trans_df.split=='test'].copy()   # 500 items
 
 rus_translations = batched_translate(df_dev['tyv'].tolist(), src_lang='kir_Cyrl', tgt_lang='rus_Cyrl')
 
-print(bleu_calc.corpus_score(rus_translations, [df_dev['ru'].tolist()]))
-print(chrf_calc.corpus_score(rus_translations, [df_dev['ru'].tolist()]))
+bleu_result = bleu_calc.corpus_score(rus_translations, [df_dev['ru'].tolist()])
+charf_result = chrf_calc.corpus_score(rus_translations, [df_dev['ru'].tolist()])
+
+if os.path.exists(results_path):
+    with open(results_path, 'a') as file:
+
+        file.write("blah blah")
+else:
+    # File does not exist, create it
+    with open(file_path, 'w') as file:
+
+        file.write("Just made this file")

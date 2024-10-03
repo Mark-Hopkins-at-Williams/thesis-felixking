@@ -1,27 +1,29 @@
-import pandas as pd
-import sys
-from transformers.optimization import Adafactor
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from transformers import get_constant_schedule_with_warmup
-from preprocess import preproc
-import random
 import gc
+import sys
 import torch
-from tqdm import tqdm
+import random
 import numpy as np
+import pandas as pd
+from tqdm import tqdm
+from preprocess import preproc
+from transformers.optimization import Adafactor
+from transformers import get_constant_schedule_with_warmup
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-model_name = "facebook/nllb-200-distilled-600M"
+model_name = "facebook/nllb-200-distilled-1.3B"
 batch_size = 16  # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128  # token sequences will be truncated
 training_steps = 60000  
 train_losses = []  # with this list, I do very simple tracking of average loss
 dev_losses = []  # with this list, I do very simple tracking of average loss
-MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-nah-spa-v1' 
+MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-nah-spa-v2' 
+csv_file = '/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/nahuatl-spanish/all.csv'
 
+trans_df = pd.read_csv(csv_file, sep=",")
 
-df_train = get_def_train()
-df_dev = get_def_dev()
-
+df_train = trans_df[trans_df.split=='train'].copy() # 16145 items
+df_dev = trans_df[trans_df.split=='dev'].copy()     # 672 items
+df_test = trans_df[trans_df.split=='test'].copy()   # 0 items
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
@@ -56,6 +58,8 @@ def cleanup():
 x, y, train_loss = None, None, None
 x_dev, y_dev, dev_loss = None, None, None
 best_dev_loss = None
+last_best = 0
+patience = 10000
 cleanup()
 
 for i in tqdm(range(len(train_losses), training_steps)):
@@ -107,3 +111,7 @@ for i in tqdm(range(len(train_losses), training_steps)):
         model.save_pretrained(MODEL_SAVE_PATH)
         tokenizer.save_pretrained(MODEL_SAVE_PATH)
         best_dev_loss = dev_loss
+        last_best = i
+    
+    if i - last_best >= patience:
+        break

@@ -7,16 +7,56 @@ NLLB-1.3B (single best)         30.1
 NLLB-1.3B + bibles              28.0
 """
 
-
+import os
+import sys
+import sacrebleu
+import pandas as pd
 from tqdm import tqdm
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from utility import get_def_train, get_def_dev
+from datetime import datetime
 from transformers import NllbTokenizer
+from utility import get_def_train, get_def_dev
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+codes = { # these are just the codes that americasnlp uses for their files
+    "ashaninka": "cni",
+    "bribri": "bzd", 
+    "guarani": "gn",   
+    "quechua": "quy",  
+    "aymara": "aym",   
+    "shipibo_konibo": "shp",
+    "chatino": "ctp",
+    "hñähñu": "oto",
+    "nahuatl": "nah",
+    "raramuri": "tar",
+    "wixarika": "hch"  
+    }
+
+# (ex) python3 evaluate.py nahuatl-spanish nllb-nah-spa-v1
+
+dir_name        = "/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/"
+model_load_name = '/mnt/storage/fking/models/'
+
+# Parse input and make sure it makes sense
+if len(sys.argv) < 3:
+    print("usage: python3 evaluate.py <src-tgt> <model dir>")
+    exit()
+else:
+    dir_name        += sys.argv[1]
+    model_load_name += sys.argv[2]
+
+    if not os.path.exists(dir_name):
+        print("src-tgt path does not exist")
+        exit()
+    if not os.path.exists(model_load_name):
+        print("model path does not exist")
+        exit()
 
 
-model_load_name = '/mnt/storage/fking/models/nllb-nah-spa-v1'
-model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
 model_tok_name = "facebook/nllb-200-distilled-600M"
+results_path = "/mnt/storage/fking/thesis-felixking/results/americas/results.txt"
+lang_code = codes[sys.argv[1].split("-")[0]]
+
+model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
 tokenizer = AutoTokenizer.from_pretrained(model_tok_name)
 
 
@@ -24,7 +64,7 @@ def translate(
     text, src_lang='gug_Latn', tgt_lang='spa_Latn', 
     a=32, b=3, max_input_length=1024, num_beams=4, **kwargs
 ):
-    """Translates a string or a list of strings."""
+
     tokenizer.src_lang = src_lang
     tokenizer.tgt_lang = tgt_lang
     model.eval() # turn off training mode
@@ -42,22 +82,53 @@ def translate(
     
 
 def batched_translate(texts, batch_size=16, **kwargs):
-    """Translate texts in batches of similar length"""
+
     idxs, texts2 = zip(*sorted(enumerate(texts), key=lambda p: len(p[1]), reverse=True))
     results = []
     for i in tqdm(range(0, len(texts2), batch_size)):
         results.extend(translate(texts2[i: i+batch_size], **kwargs))
     return [p for _, p in sorted(zip(idxs, results))]
 
-import sacrebleu
-import pandas as pd
+
 bleu_calc = sacrebleu.BLEU()
 chrf_calc = sacrebleu.CHRF(word_order=2)  # this metric is called ChrF++
 
-df_train = get_def_train()
-df_dev = get_def_dev()
 
-spa_translations = batched_translate(df_dev['nah'].tolist(), src_lang='gug_Latn', tgt_lang='spa_Latn')
+df_dev = get_def_dev(dir_name, lang_code)
 
-print(bleu_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))
-print(chrf_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))
+
+# ugly but must be done- americas nlp codes do not quite agree with nllb ones
+src_lang = "gug_Latn"
+if(lang_code == "aym"):
+    src_lang = "ayr_Latn"
+if(lang_code == "quy"):
+    src_lang = "quy_Latn"
+
+
+spa_translations = batched_translate(df_dev[lang_code].tolist(), src_lang=src_lang, tgt_lang='spa_Latn')
+
+
+
+bleu_result  = str(bleu_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))
+chrf_result = str(chrf_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))
+
+ 
+now = datetime.now()
+# dd/mm/YY H:M:S
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
+output = sys.argv[2] + " --- " + dt_string + "\n" + bleu_result + "\n" + chrf_result + "\n\n"
+
+if os.path.exists(results_path):
+    with open(results_path, 'a') as file:
+
+        file.write(output)
+else:
+    # File does not exist, create it
+    with open(results_path, 'w') as file:
+
+        file.write(output)
+
+
+
+
