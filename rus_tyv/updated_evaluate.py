@@ -8,20 +8,6 @@ from transformers import NllbTokenizer
 from utility import get_def_train, get_def_dev
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-codes = { # these are just the codes that americasnlp uses for their files
-    "ashaninka": "cni",
-    "bribri": "bzd", 
-    "guarani": "gn",   
-    "quechua": "quy",  
-    "aymara": "aym",   
-    "shipibo_konibo": "shp",
-    "chatino": "ctp",
-    "hñähñu": "oto",
-    "nahuatl": "nah",
-    "raramuri": "tar",
-    "wixarika": "hch"  
-    }
-
 # (ex) python3 evaluate.py nahuatl-spanish nllb-nah-spa-v1
 
 dir_name        = "/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/"
@@ -53,11 +39,11 @@ else:
         case _:
             print("accepted sizes are \t[s, small,  600M, 600M] for nllb-600M or \n\t\t\t[m, medium, 1.3B, 1.3b] for nllb-1.3B")
 
-#turns out this doesn't actually matter - they are the same regardless of size
-model_tok_name = "facebook/nllb-200-distilled-" + size 
+# model size doesn't affect tokenizer so 600M is fine
+model_tok_name = "facebook/nllb-200-distilled-600M"
 
 results_path = "/mnt/storage/fking/thesis-felixking/results/americas/results.txt"
-src_lang_code = codes[sys.argv[1].split("-")[0]] # e.g. "nah" or "quy"
+lang_code = codes[sys.argv[1].split("-")[0]] # e.g. "nah" or "quy"
 
 model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
 tokenizer = AutoTokenizer.from_pretrained(model_tok_name)
@@ -97,18 +83,18 @@ bleu_calc = sacrebleu.BLEU()
 chrf_calc = sacrebleu.CHRF(word_order=2)  # this metric is called ChrF++
 
 #dev set
-df_dev = get_def_dev(dir_name, src_lang_code)
+df_dev = get_def_dev(dir_name, lang_code)
 
 
 # ugly but must be done- americas nlp codes do not quite agree with nllb ones
 src_lang = "gug_Latn"
-if(src_lang_code == "aym"):
+if(lang_code == "aym"):
     src_lang = "ayr_Latn"
-if(src_lang_code == "quy"):
+if(lang_code == "quy"):
     src_lang = "quy_Latn"
 
 
-spa_translations = batched_translate(df_dev[src_lang_code].tolist(), src_lang=src_lang, tgt_lang='spa_Latn')
+spa_translations = batched_translate(df_dev[lang_code].tolist(), src_lang=src_lang, tgt_lang='spa_Latn')
 
 
 bleu_result  = str(bleu_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))

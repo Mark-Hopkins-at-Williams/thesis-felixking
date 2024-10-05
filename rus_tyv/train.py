@@ -25,9 +25,6 @@ MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-v2-123k'
 df = pd.read_csv(larger_file, sep=";")
 df.dropna(subset=['ru', 'tyv'], inplace=True)
 
-
-
-
 df_train, df_devtest = train_test_split(df, test_size=1000, random_state=1)
 df_dev, df_test = train_test_split(df_devtest, test_size=0.5, random_state=1)
 

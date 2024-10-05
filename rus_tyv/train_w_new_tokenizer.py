@@ -10,26 +10,31 @@ import torch
 from tqdm import tqdm
 import numpy as np
 from transformers import NllbTokenizer
+from sklearn.model_selection import train_test_split
 
-model_name = "facebook/nllb-200-distilled-600M"
+model_name = "facebook/nllb-200-distilled-1.3B"
 tsv_file = '/mnt/storage/hopkins/thesis/data/rus_tyv_parallel_50k.tsv'
+larger_file = '/mnt/storage/fking/data/rus_tyv_123k.csv'
+
 batch_size = 16  # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128  # token sequences will be truncated
 training_steps = 60000  
 train_losses = []  # with this list, I do very simple tracking of average loss
 dev_losses = []  # with this list, I do very simple tracking of average loss
-MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-v2_newtok' 
+MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-123k-newtok-1.3B' 
 NEW_SPM_PATH = "../../models/nllb-rus-tyv-tokenizer/spm_nllb_tyvan_268k.model"
 
+df = pd.read_csv(larger_file, sep=";")
+df.dropna(subset=['ru', 'tyv'], inplace=True)
+
+df_train, df_devtest = train_test_split(df, test_size=1000, random_state=1)
+df_dev, df_test = train_test_split(df_devtest, test_size=0.5, random_state=1)
 
 
-
-
-
-trans_df = pd.read_csv(tsv_file, sep="\t")
-df_train = trans_df[trans_df.split=='train'].copy() # 49000 items
-df_dev = trans_df[trans_df.split=='dev'].copy()     # 500 items
-df_test = trans_df[trans_df.split=='test'].copy()   # 500 items
+# trans_df = pd.read_csv(tsv_file, sep="\t")
+# df_train = trans_df[trans_df.split=='train'].copy() # 49000 items
+# df_dev = trans_df[trans_df.split=='dev'].copy()     # 500 items
+# df_test = trans_df[trans_df.split=='test'].copy()   # 500 items
 
 
 # loading the tokenizers
@@ -82,6 +87,8 @@ def cleanup():
 x, y, train_loss = None, None, None
 x_dev, y_dev, dev_loss = None, None, None
 best_dev_loss = None
+last_best = 0
+patience = 30000
 cleanup()
 
 for i in tqdm(range(len(train_losses), training_steps)):
@@ -133,3 +140,6 @@ for i in tqdm(range(len(train_losses), training_steps)):
         model.save_pretrained(MODEL_SAVE_PATH)
         tokenizer.save_pretrained(MODEL_SAVE_PATH)
         best_dev_loss = dev_loss
+
+    if i - last_best >= patience:
+        break

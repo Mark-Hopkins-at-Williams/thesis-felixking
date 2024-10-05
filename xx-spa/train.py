@@ -10,14 +10,28 @@ from transformers.optimization import Adafactor
 from transformers import get_constant_schedule_with_warmup
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
+# if len(sys.argv) < 3:
+#     print("usage: python3 train.py <src-tgt> <model name> <size>")
+#     exit()
+# else:
+#     dir_name        += sys.argv[1]
+#     model_load_name += sys.argv[2]
+
+#     if not os.path.exists(dir_name):
+#         print("src-tgt path does not exist")
+#         exit()
+#     if not os.path.exists(model_load_name):
+#         print("model path does not exist")
+#         exit()
+
 model_name = "facebook/nllb-200-distilled-1.3B"
 batch_size = 16  # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128  # token sequences will be truncated
 training_steps = 60000  
 train_losses = []  # with this list, I do very simple tracking of average loss
 dev_losses = []  # with this list, I do very simple tracking of average loss
-MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-nah-spa-v2' 
-csv_file = '/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/nahuatl-spanish/all.csv'
+MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-ctp-spa-v1' 
+csv_file = '/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/chatino-spanish/all.csv'
 
 trans_df = pd.read_csv(csv_file, sep=",")
 
@@ -37,7 +51,7 @@ optimizer = Adafactor(
     weight_decay=1e-3,
 )
 scheduler = get_constant_schedule_with_warmup(optimizer, num_warmup_steps=1000)
-LANGS = [('spa', 'spa_Latn'), ('nah', 'gug_Latn')]
+LANGS = [('spa', 'spa_Latn'), ('ctp', 'quy_Latn')]
 
 def get_batch_pairs(batch_size, data=df_train):
     (l1, long1), (l2, long2) = random.sample(LANGS, 2)
@@ -59,7 +73,7 @@ x, y, train_loss = None, None, None
 x_dev, y_dev, dev_loss = None, None, None
 best_dev_loss = None
 last_best = 0
-patience = 10000
+patience = 30000
 cleanup()
 
 for i in tqdm(range(len(train_losses), training_steps)):
