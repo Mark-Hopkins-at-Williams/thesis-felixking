@@ -23,3 +23,27 @@ nllb-rus-tyv-123k-newtok-1.3B --- 123k --- 10/05/2024 18:22:08
 BLEU = 8.82 33.1/12.5/5.8/2.5 (BP = 1.000 ratio = 1.074 hyp_len = 2496 ref_len = 2324)
 chrF2++ = 31.85
 
+nllb-rus-tyv-123k-newtok --- 123k --- 10/05/2024 19:14:04
+BLEU = 12.11 38.3/16.0/8.2/4.3 (BP = 1.000 ratio = 1.033 hyp_len = 2400 ref_len = 2324)
+chrF2++ = 36.18
+
+nllb-rus-tyv-123k-newtok-1.3B --- 123k --- 10/05/2024 19:15:32
+BLEU = 12.64 40.3/18.0/8.6/4.2 (BP = 0.992 ratio = 0.992 hyp_len = 2306 ref_len = 2324)
+chrF2++ = 37.97
+
+nllb-rus-tyv-123k-newtok --- 123k --- 10/05/2024 21:11:59
+BLEU = 12.11 38.3/16.0/8.2/4.3 (BP = 1.000 ratio = 1.033 hyp_len = 2400 ref_len = 2324)
+chrF2++ = 36.18
+
+nllb-rus-tyv-123k-newtok-v2 --- 123k --- 10/06/2024 02:29:33
+BLEU = 10.88 39.6/15.6/7.3/3.5 (BP = 0.970 ratio = 0.971 hyp_len = 2256 ref_len = 2324)
+chrF2++ = 36.14
+
+nllb-rus-tyv-123k-newtok-v2 --- 123k --- 10/06/2024 04:18:38
+BLEU = 13.79 39.5/18.2/9.9/5.1 (BP = 1.000 ratio = 1.027 hyp_len = 2387 ref_len = 2324)
+chrF2++ = 38.64
+
+nllb-rus-tyv-123k-newtok-v2 --- 123k --- 10/06/2024 09:11:10
+BLEU = 14.83 41.6/19.0/10.4/5.9 (BP = 1.000 ratio = 1.004 hyp_len = 2333 ref_len = 2324)
+chrF2++ = 39.69
+

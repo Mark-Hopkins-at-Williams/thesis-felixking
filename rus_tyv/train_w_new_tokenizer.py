@@ -12,7 +12,7 @@ import numpy as np
 from transformers import NllbTokenizer
 from sklearn.model_selection import train_test_split
 
-model_name = "facebook/nllb-200-distilled-1.3B"
+model_name = "facebook/nllb-200-distilled-600M"
 tsv_file = '/mnt/storage/hopkins/thesis/data/rus_tyv_parallel_50k.tsv'
 larger_file = '/mnt/storage/fking/data/rus_tyv_123k.csv'
 
@@ -21,7 +21,7 @@ max_length = 128  # token sequences will be truncated
 training_steps = 60000  
 train_losses = []  # with this list, I do very simple tracking of average loss
 dev_losses = []  # with this list, I do very simple tracking of average loss
-MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-123k-newtok-1.3B' 
+MODEL_SAVE_PATH = '/mnt/storage/fking/models/nllb-rus-tyv-123k-newtok-v2' 
 NEW_SPM_PATH = "../../models/nllb-rus-tyv-tokenizer/spm_nllb_tyvan_268k.model"
 
 df = pd.read_csv(larger_file, sep=";")
@@ -140,6 +140,7 @@ for i in tqdm(range(len(train_losses), training_steps)):
         model.save_pretrained(MODEL_SAVE_PATH)
         tokenizer.save_pretrained(MODEL_SAVE_PATH)
         best_dev_loss = dev_loss
+        last_best = i
 
     if i - last_best >= patience:
         break
