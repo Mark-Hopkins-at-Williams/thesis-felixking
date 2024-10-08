@@ -1,16 +1,20 @@
-import pandas as pd
-import sys
-from transformers.optimization import Adafactor
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from transformers import get_constant_schedule_with_warmup
-from preprocess import preproc
-import random
 import gc
+import sys
 import torch
-from tqdm import tqdm
+import random
 import numpy as np
+import pandas as pd
+from tqdm import tqdm
+from preprocess import preproc
+from transformers.optimization import Adafactor
+from transformers import get_constant_schedule_with_warmup
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from collections import Counter
+import sentencepiece as spm # type: ignore
+from datasets import load_dataset # type: ignore
+from sentencepiece import sentencepiece_model_pb2 as sp_pb2_model # type: ignore
+from transformers import NllbTokenizer
 
-model_name = "facebook/nllb-200-distilled-600M"
 tsv_file = '/mnt/storage/hopkins/thesis/data/rus_tyv_parallel_50k.tsv'
 batch_size = 16  # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128  # token sequences will be truncated
@@ -23,8 +27,6 @@ df_train = trans_df[trans_df.split=='train'].copy() # 49000 items
 df_dev = trans_df[trans_df.split=='dev'].copy()     # 500 items
 df_test = trans_df[trans_df.split=='test'].copy()   # 500 items
 
-from datasets import load_dataset
-from collections import Counter
 
 tyv_wiki = load_dataset("graelo/wikipedia", "20230601.tyv")
 tyv_wiki
@@ -45,7 +47,6 @@ required_chars = ''.join([
     if v >= 3 and k not in ' '
 ])
 
-import sentencepiece as spm
 all_texts_file = 'myv_texts_plain.txt'
 SPM_PREFIX = 'spm_tyvan_16k'
 with open(all_texts_file, 'w') as f:
@@ -69,9 +70,7 @@ spm.SentencePieceTrainer.train(
     required_chars=required_chars,
 )
 
-from sentencepiece import sentencepiece_model_pb2 as sp_pb2_model
 # At this step, the code may throw an error about protobuf. Do as it tells.
-from transformers import NllbTokenizer
 
 # reading the NLLB and the Tyvan sentencepiece models into a native format
 tokenizer = NllbTokenizer.from_pretrained('facebook/nllb-200-distilled-600M')

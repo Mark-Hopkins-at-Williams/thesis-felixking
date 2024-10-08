@@ -1,6 +1,3 @@
-# BLEU = 6.15 31.1/10.1/3.9/1.2 (BP = 1.000 ratio = 1.055 hyp_len = 2451 ref_len = 2324)
-# chrF2++ = 31.43
-
 from tqdm import tqdm
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from transformers import NllbTokenizer

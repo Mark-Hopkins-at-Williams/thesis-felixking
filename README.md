@@ -1,3 +1,3 @@
 # thesis-felixking
 
-Felix
+Felix's thesis
