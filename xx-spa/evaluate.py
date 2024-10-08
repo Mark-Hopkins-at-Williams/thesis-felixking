@@ -5,7 +5,7 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime
 from transformers import NllbTokenizer
-from utility import get_def_train, get_def_dev
+from americasnlp import get_def_train, get_def_dev
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 codes = { # these are just the codes that americasnlp uses for their files

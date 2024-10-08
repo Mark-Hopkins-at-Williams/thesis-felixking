@@ -7,7 +7,7 @@ import os
 
 # where split is either "train" or "dev"
 
-codes = { # these are just the codes that americasnlp uses for their files
+AMERICASNLP_CODES = { # these are just the codes that americasnlp uses for their files
     "ashaninka": "cni",
     "bribri": "bzd", 
     "guarani": "gn",   
@@ -55,18 +55,19 @@ def get_def_dev(path, code):
 
     return result
 
-for subdir, dirs, files in os.walk(parent_path):
-    if subdir == parent_path:
-        for dir_name in dirs:
-            dir_path = os.path.join(subdir, dir_name)
-            language = dir_path.split("/")[-1].split("-")[0] #identify the american language
+if __name__ == "__main__":
+    for subdir, dirs, files in os.walk(parent_path):
+        if subdir == parent_path:
+            for dir_name in dirs:
+                dir_path = os.path.join(subdir, dir_name)
+                language = dir_path.split("/")[-1].split("-")[0] #identify the american language
 
-            train = get_def_train(dir_path, codes[language])
-            dev = get_def_dev(dir_path, codes[language])
+                train = get_def_train(dir_path, AMERICASNLP_CODES[language])
+                dev = get_def_dev(dir_path, AMERICASNLP_CODES[language])
 
-            full = pd.concat([train, dev])
+                full = pd.concat([train, dev])
 
-            full.to_csv(dir_path + "/all.csv", index = False)
+                full.to_csv(dir_path + "/all.csv", index = False)
 
 
 
