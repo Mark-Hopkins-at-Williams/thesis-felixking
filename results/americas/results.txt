@@ -42,3 +42,7 @@ nllb-quy-spa-newtok --- 1.3B --- 10/08/2024 12:10:25
 BLEU = 9.90 34.7/13.5/6.5/3.2 (BP = 1.000 ratio = 1.049 hyp_len = 13215 ref_len = 12596)
 chrF2++ = 31.84
 
+nllb-quy-spa-newtok --- 1.3B --- 10/08/2024 12:52:53
+BLEU = 10.87 35.0/14.3/7.2/3.9 (BP = 1.000 ratio = 1.014 hyp_len = 12778 ref_len = 12596)
+chrF2++ = 30.94
+
