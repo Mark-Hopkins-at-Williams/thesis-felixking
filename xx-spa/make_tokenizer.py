@@ -15,31 +15,25 @@ from datasets import load_dataset # type: ignore
 from sentencepiece import sentencepiece_model_pb2 as sp_pb2_model # type: ignore
 from transformers import NllbTokenizer
 
-tsv_file = '/mnt/storage/hopkins/thesis/data/rus_tyv_parallel_50k.tsv'
+lang = "quechua"
+lang_dir = f"/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/{lang}-spanish/"
 batch_size = 16  # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128  # token sequences will be truncated
 training_steps = 60000  
 
 
+csv_file = lang_dir + "all.csv"
 
-trans_df = pd.read_csv(tsv_file, sep="\t")
+trans_df = pd.read_csv(csv_file, sep=",")
 df_train = trans_df[trans_df.split=='train'].copy() # 49000 items
-df_dev = trans_df[trans_df.split=='dev'].copy()     # 500 items
-df_test = trans_df[trans_df.split=='test'].copy()   # 500 items
+
+extra = pd.read_csv(lang_dir + "extra.tsv", sep="\t", header=None)
+column_list = extra.iloc[:, 2].tolist()
 
 
-tyv_wiki = load_dataset("graelo/wikipedia", "20230601.tyv")
-tyv_wiki
-# DatasetDict({
-#     train: Dataset({
-#         features: ['id', 'url', 'title', 'text'],
-#         num_rows: 3459
-#     })
-# })
-print(sum(len(t) for t in tyv_wiki['train']['text']))  # 7568832
-print(sum(len(t) for t in trans_df.tyv.dropna()))      # 3573803
+all_texts = column_list + df_train.quy.dropna().tolist()
 
-all_texts = tyv_wiki['train']['text'] + df_train.tyv.dropna().tolist()
+
 all_text_normalized = [preproc(t) for t in tqdm(all_texts)]
 chars_cnt = Counter(c for t in all_text_normalized for c in t)
 required_chars = ''.join([
@@ -47,8 +41,8 @@ required_chars = ''.join([
     if v >= 3 and k not in ' '
 ])
 
-all_texts_file = 'myv_texts_plain.txt'
-SPM_PREFIX = 'spm_tyvan_16k'
+all_texts_file = 'all_texts.txt'
+SPM_PREFIX = f'spm_{lang}'
 with open(all_texts_file, 'w') as f:
     for i, text in enumerate(all_texts):
         print(text, file=f)
@@ -97,6 +91,7 @@ for p in added_spm.pieces:
         old_spm.pieces.append(new_p)
 
 # saving the result to disk
-NEW_SPM_NAME = 'spm_nllb_tyvan_268k.model'
-with open(NEW_SPM_NAME, 'wb') as f:
+NEW_SPM_NAME = f"spm_nllb_{lang}_tok.model"
+model_dir_path = "/mnt/storage/fking/models/toks/"
+with open(model_dir_path + NEW_SPM_NAME, 'wb') as f:
     f.write(old_spm.SerializeToString())

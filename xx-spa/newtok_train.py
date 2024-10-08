@@ -9,6 +9,7 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime
 from preprocess import preproc
+from transformers import NllbTokenizer
 from transformers.optimization import Adafactor
 from transformers import get_constant_schedule_with_warmup
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
@@ -35,6 +36,7 @@ batch_size = 16     # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128    # token sequences will be truncated
 training_steps = 60000  
 MODEL_SAVE_PATH = '/mnt/storage/fking/models/' 
+NEW_SPM_PATH = "/mnt/storage/fking/models/toks/spm_nllb_quechua_tok.model"
 csv_file = '/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/'
 dev_losses = []     # with this list, I do very simple tracking of average loss
 train_losses = []   # with this list, I do very simple tracking of average loss
@@ -106,8 +108,28 @@ if __name__ == "__main__":
     df_dev = trans_df[trans_df.split=='dev'].copy()     
     df_test = trans_df[trans_df.split=='test'].copy()   
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+    # loading the tokenizers
+    tokenizer_old = NllbTokenizer.from_pretrained(model_name)
+    tokenizer = NllbTokenizer.from_pretrained(model_name, vocab_file=NEW_SPM_PATH)
+    print(len(tokenizer_old), len(tokenizer)) # 256204, 268559
+    added_vocab = set(tokenizer.get_vocab()).difference(set(tokenizer_old.get_vocab()))
+    print(len(added_vocab))  # 12355
+
+
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    model.resize_token_embeddings(len(tokenizer))
+
+    # re-initializing the new embeddings
+    for t in tqdm(added_vocab):
+        tt = tokenizer_old(t, add_special_tokens=False).input_ids
+        if len(tt) == 0:
+            tt = [tokenizer_old.unk_token_id]
+        idx = tokenizer.convert_tokens_to_ids(t)
+        model.model.shared.weight.data[idx] = model.model.shared.weight.data[tt].mean(0)
+
+
+
     model.cuda()
     optimizer = Adafactor(
         [p for p in model.parameters() if p.requires_grad],

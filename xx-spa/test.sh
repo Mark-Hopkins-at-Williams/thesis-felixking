@@ -6,4 +6,4 @@
 #SBATCH -o log_%j.out  
 #SBATCH -e log_%j.err
 #SBATCH --gres=gpu:1
-python newtok_train.py quechua-spanish nllb-quy-spa-newtok m
+python evaluate.py quechua-spanish nllb-quy-spa-newtok m
