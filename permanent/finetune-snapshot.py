@@ -13,6 +13,7 @@ from configure import USE_CUDA
 from configure import AMERICAS_NLP_CSV, AMERICAS_NLP_LPS
 from configure import NLLB_SEED_CSV, NLLB_SEED_LPS
 from multilingualdata import MultilingualCorpus
+from bottle import CustomM2M100Model
 
 
 def cleanup():
@@ -38,6 +39,9 @@ def finetune(mixture_of_bitexts, dev_bitext, base_model, finetuned_model_dir,
              ):    
     tokenizer = AutoTokenizer.from_pretrained(base_model)
     model = AutoModelForSeq2SeqLM.from_pretrained(base_model)
+    replacement_model = CustomM2M100Model(model.model.config)
+    replacement_model.load_state_dict(model.model.state_dict())
+    model.model = replacement_model 
     #new_lang_codes = [code for code in mixture_of_bitexts.get_language_codes() if code in tokenizer.get_vocab()]
     #tokenizer.add_tokens(new_lang_codes)
     #model.resize_token_embeddings(len(tokenizer))
@@ -52,7 +56,7 @@ def finetune(mixture_of_bitexts, dev_bitext, base_model, finetuned_model_dir,
         weight_decay=1e-3,
     )
     scheduler = get_constant_schedule_with_warmup(optimizer, num_warmup_steps=1000)
-    x, y, train_loss, best_chrf = None, None, None, None
+    x, y, train_loss = None, None, None
     last_best = 0
     patience = 30000
     cleanup()
@@ -66,11 +70,9 @@ def finetune(mixture_of_bitexts, dev_bitext, base_model, finetuned_model_dir,
             train_loss = model(**x, labels=y.input_ids).loss
             train_loss.backward()
             train_losses.append(train_loss.item())
-
             optimizer.step()
             optimizer.zero_grad(set_to_none=True)
             scheduler.step()
-
         except RuntimeError:  # handle GPU-out-of-memory exceptions
             optimizer.zero_grad(set_to_none=True)
             x, y, train_loss = None, None, None
@@ -88,16 +90,12 @@ def finetune(mixture_of_bitexts, dev_bitext, base_model, finetuned_model_dir,
                 print('-'*5)
                 print(f'candidate: {candidate}')
                 print(f'gold:      {gold}')
-            bleu, chrf = evaluate_translations(candidate_translations, tgt_texts)
-
-            if i > 0 and (best_chrf is None or chrf > best_chrf):
-                
-                print("Saving new best model!")
-                tokenizer.save_pretrained(finetuned_model_dir) 
-                model.save_pretrained(finetuned_model_dir)           
-                last_best = i        
-                best_chrf = chrf
-                
+            evaluate_translations(candidate_translations, tgt_texts)
+            print("Saving new best model!")
+            #TODO: save only if the evaluation result is better than previous
+            tokenizer.save_pretrained(finetuned_model_dir) #TODO: check that we can use the same directory
+            model.save_pretrained(finetuned_model_dir)           
+            last_best = i        
         if i - last_best >= patience:
             break
  
@@ -121,13 +119,5 @@ if __name__ == "__main__":
     lps = NLLB_SEED_LPS if args.data == 'nllb-seed' else AMERICAS_NLP_LPS
     corpus = MultilingualCorpus(csv_file)
     train_data = corpus.create_mixture_of_bitexts(lps, batch_size=2)
-
-    # random langauge from the set of language pairs can be used, since validating on all pairs would be too slow
-    # ie assume that improvement on one represents some average improvement. 
-    dev_bitext = corpus.create_bitext(args.dev_src, args.dev_tgt, 'dev')    
-
-    print(f"language pairs: {lps}")
-    print(f"train_data: {train_data}")
-    print(f"dev_bitext: {dev_bitext}")
-
+    dev_bitext = corpus.create_bitext(args.dev_src, args.dev_tgt, 'dev')
     finetune(train_data, dev_bitext, model_name, model_dir)
