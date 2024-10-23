@@ -6,4 +6,5 @@
 #SBATCH -o log_%j.out  
 #SBATCH -e log_%j.err
 #SBATCH --gres=gpu:1
-python train.py --src eng --tgt xx --csv /mnt/storage/fking/data/seed/all.csv --model_dir /mnt/storage/fking/models/nllb-seed-eng-xx-v2 --nllb_model 1.3B
+
+python evaluate.py --data nllb-seed --src xx --tgt eng_Latn --model_dir /mnt/storage/fking/models/seed_5683 --nllb_model 600M

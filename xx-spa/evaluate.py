@@ -1,80 +1,17 @@
 import os
 import sys
+import argparse
 import sacrebleu # type: ignore
 import pandas as pd
+import statistics
 from tqdm import tqdm
 from datetime import datetime
 from transformers import NllbTokenizer
-from americasnlp import get_def_train, get_def_dev
+from americasnlp import SEED_CODES
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-codes = { # these are just the codes that americasnlp uses for their files
-    "ashaninka": "cni",
-    "bribri": "bzd", 
-    "guarani": "gn",   
-    "quechua": "quy",  
-    "aymara": "aym",   
-    "shipibo_konibo": "shp",
-    "chatino": "ctp",
-    "hñähñu": "oto",
-    "nahuatl": "nah",
-    "raramuri": "tar",
-    "wixarika": "hch"  
-    }
-
-# (ex) python3 evaluate.py nahuatl-spanish nllb-nah-spa-v1 medium 
-
-# TODO
-# - could add options for new tokenizer
-# - make all the tokenizers in utility.py
-# - add option for proxy code
-# - change checkpoints based on number of pairs- 1000 makes sense for a pair 
-#   with a lot of pairs but 200 or 500 might be better for a low resource pair
-#   just to make sure we're getting the right model
-
-def main(args):
-    print(args)
-    dir_name        = "/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/"
-    model_load_name = '/mnt/storage/fking/models/'
-    model_name = ""
-    model_size = ""
-
-    # Parse input and make sure it makes sense
-    if len(args) < 4:
-        print("usage: python3 evaluate.py <src-tgt> <model dir> <model size>")
-        exit()
-    else:
-        model_name = args[2]
-        dir_name        += args[1]
-        model_load_name += model_name
-
-        if not os.path.exists(dir_name):
-            print("src-tgt path does not exist")
-            exit()
-        if not os.path.exists(model_load_name):
-            print("model path does not exist")
-            exit()
-
-        match args[3]:
-            case x if x in ["s", 'small', '600M', '600m']:
-                size = "600M"
-            case x if x in ['m', 'medium', '1.3B', '1.3b']:
-                size = "1.3B"
-            case _:
-                print("accepted sizes are \t[s, small,  600M, 600M] for nllb-600M or \n\t\t\t[m, medium, 1.3B, 1.3b] for nllb-1.3B")
-
-    #turns out this doesn't actually matter - they are the same regardless of size
-    model_tok_name = "facebook/nllb-200-distilled-" + size 
-
-    results_path = "/mnt/storage/fking/thesis-felixking/results/americas/results.txt"
-    src_lang_code = codes[args[1].split("-")[0]] # e.g. "nah" or "quy"
-
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_load_name).cuda()
-    tokenizer = AutoTokenizer.from_pretrained(model_tok_name)
-
-
-    def translate(
-        text, src_lang='gug_Latn', tgt_lang='spa_Latn', 
+def translate(
+        text, model, tokenizer, src_lang, tgt_lang, 
         a=32, b=3, max_input_length=1024, num_beams=4, **kwargs
     ):
 
@@ -92,9 +29,8 @@ def main(args):
             num_beams=num_beams, **kwargs
         )
         return tokenizer.batch_decode(result, skip_special_tokens=True)
-        
-
-    def batched_translate(texts, batch_size=16, **kwargs):
+    
+def batched_translate(texts, batch_size=16, **kwargs):
 
         idxs, texts2 = zip(*sorted(enumerate(texts), key=lambda p: len(p[1]), reverse=True))
         results = []
@@ -103,26 +39,61 @@ def main(args):
         return [p for _, p in sorted(zip(idxs, results))]
 
 
+def main(args):
+
+    parser = argparse.ArgumentParser(description="Evaluation script for NLLB models.")
+
+    parser.add_argument("--src", type=str, required=True, help="Source language id")
+    parser.add_argument("--tgt", type=str, required=True, help="Target language id")
+    parser.add_argument("--csv", type=str, required=True, help="CSV containing parallel sentences")
+    parser.add_argument("--eval", action="store_true", default=False, help="Evaluate at end of training")
+    parser.add_argument("--model_dir", type=str, help="Directory for storing the trained model")
+    parser.add_argument("--nllb_model", type=str, default="600M", choices=['600M', '1.3B', '3.3B'])
+    parser.add_argument("--tag", type=str, choices=['rus-tyv', 'americas', 'seed'])
+    args = parser.parse_args()
+    model_name = args.model_dir
+
+    csv_file = args.csv
+    tgt = args.tgt
+    src = args.src
+    
+
+    results_path = f"/mnt/storage/fking/thesis-felixking/results/{args.tag}/results.txt"
+
+    model_tok_name = "facebook/nllb-200-distilled-" + args.nllb_model 
+    tokenizer = AutoTokenizer.from_pretrained(model_tok_name)
+
+    model = AutoModelForSeq2SeqLM.from_pretrained(args.nllb_model).cuda()
+
+        
+
+
+
     bleu_calc = sacrebleu.BLEU()
-    chrf_calc = sacrebleu.CHRF(word_order=2)  # this metric is called ChrF++
+    chrf_calc = sacrebleu.CHRF(word_order=2)  
 
     #dev set
-    df_dev = get_def_dev(dir_name, src_lang_code)
+    trans_df = pd.read_csv(csv_file, sep=",")
+    df_dev = trans_df[trans_df.split=='dev'].copy()     
 
 
-    # ugly but must be done- americas nlp codes do not quite agree with nllb ones
-    src_lang = "gug_Latn"
-    if(src_lang_code == "aym"):
-        src_lang = "ayr_Latn"
-    if(src_lang_code == "quy"):
-        src_lang = "quy_Latn"
+    if src in SEED_CODES:
+        translations = batched_translate(df_dev[src].tolist(), model=model, tokenizer=tokenizer, src_lang=src, tgt_lang=tgt)
+        bleu_result  = bleu_calc.corpus_score(translations, [df_dev[tgt].tolist()]).score
+        chrf_result = chrf_calc.corpus_score(translations, [df_dev[tgt].tolist()]).score
+    else: #assume src is not xx or yy
+        sources = [e for e in SEED_CODES.keys() if e != tgt]
+        bleu_scores = []
+        chrf_scores = []
 
+        for i, key in enumerate(sources, start=0):
+            translations += batched_translate(df_dev[key].tolist(), src_lang=key, tgt_lang=tgt)
+            bleu_scores[i] = bleu_calc(bleu_calc.corpus_score(translations, [df_dev[tgt].tolist()])).score
+            chrf_scores[i] = chrf_calc(chrf_calc.corpus_score(translations, [df_dev[tgt].tolist()])).score
+        
+        bleu_result = statistics.mean(bleu_scores)
+        chrf_result = statistics.mean(chrf_scores)
 
-    spa_translations = batched_translate(df_dev[src_lang_code].tolist(), src_lang=src_lang, tgt_lang='spa_Latn')
-
-
-    bleu_result  = str(bleu_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))
-    chrf_result = str(chrf_calc.corpus_score(spa_translations, [df_dev['spa'].tolist()]))
 
     
     now = datetime.now()
@@ -131,7 +102,7 @@ def main(args):
 
     sep = " --- "
 
-    output = f"{model_name}{sep}{size}{sep}{date_time}\n{bleu_result}\n{chrf_result}\n\n"
+    output = f"{model_name}{sep}{date_time}\n{bleu_result}\n{chrf_result}\n\n"
 
     if os.path.exists(results_path):
         with open(results_path, 'a') as file:

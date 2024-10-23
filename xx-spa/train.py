@@ -13,31 +13,45 @@ from preprocess import preproc
 from transformers.optimization import Adafactor
 from transformers import get_constant_schedule_with_warmup
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from americasnlp import AMERICASNLP_CODES
-
-# TODO
-# add -e command line option to evaluate at the end
+from americasnlp import AMERICASNLP_CODES, SEED_CODES
 
 
-size = "1.3B"       #default size
+csv_file = '/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/'
+model_save_path = '/mnt/storage/fking/models/' 
+size = "1.3B"       # default size
 batch_size = 16     # 32 already doesn't fit well to 15GB of GPU memory
 max_length = 128    # token sequences will be truncated
 training_steps = 60000  
-model_save_path = '/mnt/storage/fking/models/' 
-csv_file = '/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/'
 dev_losses = []     
 train_losses = []   # these lists track of average loss
-src_lang = ""
 evaluate = False    # do not run evaluate after finishing training
 
+def sample_langs(source, target, lang_dict):
 
-def get_batch_pairs(batch_size, data):
-    (l1, long1), (l2, long2) = random.sample(LANGS, 2)
+    pairs = list(lang_dict.items())
+    opts = [("", ""), ("", "")]
+
+    if source == "xx" or source == "yy":
+        opt1 = (target, lang_dict[target]) if target in lang_dict else ("", "")
+        opts[0] = random.choice([e for e in pairs if e != opt1])
+    else:
+        opts[0] = (source, lang_dict[source])
+
+    if target == "xx" or target == "yy":
+        opt1 = (source, lang_dict[source]) if source in lang_dict else ("", "")
+        opts[1] = random.choice([e for e in pairs if e != opt1])
+    else:
+        opts[1] = (target, lang_dict[target])
+        
+    return random.sample(opts, 2)
+
+def get_batch_pairs(batch_size, data, src, tgt, lang_dict):
+    (l1, long1), (l2, long2) = sample_langs(src, tgt, lang_dict)
     xx, yy = [], []
     for _ in range(batch_size):
         item = data.iloc[random.randint(0, len(data)-1)]
-        xx.append(preproc(item[l1]))
-        yy.append(preproc(item[l2]))
+        xx.append(preproc(item[l1])) 
+        yy.append(preproc(item[l2])) 
     return xx, yy, long1, long2
 
 def cleanup():
@@ -49,10 +63,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Finetuning script for NLLB models.")
 
-    parser.add_argument("--src", type=str, choices=list(AMERICASNLP_CODES.values()), required=True, help="Source language id")
-    parser.add_argument("--tgt", type=str, choices=['spa'], required=True, help="Target language id")
+    parser.add_argument("--src", type=str, required=True, help="Source language id")
+    parser.add_argument("--tgt", type=str, required=True, help="Target language id")
     parser.add_argument("--csv", type=str, required=True, help="CSV containing parallel sentences")
-    parser.add_argument("--eval", action="store_true", default=True, help="Evaluate at end of training")
+    parser.add_argument("--eval", action="store_true", default=False, help="Evaluate at end of training")
     parser.add_argument("--model_dir", type=str, help="Directory for storing the trained model")
     parser.add_argument("--nllb_model", type=str, default="600M", choices=['600M', '1.3B', '3.3B'])
     args = parser.parse_args()
@@ -61,18 +75,17 @@ if __name__ == "__main__":
     csv_file = args.csv
 
     if not os.path.exists(csv_file):
-        print("src-tgt directory does not exist")
+        print("csv file does not exist")
         exit()
     if os.path.exists(model_save_path):
         print("model directory already exists")
         exit()
           
     model_name = "facebook/nllb-200-distilled-" + size
-    now = datetime.now()
-    date_time = now.strftime("%m/%d/%Y %H:%M:%S") # mm/dd/YY H:M:S
+    date_time = datetime.now().strftime("%m/%d/%Y %H:%M:%S") # mm/dd/YY H:M:S
 
-    # basic info shows up at the top of log_<pid>.out
-    print(f"\n{model_name}\n{sys.argv[1]}\n{model_save_path}\n{date_time}\n")
+
+    lang_dict = SEED_CODES
 
     trans_df = pd.read_csv(csv_file, sep=",")
 
@@ -93,7 +106,6 @@ if __name__ == "__main__":
     )
     scheduler = get_constant_schedule_with_warmup(optimizer, num_warmup_steps=1000)
 
-    LANGS = [('spa', 'spa_Latn'), (src_lang_code, proxy_code)]  # TODO: change this line to sample two NLLB languages
     
     x, y, train_loss = None, None, None
     x_dev, y_dev, dev_loss = None, None, None
@@ -103,8 +115,8 @@ if __name__ == "__main__":
     cleanup()
 
     for i in tqdm(range(len(train_losses), training_steps)):
-        xx, yy, lang1, lang2 = get_batch_pairs(batch_size, df_train)
-        xx_dev, yy_dev, lang1_dev, lang2_dev = get_batch_pairs(batch_size, data=df_dev)
+        xx, yy, lang1, lang2 = get_batch_pairs(batch_size, df_train, args.src, args.tgt, lang_dict)
+        xx_dev, yy_dev, lang1_dev, lang2_dev = get_batch_pairs(batch_size, df_dev, args.src, args.tgt, lang_dict)
 
         try:
             model.train()
@@ -155,6 +167,12 @@ if __name__ == "__main__":
         
         if i - last_best >= patience:
             break
+
+    with open(model_save_path + "/info.txt", 'w') as file:
+        file.write(f"Model training started at {date_time}\n")
+        file.write(f"pretrained model: {model_name}\n")
+        file.write(f"src: {args.src}\n")
+        file.write(f"tgt: {args.tgt}\n")
             
     if evaluate:
         evaluate.main(sys.argv[:-1])

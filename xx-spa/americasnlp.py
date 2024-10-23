@@ -21,6 +21,45 @@ AMERICASNLP_CODES = { # these are just the codes that americasnlp uses for their
     "wixarika": "hch"  
     }
 
+SEED_CODES = {
+    "ace": "ace_Arab",
+    "ary": "ary_Arab",
+    "arz": "arz_Arab",
+    "bam": "bam_Latn",
+    "ban": "ban_Latn",
+    "bho": "bho_Deva",
+    "bjn": "bjn_Arab",
+    "bug": "bug_Latn",
+    "crh": "crh_Latn",
+    "dik": "dik_Latn",
+    "dzo": "dzo_Tibt",
+    "eng": "eng_Latn",
+    "fur": "fur_Latn",
+    "fuv": "fuv_Latn",
+    "gug": "gug_Latn",
+    "hne": "hne_Deva",
+    "kas": "kas_Arab",
+    "knc": "knc_Arab",
+    "lij": "lij_Latn",
+    "lim": "lim_Latn",
+    "lmo": "lmo_Latn",
+    "ltg": "ltg_Latn",
+    "mag": "mag_Deva",
+    "mni": "mni_Beng",
+    "mri": "mri_Latn",
+    "nqo": "nqo_Nkoo",
+    "nus": "nus_Latn",
+    "pbt": "pbt_Arab",
+    "prs": "prs_Arab",
+    "scn": "scn_Latn",
+    "shn": "shn_Mymr",
+    "srd": "srd_Latn",
+    "szl": "szl_Latn",
+    "taq": "taq_Tfng",
+    "vec": "vec_Latn",
+    "zgh": "zgh_Tfng",
+}
+
 parent_path = "/mnt/storage/fking/americasnlp2024/ST1_MachineTranslation/data/"
             
 
