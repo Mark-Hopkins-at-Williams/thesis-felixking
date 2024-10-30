@@ -7,4 +7,4 @@
 #SBATCH -e log_%j.err
 #SBATCH --gres=gpu:1
 
-python evaluate.py --data nllb-seed --src xx --tgt eng_Latn --model_dir /mnt/storage/fking/models/seed_5683 --nllb_model 600M
+python validate.py --data nllb-seed --src eng_Latn --tgt xx --model_dir /mnt/storage/fking/models/seed_5687 --nllb_model 1.3B

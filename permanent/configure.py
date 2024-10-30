@@ -9,6 +9,9 @@ NLLB_SEED_LANGS = ['pbt_Arab', 'bho_Deva', 'nus_Latn', 'ban_Latn', 'dzo_Tibt', '
                    'taq_Tfng', 'shn_Mymr', 'mag_Deva']
 NLLB_SEED_LPS = [(src, 'eng_Latn') for src in NLLB_SEED_LANGS if src != 'eng_Latn']
 
+TEN_SEED_LANGS  = ['pbt_Arab', 'bho_Deva', 'nus_Latn', 'ban_Latn', 'dzo_Tibt', 'mni_Beng', 'lim_Latn', 
+                   'ltg_Latn', 'ace_Latn', 'eng_Latn']
+
 AMERICAS_NLP_CSV = '/mnt/storage/hopkins/data/americasnlp2024/americas_nlp_data.csv'
 #AMERICAS_NLP_LANGS = ["cni_Latn", "bzd_Latn", "gn_Latn", "quy_Latn", "aym_Latn", "shp_Latn",
 #                      "ctp_Latn", "oto_Latn", "nah_Latn", "tar_Latn", "hch_Latn"]
