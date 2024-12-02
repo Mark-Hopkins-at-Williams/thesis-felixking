@@ -23,7 +23,7 @@ something in here about early NMT methods
 
 The Transformer model (2017, cite) innovated on the encoder-decoder structure (cite), and it is still the standard for NMT 
 architecture and other applications. It uses an attention (cite attention paper?) and feedforward layers in place of recurrent components. 
-This new architecture not only has some features suitable to many linguistic tasks, but trains much more quickly 
+This new architecture not only has features suitable to many linguistic tasks, but trains much more quickly 
 than the alternatives as it allows for far more parallel computation in training. 
 
 In the following section, I'll describe at a high level how a Transformer model translates a sentence. 
@@ -33,7 +33,7 @@ Consider the English sentence "The man wearing black shoes rode his bicycle."
 \vskip.25in
 Step 1: Tokenize
 
-The sentence must first be broken down into small parts for the model to work with. This is done using a tokenizer, which is
+The sentence must first be broken down into small parts for the model to work with. This is done with the tokenizer, which is
 often itself a trained component of the model. The tokenizer's vocabulary contains enough words and sub-words to cover the languages
 the model takes as input. Thus the tokenizer turns the sentence into a list of tokens, which are all elements in the tokenizer's
 vocabulary. Here is the result of tokenizing the above sentence using the tokenizer in Facebook's NLLB models:
@@ -50,4 +50,13 @@ in the original sentence; it is a special "end of sentence" token which the toke
 \vskip.25in
 Step 2: Encode
 
-The encoder layers take the tokenized input ...
+In its first layer, the encoder deterministically turns each token into a dense vector embedding, then implicitly marks the position of each 
+token in the sentence by adding a unique sum of sinusoids. The embedding vectors corresponding to each token in 
+the vocabulary are learned in training, and the model learns the implicit meaning of the signal added by the positional 
+encoding. The rest of the layers of the encoder repeatedly use self-attention to contextualize each embedding in the sentence. 
+The embedding of a verb might be strongly influenced by the noun it is acting on, or the embedding of an article in a gendered language might 
+depend primarily on the gender of its referent, for example. 
+
+The vectors produced by the encoder are high dimensional and therefore impossible to accurately plot. But their components 
+represent the relationship between words and individual tokens. The cosine similarity (angle) between vectors can represent 
+analogous relationships between pairs of words. For example, (insert an example here )
