@@ -7,7 +7,7 @@ from tqdm import tqdm
 import pyarrow.parquet as pq
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import cosine
-from configure import SEED_EMBED_PARQUET
+from configure import SEED_EMBED_PICKLE
 
 def filter_df(parquet_file, languages, sent_id_range = None, sample_size = None):
 

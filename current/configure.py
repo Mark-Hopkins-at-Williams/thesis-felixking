@@ -1,6 +1,7 @@
 USE_CUDA=True
 
 NLLB_SEED_CSV = '/mnt/storage/hopkins/data/nllb/seed/nllb_seed.csv'
+SEED_EMBED_PICKLE = '/mnt/storage/fking/data/seed/nllb_seed_with_embeddings.pkl'
 
 NLLB_SEED_LANGS = ['pbt_Arab', 'bho_Deva', 'nus_Latn', 'ban_Latn', 'dzo_Tibt', 'mni_Beng', 'lim_Latn', 
                    'ltg_Latn', 'ace_Latn', 'crh_Latn', 'srd_Latn', 'taq_Latn', 'mri_Latn', 'ary_Arab', 
@@ -8,7 +9,6 @@ NLLB_SEED_LANGS = ['pbt_Arab', 'bho_Deva', 'nus_Latn', 'ban_Latn', 'dzo_Tibt', '
                    'vec_Latn', 'fur_Latn', 'kas_Deva', 'kas_Arab', 'arz_Arab', 'lij_Latn', 'ace_Arab', 
                    'bjn_Latn', 'scn_Latn', 'bug_Latn', 'lmo_Latn', 'szl_Latn', 'hne_Deva', 'fuv_Latn', 
                    'taq_Tfng', 'shn_Mymr', 'mag_Deva']
-
 NLLB_SEED_LPS = [(src, 'eng_Latn') for src in NLLB_SEED_LANGS if src != 'eng_Latn']
 
 TEN_SEED_LANGS  = ['pbt_Arab', 'bho_Deva', 'nus_Latn', 'dzo_Tibt', 'mni_Beng', 'lim_Latn', 

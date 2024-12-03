@@ -290,6 +290,32 @@ def get_cosine_similarity(embeddings, data, langs, pr=False):
 
     return result
 
+def get_avg_dist_by_language_pair(embeddings, data, langs, pr=False):
+
+    # calculate average angle between embeddings by language
+    result = {}
+
+    memo = {}
+    for lang1 in langs:
+        other_means = []
+        mask1 = (data['language'] == lang1.split("_")[0]) & (data['script'] == lang1.split("_")[1])
+        self = embeddings[mask1]
+        for lang2 in [l for l in langs if l != lang1]:
+            mask2 = (data['language'] == lang2.split("_")[0]) & (data['script'] == lang2.split("_")[1])
+            other = embeddings[mask2]
+            other_means.append(get_disjoint_mean(self, lang1, other, lang2, memo))
+        
+        other_mean = np.mean(other_means)
+        self_mean = get_subset_mean(self)
+
+        result[lang1] = (self_mean, other_mean)
+
+        if pr:
+            print(f'{lang1} self:  {self_mean:.3f}')
+            print(f'{lang1} other: {other_mean:.3f}')
+
+    return result
+
 def plot_cosine_similarity(data, output_dir, dpi = 300, figsize = (15, 10)):
     
     os.makedirs(output_dir, exist_ok=True)
@@ -487,9 +513,17 @@ def main(
         sent_id_range=sent_id_range,
         sample_size=sample_size
     )
+    
 
     print(f"Analyzing {len(data)} sentences...")
     embeddings = analyze_sentences(model, tokenizer, data, languages)
+    fur_mask = (data['language'] == 'fur') & (data['script'] == 'Latn')
+    fur_embeddings = embeddings[fur_mask]
+    print(len(fur_embeddings))
+    print(fur_embeddings[0])
+
+
+    exit()
     reduced_embeddings = get_reduction(embeddings, perplexity=perplexity, n_iter=n_iter)
 
     print("Creating visualizations...")
@@ -529,6 +563,9 @@ def main(
         for i, row in data[data['language'] == 'eng'].iterrows():
             file.write(f"{row['sent_id']}:\t{row['text']}\n")
 
+# def find_best_n_clusters(embeddings, reduced_embeddings, num_sents):
+#     for i in range(int(num_sents * 0.8), )
+
 
 if __name__ == "__main__":
 
@@ -539,8 +576,8 @@ if __name__ == "__main__":
     model = AutoModelForSeq2SeqLM.from_pretrained(base_model)
     replacement_model = CustomM2M100Model(model.model.config)
     replacement_model.load_state_dict(model.model.state_dict())
-    model.model = replacement_model 
-
+    model.model = replacement_model
+    
     LR_italic = ['fur_Latn', 'lij_Latn', 'lmo_Latn', 'scn_Latn', 'srd_Latn', 'vec_Latn']
     LR_indic = ['bho_Deva', 'hne_Deva', 'kas_Deva', 'mag_Deva']
 
@@ -556,7 +593,7 @@ if __name__ == "__main__":
         dir_tag='italic',
         csv_path=NLLB_SEED_CSV,
         languages=seed_italic,   
-        sent_id_range=(0, 999),  # Optional: range of sentence IDs
+        sent_id_range=(0, 6000),  # Optional: range of sentence IDs
         perplexity=30.0,
         n_iter=1000,
         base_model=base_model

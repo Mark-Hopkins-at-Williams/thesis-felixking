@@ -6,6 +6,7 @@ import pandas as pd
 from tqdm import tqdm
 from finetune import tokenize
 import torch.nn.functional as F
+from heatmaps import make_heatmap
 from bottle import CustomM2M100Model
 from scipy.spatial.distance import cosine
 from configure import NLLB_SEED_CSV, NLLB_SEED_LANGS, SEED_EMBED_PICKLE
@@ -116,7 +117,7 @@ def closestPairs(embeds1, embeds2):
         
 def token_pair_similarity(data, lang1, lang2, sent_id, verbose=False, summary=False):
 
-    # exclude language tag and <s> token -- not sure whether I should 
+    # exclude language tag and <\s> token -- not sure whether I should 
     # these two consistently have by far the lowest max cosine similarity 
     # maybe worth checking langauge tag similarity for all language pairs?
     l1_data = (data[(lang1, sent_id)][0][1:-1], data[(lang1, sent_id)][1][1:-1])
@@ -164,11 +165,15 @@ def token_pair_similarity(data, lang1, lang2, sent_id, verbose=False, summary=Fa
 def main():
     
     df = pd.read_pickle(SEED_EMBED_PICKLE) # had to do a pickle file :^|
+    # df = pd.read_pickle('simple.pkl') # had to do a pickle file :^|
     
     # languages = 'eng_Latn', 'fra_Latn', 'deu_Latn', 'zho_Hans'
     languages = NLLB_SEED_LANGS
     # languages = ['pbt_Arab', 'bho_Deva', 'nus_Latn', 'ban_Latn', 'eng_Latn']
     data = {}
+
+    score_table = np.zeros((len(languages), len(languages)))
+
 
     # make dict for speed & cleanliness
     for index, row in df.iterrows():
@@ -178,9 +183,12 @@ def main():
 
     same_script = []
     diff_script = []
+    scores = []
 
     for i in range(0, len(languages)):
         for j in range(i + 1, len(languages)):
+
+            lp_scores = []
             lang1=languages[i]
             lang2=languages[j]
 
@@ -188,22 +196,32 @@ def main():
             lang2_script = lang2.split('_')[1]
 
             print(f'\n{lang1}, {lang2}')
-            for id in range(100, 200): #max(df['sent_id']) + 1):
+            for id in range(0, 10):
 
                 print(f'sentence {id}')
-                score = token_pair_similarity(data, lang1, lang2, id)#, verbose=True)
+                score = token_pair_similarity(data, lang1, lang2, id, verbose=False, summary=False)
 
-                if lang1_script == lang2_script:
-                    same_script.append(score)
-                else:
-                    diff_script.append(score)
+                lp_scores.append(score)
+                # if lang1_script == lang2_script:
+                #     same_script.append(score)
+                # else:
+                #     diff_script.append(score)
+            
+            score_table[i][j] = np.mean(lp_scores)
+            score_table[j][i] = np.mean(lp_scores)
+            
+            print(f'average score between {lang1} and {lang2} is {np.mean(lp_scores):.3f}')
 
-    same_script_avg = np.mean(same_script)
-    diff_script_avg = np.mean(diff_script)
+
+    make_heatmap(score_table, "pairwise average max angle", './plots/heatmaps', languages)
+
+    # same_script_avg = np.mean(same_script)
+    # diff_script_avg = np.mean(diff_script)
 
     print()
-    print(f'mean score for languages with same script: {same_script_avg:.3f}')
-    print(f'mean score for languages with different script: {diff_script_avg:.3f}')
+    # print(f'mean score for languages with same script: {same_script_avg:.3f}')
+    # print(f'mean score for languages with different script: {diff_script_avg:.3f}')
+
 
     # just do one sentence - verbose shows actual tokens
     # token_pair_similarity(data, 'eng_Latn', 'fra_Latn', 2, verbose=True)
