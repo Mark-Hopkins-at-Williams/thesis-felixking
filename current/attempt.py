@@ -16,75 +16,12 @@ from configure import NLLB_SEED_CSV, NLLB_SEED_LANGS, SEED_EMBED_PICKLE, TEN_SEE
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import time
 
-
-def make_dataframe(langs, csv_path, pickle_path):    
-    base_model = "facebook/nllb-200-distilled-600M"
-
-    # the important paramters
-    df = pd.read_csv(csv_path)
-    df = df[df['split'] == 'train']
-
-    print("Loading NLLB model.")
-    tokenizer = AutoTokenizer.from_pretrained(base_model)
-    model = AutoModelForSeq2SeqLM.from_pretrained(base_model)
-    replacement_model = CustomM2M100Model(model.model.config)
-    replacement_model.load_state_dict(model.model.state_dict())
-    model.model = replacement_model
-
-    embeddings = analyze_sentences(model, tokenizer, df, langs)
-    embeddings_col = []
-    tokens_col = []
-
-    for index, row in tqdm(df.iterrows()):
-        embeddings_col.append(embeddings[f"{row['language']}_{row['script']}"][row['sent_id']])
-
-        sentence = row['text']
-
-        tokenized = tokenize(sentence, f"{row['language']}_{row['script']}", tokenizer, 128)
-        tokens = [tokenizer.decode(token_id) for token_id in tokenized.input_ids[0]]
-        tokens_col.append(tokens)
-
-    df['embedding'] = embeddings_col
-    df['tokens'] = tokens_col
-
-    df.to_pickle(pickle_path)
-    print('wrote to file')
-
-
-def get_sentence_embeddings(model, tokenizer, sents, language, max_length = 128):
-    
-    inputs = tokenize(sents, language, tokenizer, max_length=max_length).to(model.device)
-    with torch.no_grad():
-        model(**inputs, labels=inputs.input_ids)
-        encoder_states = model.model.custom_module.snapshot
-        attention_mask = inputs.attention_mask  
-        result = []
-
-        for i in range(encoder_states.shape[0]):
-            num_valid_encoder_states = attention_mask[i].sum(dim=0).item()
-            valid_vectors = encoder_states[i][:num_valid_encoder_states].cpu().numpy()
-            result.append(valid_vectors)
-    
-    # result is list of token embeddings for a sentence
-    return result
-
-
-def analyze_sentences(model, tokenizer, sentence_data, langs, batch_size = 16):
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = model.to(device)
-    model.eval() 
-    all_embeddings = dict() 
-    for lang in tqdm(langs):
-        embeddings = []
-        code, script = lang.split('_')
-        sents = sentence_data[(sentence_data['language'] == code) & (sentence_data['script'] == script)]
-        for i in range(0, len(sents), batch_size):
-            batch = sents.iloc[i:i+batch_size]['text'].to_list()
-            next_embeddings = get_sentence_embeddings(model, tokenizer, batch, code)                
-            embeddings.extend(next_embeddings)
-
-        all_embeddings[lang] = embeddings
-    return all_embeddings
+def make_index(data, lang, sent_id):
+    embeddings = data[(lang1, sent_id)][0][1:-1]
+    embeddings = np.linalg.norm(data, axis=1, keepdims=True)
+    index= faiss.IndexFlatIP(embeddings.shape[1])
+    index.add(np.float32(embeddings))
+    faiss.write_index(index, f'indices/{lang}_{sent_id}')
 
 
 def cosine_similarity(lang1_encodings, lang2_encodings):
@@ -99,7 +36,7 @@ def closestPairs(embeds1, embeds2):
     query_vector = embeds2.astype('float32')
 
     data = data / np.linalg.norm(data, axis=1, keepdims=True) # normalize
-    query_vector = query_vector / np.linalg.norm(query_vector)
+    query_vector = query_vector / np.linalg.norm(query_vector, axis=1, keepdims=True)
 
     index = faiss.IndexFlatIP(data.shape[1])
     index.add(data)
@@ -122,6 +59,9 @@ def token_pair_similarity(data, lang1, lang2, sent_id, verbose=False, summary=Fa
     # token embeddings
     query_vector = l1_data[0]
     data = l2_data[0]
+
+    print(query_vector.shape)
+    exit()
     
     distancesAB, indices = closestPairs(data, query_vector)
 
@@ -181,31 +121,33 @@ def main():
     # your code here
 
     for i in range(0, len(languages)):
-        for j in range(i + 1, len(languages)):
+        for id in range(0, 20):
+            make_index(data, languages[i], id)
+        # for j in range(i + 1, len(languages)):
 
-            lp_scores = []
-            lang1=languages[i]
-            lang2=languages[j]
+        #     lp_scores = []
+        #     lang1=languages[i]
+        #     lang2=languages[j]
 
-            lang1_script = lang1.split('_')[1]
-            lang2_script = lang2.split('_')[1]
+        #     lang1_script = lang1.split('_')[1]
+        #     lang2_script = lang2.split('_')[1]
 
-            print(f'\n{lang1}, {lang2}')
-            for id in range(0, 20):
+        #     print(f'\n{lang1}, {lang2}')
+        #     for id in range(0, 20):
+                
+            #     score = token_pair_similarity(data, lang1, lang2, id, verbose=False, summary=False)
 
-                score = token_pair_similarity(data, lang1, lang2, id, verbose=False, summary=False)
-
-                lp_scores.append(score)
+            #     lp_scores.append(score)
             
-            score_table[i][j] = np.mean(lp_scores)
-            score_table[j][i] = np.mean(lp_scores)
+            # score_table[i][j] = np.mean(lp_scores)
+            # score_table[j][i] = np.mean(lp_scores)
             
-            print(f'average score between {lang1} and {lang2} is {np.mean(lp_scores):.3f}')
+            # print(f'average score between {lang1} and {lang2} is {np.mean(lp_scores):.3f}')
 
     end = time.perf_counter()
     print(f"Time taken: {end - start} seconds")
 
-    make_heatmap(score_table, "test", '../plots/heatmaps', languages)
+    # make_heatmap(score_table, "test", '../plots/heatmaps', languages)
 
     # same_script_avg = np.mean(same_script)
     # diff_script_avg = np.mean(diff_script)

@@ -7,6 +7,7 @@ from tqdm import tqdm
 import pyarrow.parquet as pq
 import matplotlib.pyplot as plt
 from scipy.spatial.distance import cosine
+import scipy.cluster.hierarchy as sch
 from configure import SEED_EMBED_PICKLE
 
 def filter_df(parquet_file, languages, sent_id_range = None, sample_size = None):
@@ -76,8 +77,45 @@ def get_angle_and_dist_tables(data):
     
     return angle_table, dist_table
 
-def make_heatmap(data, title, output_dir, labels):
+# def make_heatmap(data, title, output_dir, labels):
+#     fig, ax = plt.subplots(figsize=(10, 8))
+#     sns.heatmap(
+#         data,
+#         annot=False,
+#         xticklabels=labels,
+#         yticklabels=labels,
+#         cmap="viridis",
+#         ax=ax)
+
+#     ax.set_xlabel("Languages")
+#     ax.set_ylabel("Languages")
+
+#     ax.xaxis.set_label_position('top') 
+#     ax.xaxis.tick_top()
+#     plt.xticks(rotation=60, ha='left') 
+
+#     ax.set_title(title)
+
+#     plt.savefig(
+#         os.path.join(output_dir, f'{title}_heatmap'),
+#         dpi=300,
+#         bbox_inches='tight'
+#     )
+#     plt.close()
+
+def make_heatmap(data, title, output_dir, labels, cluster=False):
     fig, ax = plt.subplots(figsize=(10, 8))
+    
+    # Perform clustering if requested
+    if cluster:
+        import scipy.cluster.hierarchy as sch
+        distance_matrix = sch.distance.pdist(data)
+        linkage_matrix = sch.linkage(distance_matrix, method='ward')
+        row_order = sch.leaves_list(linkage_matrix)
+        
+        data = data[row_order]
+        labels = [labels[i] for i in row_order]
+    
     sns.heatmap(
         data,
         annot=False,
@@ -101,7 +139,6 @@ def make_heatmap(data, title, output_dir, labels):
         bbox_inches='tight'
     )
     plt.close()
-
 
 if __name__ == '__main__':
 
