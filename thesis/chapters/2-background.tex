@@ -4,59 +4,56 @@
 
 \section{Neural Machine Translation and the Transformer Model}
 
-Neural networks can be adapted for many different tasks, and those tasks can be categorized under 
-labels which describe the type of input and the type of output. For example, spam detection would 
-fall under “sequence classification.” Translation is a sequence-to-sequence task, because the input 
-sequence (e.g. a sentence in French) is being used to generate an output sequence (e.g. an English 
-translation of that sentence). The input and output sequences can and often do differ from one another 
-in length, in script, and in sentence structure. 
+Neural networks can be adapted for many different tasks, and those tasks can be categorized under labels which describe the type of input and the type of output. For example, spam detection would fall under “sequence classification.” Translation is a sequence-to-sequence task, because the input sequence (e.g. a sentence in French) is being used to generate an output sequence (e.g. an English translation of that sentence). The input and output sequences can and often do differ from one another in length, in script, and in sentence structure.
 
-How would it work to individually translate words in a source sentence and combine them according to 
-the target language’s syntax rules? It would often provide a terrible translation, not just because 
-different languages can communicate the same information in more or fewer words than one another; words 
-cannot be translated individually because their meanings depend on their context. The same preposition, 
-“in,” may correspond to any of several German prepositions – “in” or “auf” or “bei” – depending on the 
-context. Thus effective translation of a single word in context may require use of an entire sentence or 
-more than one sentence. 
+How would it work to individually translate words in a source sentence and combine them according to the target language’s syntax rules? It would often provide a terrible translation, not just because different languages can communicate the same information in more or fewer words than one another; words cannot be translated individually because their meanings depend on their context. The same preposition, “in,” may correspond to any of several German prepositions – “in” or “auf” or “bei” – depending on the context. Thus effective translation of a single word in context may require use of an entire sentence or more than one sentence.
 
-something in here about early NMT methods
+something in here about early machine translation methods?
 
-The Transformer model (2017, cite) innovated on the encoder-decoder structure (cite), and it is still the standard for NMT 
-architecture and other applications. It uses an attention (cite attention paper?) and feedforward layers in place of recurrent components. 
-This new architecture not only has features suitable to many linguistic tasks, but trains much more quickly 
-than the alternatives as it allows for far more parallel computation in training. 
+The Transformer model (2017, cite) innovated on the encoder-decoder structure (cite), and it is still the standard for NMT architecture and other applications. It uses an attention (cite attention paper?) and feedforward layers in place of recurrent components. This new architecture not only has features suitable to many linguistic tasks, but trains much more quickly than the alternatives as it allows for far more parallel computation in training.
 
-In the following section, I'll describe at a high level how a Transformer model translates a sentence. 
+In the following section, I'll describe at a high level how a Transformer model translates a sentence.
 
 Consider the English sentence "The man wearing black shoes rode his bicycle."
 
 \vskip.25in
-Step 1: Tokenize
+Tokenize
 
-The sentence must first be broken down into small parts for the model to work with. This is done with the tokenizer, which is
-often itself a trained component of the model. The tokenizer's vocabulary contains enough words and sub-words to cover the languages
-the model takes as input. Thus the tokenizer turns the sentence into a list of tokens, which are all elements in the tokenizer's
-vocabulary. Here is the result of tokenizing the above sentence using the tokenizer in Facebook's NLLB models:
+The sentence must first be broken down into small parts for the model to work with. This is done with the tokenizer, which is often itself a trained component of the model. The tokenizer's vocabulary contains enough words and sub-words to cover the languages the model takes as input. Thus the tokenizer turns the sentence into a list of tokens, which are all elements in the tokenizer's vocabulary. Here is the result of tokenizing the above sentence using the tokenizer in Facebook's NLLB models:
 \vskip.25in
 
-    [256047, 1617, 492, 214030, 49154, 203020, 134457, 4414, 330, 163731, 248075, 2]
-    
-    ['eng\_Latn', 'The', 'man', 'wearing', 'black', 'shoes', 'rode', 'his', 'bi', 'cycle', '.', '</s>']
+   [256047, 1617, 492, 214030, 49154, 203020, 134457, 4414, 330, 163731, 248075, 2]
+  
+   ['eng\_Latn', 'The', 'man', 'wearing', 'black', 'shoes', 'rode', 'his', 'bi', 'cycle', '.', '</s>']
 
 \vskip.25in
-The numerical array just desplays the indices of the tokens in the tokenizer's vocabulary. Note '</s>,' which did not appear 
-in the original sentence; it is a special "end of sentence" token which the tokenizer adds to every input.
+The numerical array just displays the indices of the tokens in the tokenizer's vocabulary. Note '</s>,' which did not appear in the original sentence; it is a special "end of sentence" token which the tokenizer adds to every input. The first token, ‘eng\_Latn’ is the language tag, also added during tokenization. The language tag does not affect how the tokenizer breaks up the sentence, rather, its inclusion is only used during encoding.
 
 \vskip.25in
-Step 2: Encode
+Encode
 
-In its first layer, the encoder deterministically turns each token into a dense vector embedding, then implicitly marks the position of each 
-token in the sentence by adding a unique sum of sinusoids. The embedding vectors corresponding to each token in 
-the vocabulary are learned in training, and the model learns the implicit meaning of the signal added by the positional 
-encoding. The rest of the layers of the encoder repeatedly use self-attention to contextualize each embedding in the sentence. 
-The embedding of a verb might be strongly influenced by the noun it is acting on, or the embedding of an article in a gendered language might 
-depend primarily on the gender of its referent, for example. 
+In its first layer, the encoder deterministically turns each token into a dense vector embedding, then implicitly marks the position of each token in the sentence by adding a unique sum of sinusoids. The embedding vectors corresponding to each token in the vocabulary are learned in training, and the model learns the implicit meaning of the signal added by the positional encoding. The rest of the layers of the encoder repeatedly use self-attention to contextualize each embedding in the sentence. The embedding of a verb might be strongly influenced by the noun it is acting on, or the embedding of an article in a gendered language might depend primarily on the gender of its referent, for example.
 
-The vectors produced by the encoder are high dimensional and therefore impossible to accurately plot. But their components 
-represent the relationship between words and individual tokens. The cosine similarity (angle) between vectors can represent 
-analogous relationships between pairs of words. For example, (insert an example here )
+\vskip.25in
+Decode
+
+The decoder uses the vector embeddings to generate probabilities for tokens in the tokenizer’s vocabulary. There are different strategies for token selection - using the token with the highest probability every time (greedy selection) is the most common. The decoder uses attention to the tokens it has already generated to generate each new token. 
+
+
+
+
+\section{Early Experiments}
+
+The beginning portion of this project was spent trying to understand and use the Facebook NLLB models. The full sized model has 54.5 billion parameters, which is far too large for the available hardware, but the paper also published scaled-down versions of the model with 3.3 billion, 1.3 billion, and 600 million parameters. An early goal was to fine-tune one of these smaller models with a language not represented in the original 200. Fine-tuning is the process of training a pre-trained model to improve its performance on a particular task or set of tasks. The language pair chosen for these early experiments is unimportant, as the goal was to determine the general procedure of finetuning and become familiar with the necessary Python libraries. After some time experimenting on the language pair Russian-Tyvan (a turkic language with strong Russian influence), I arrived at basic code for NLLB model fine-tuning. After some number of updates (I used 1,000), the model was saved if it showed better performance than at the last checkpoint. This was repeated over 60,000 updates, but to save time, the training terminated if no progress had been made in 30,000 updates.
+
+The training loop relies on the model's loss to evaluate performance, but this score does not represent the accuracy of the translations. Evaluating translations is a difficult task in its own right… most sentences could be accurately translated in several ways. Any algorithm for this task will be imperfect, but the use of the Bilingual Evaluation Understudy (Bleu) and the Character n-gram F-score (chrF++) are standard in the field of NMT. (go into more detail?) To evaluate the model’s performance after fine-tuning, sentences from the dev set are translated (in both/all directions) and the translations are compared to those provided in the dataset using Bleu and chrF++. 
+
+I fine-tuned a number of other models using training data from the AmericasNLP dataset (cite?), which contains indigenous languages from North, Central, and South America, each paired with Spanish. The results were, in general, lower than but comparable to the scores submitted by researchers at the University of Sheffield (cite). The lower scores were acceptable given that the task at hand was not to submit scores to the annual AmericasNLP conference. I also developed code for multilingual training and evaluation with this set of languages, which involves the use of all language pairs and directions. 
+
+\section{Digging into the Embedding Space}
+
+With a solid foundation in fine-tuning and model evaluation, I turned my focus to the embedding space of the NLLB models in an attempt to generate insights into the relationship between the vector representations of tokens and sentences before decoding. To capture these vectors for experimentation, I (we?, my advisor?) cloned the NLLB architectures with a layer inserted to take a “snapshot” of the vector embeddings after encoding. The 
+
+The vectors produced by the encoder are high dimensional and therefore impossible to accurately plot. But their components represent the relationship between words and individual tokens. The cosine similarity (angle) between vectors can represent analogous relationships between pairs of words. For example, (insert an example here (can I take one from slides?)) 
+
+
