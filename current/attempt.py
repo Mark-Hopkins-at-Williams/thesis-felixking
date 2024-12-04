@@ -36,7 +36,7 @@ def token_pair_similarity(data, lang1, lang2, sent_id, verbose=False):
     index = faiss.read_index(f'indices/{lang2}_{sent_id}')
     
     distances, _ = index.search(query_vector, 1)
-    distancesAB = [a[0] for a in distances]
+    distancesAB = [a[0] for a in distances]j
 
     query_vector = l2_data.astype('float32')
     query_vector = query_vector / np.linalg.norm(query_vector, axis=1, keepdims=True)
