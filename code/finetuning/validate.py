@@ -5,9 +5,9 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from configure import AMERICAS_NLP_CSV, AMERICAS_NLP_LPS
-from configure import NLLB_SEED_CSV, NLLB_SEED_LPS
-from multilingualdata import MultilingualCorpus
+from finetuning.configure import AMERICAS_NLP_CSV, AMERICAS_NLP_LPS
+from finetuning.configure import NLLB_SEED_CSV, NLLB_SEED_LPS
+from finetuning.multilingualdata import MultilingualCorpus
 
 def translate(
     text, tokenizer, model, 
