@@ -99,7 +99,7 @@ def closestPairs(embeds1, embeds2):
     query_vector = embeds2.astype('float32')
 
     data = data / np.linalg.norm(data, axis=1, keepdims=True) # normalize
-    query_vector = query_vector / np.linalg.norm(query_vector)
+    query_vector = query_vector / np.linalg.norm(query_vector, axis=1, keepdims=True)
 
     index = faiss.IndexFlatIP(data.shape[1])
     index.add(data)
@@ -162,8 +162,9 @@ def main():
     
     df = pd.read_pickle(SEED_EMBED_PICKLE) # had to do a pickle file :^|
     
-    languages = TEN_SEED_LANGS
-    # languages = NLLB_SEED_LANGS
+    # languages = TEN_SEED_LANGS
+    languages = NLLB_SEED_LANGS
+    sentence_range = range(0, 200)
 
     score_table = np.zeros((len(languages), len(languages)))
 
@@ -190,8 +191,8 @@ def main():
             lang1_script = lang1.split('_')[1]
             lang2_script = lang2.split('_')[1]
 
-            print(f'\n{lang1}, {lang2}')
-            for id in range(0, 20):
+            # print(f'\n{lang1}, {lang2}')
+            for id in sentence_range:
 
                 score = token_pair_similarity(data, lang1, lang2, id, verbose=False, summary=False)
 
