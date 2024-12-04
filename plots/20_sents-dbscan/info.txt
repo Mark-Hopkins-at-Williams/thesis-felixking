@@ -1,0 +1,23 @@
+base model used: facebook/nllb-200-distilled-600M
+
+Sentences used:
+0:	Lillian Diana Gish (October 14, 1893 – February 27, 1993) was an American actress, director and screenwriter.
+1:	Gish was a prominent film star from 1912 into the 1920s, being particularly associated with the films of director D. W. Griffith.
+2:	She also did considerable television work from the early 1950s into the 1980s, and closed her career playing opposite Bette Davis in the 1987 film The Whales of August.
+3:	The first several generations of Gishes were Dunkard ministers.
+4:	Their mother opened the Majestic Candy Kitchen, and the girls helped sell popcorn and candy to patrons of the old Majestic Theater, located next door.
+5:	The seventeen-year-old Lillian traveled to Shawnee, Oklahoma, where James's brother Alfred Grant Gish and his wife, Maude, lived.
+6:	Her father died in Norman, Oklahoma, in 1912, but she had returned to Ohio a few months before this.
+7:	When Lillian and Dorothy were old enough they joined the theatre, often traveling separately in different productions.
+8:	Gish continued to perform on the stage, and in 1913, during a run of A Good Little Devil, she collapsed from anemia.
+9:	Her performance in these frigid conditions gave her lasting nerve damage in several fingers.
+10:	He utilized her expressive talents to the fullest, developing her into a suffering yet strong heroine.
+11:	She directed her sister Dorothy in one film, Remodeling Her Husband (1920), when D. W. Griffith took his unit on location.
+12:	She turned down the money, requesting a more modest wage and a percentage so that the studio could use the funds to increase the quality of her films — hiring the best actors, screenwriters, etc.
+13:	Many of the silent era's leading ladies, such as Gish and Pickford, had been wholesome and innocent, but by the early 1930s (after the full adoption of sound and before the Motion Picture Production Code was enforced) these roles were perceived as outdated.
+14:	Louis Mayer wanted to stage a scandal ("knock her off her pedestal") to garner public sympathy for Gish, but Lillian didn't want to act both on screen and off, and returned to her first love, the theater.
+15:	Returning to movies, Gish was nominated for the Academy Award for Best Supporting Actress in 1946 for Duel in the Sun.
+16:	She was considered for various roles in Gone with the Wind ranging from Ellen O'Hara, Scarlett's mother (which went to Barbara O'Neil), to prostitute Belle Watling (which went to Ona Munson).
+17:	She appeared as Dowager Empress Maria Feodorovna in the short-lived 1965 Broadway musical Anya.
+18:	She was interviewed in the television documentary series Hollywood: A Celebration of the American Silent Film (1980).
+19:	She has a star on the Hollywood Walk of Fame at 1720 Vine Street.

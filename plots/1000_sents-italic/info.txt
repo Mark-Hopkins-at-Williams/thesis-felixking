@@ -1,0 +1,1003 @@
+base model used: facebook/nllb-200-distilled-600M
+
+Sentences used:
+0:	Lillian Diana Gish (October 14, 1893 – February 27, 1993) was an American actress, director and screenwriter.
+1:	Gish was a prominent film star from 1912 into the 1920s, being particularly associated with the films of director D. W. Griffith.
+2:	She also did considerable television work from the early 1950s into the 1980s, and closed her career playing opposite Bette Davis in the 1987 film The Whales of August.
+3:	The first several generations of Gishes were Dunkard ministers.
+4:	Their mother opened the Majestic Candy Kitchen, and the girls helped sell popcorn and candy to patrons of the old Majestic Theater, located next door.
+5:	The seventeen-year-old Lillian traveled to Shawnee, Oklahoma, where James's brother Alfred Grant Gish and his wife, Maude, lived.
+6:	Her father died in Norman, Oklahoma, in 1912, but she had returned to Ohio a few months before this.
+7:	When Lillian and Dorothy were old enough they joined the theatre, often traveling separately in different productions.
+8:	Gish continued to perform on the stage, and in 1913, during a run of A Good Little Devil, she collapsed from anemia.
+9:	Her performance in these frigid conditions gave her lasting nerve damage in several fingers.
+10:	He utilized her expressive talents to the fullest, developing her into a suffering yet strong heroine.
+11:	She directed her sister Dorothy in one film, Remodeling Her Husband (1920), when D. W. Griffith took his unit on location.
+12:	She turned down the money, requesting a more modest wage and a percentage so that the studio could use the funds to increase the quality of her films — hiring the best actors, screenwriters, etc.
+13:	Many of the silent era's leading ladies, such as Gish and Pickford, had been wholesome and innocent, but by the early 1930s (after the full adoption of sound and before the Motion Picture Production Code was enforced) these roles were perceived as outdated.
+14:	Louis Mayer wanted to stage a scandal ("knock her off her pedestal") to garner public sympathy for Gish, but Lillian didn't want to act both on screen and off, and returned to her first love, the theater.
+15:	Returning to movies, Gish was nominated for the Academy Award for Best Supporting Actress in 1946 for Duel in the Sun.
+16:	She was considered for various roles in Gone with the Wind ranging from Ellen O'Hara, Scarlett's mother (which went to Barbara O'Neil), to prostitute Belle Watling (which went to Ona Munson).
+17:	She appeared as Dowager Empress Maria Feodorovna in the short-lived 1965 Broadway musical Anya.
+18:	She was interviewed in the television documentary series Hollywood: A Celebration of the American Silent Film (1980).
+19:	She has a star on the Hollywood Walk of Fame at 1720 Vine Street.
+20:	At the Cannes festival, Gish won a 10-minute standing ovation from the audience.
+21:	The episode "Marry for Murder" was broadcast on September 9, 1943.
+22:	She was awarded an Academy Honorary Award in 1971, and in 1984 she received an AFI Life Achievement Award.
+23:	The University awarded Gish the honorary degree of Doctor of Performing Arts the next day.
+24:	Following Gish's 1993 death, the University raised funds to enlarge its gallery to display memorabilia received from Gish's estate.
+25:	The association between herself and D. W. Griffith was so close that some suspected a romantic connection, an issue never acknowledged by Gish, although several of their associates were certain they were at least briefly involved.
+26:	In the 1920s, Gish's association with Duell became something of a tabloid scandal when he sued her and made the details of their relationship public.
+27:	George Jean Nathan praised Gish's acting glowingly—comparing her to Eleonora Duse.
+28:	During the period of political turmoil in the US that lasted from the outbreak of World War II in Europe until the attack on Pearl Harbor, she maintained an outspoken non-interventionist stance.
+29:	Joseph Frank Keaton (October 4, 1895 – February 1, 1966), known professionally as Buster Keaton, was an American actor, comedian, film director, producer, screenwriter, and stunt performer.
+30:	His career declined when he signed with Metro-Goldwyn-Mayer and lost his artistic independence.
+31:	Many of Keaton's films from the 1920s remain highly regarded, such as Sherlock Jr. (1924), The General (1926), and The Cameraman (1928).
+32:	His father was Joseph Hallie "Joe" Keaton, who owned a traveling show with Harry Houdini called the Mohawk Indian Medicine Company, or the Keaton Houdini Medicine Show Company, which performed on stage and sold patent medicine on the side.
+33:	In Keaton's retelling, he was six months old when the incident occurred, and Harry Houdini gave him the nickname.
+34:	The act was mainly a comedy sketch.
+35:	A suitcase handle was sewn into Keaton's clothing to aid with the constant tossing.
+36:	However, Buster was always able to show the authorities that he had no bruises or broken bones.
+37:	Several times I'd have been killed if I hadn't been able to land like a cat.
+38:	Noticing that this caused the audience to laugh less, he adopted his famous deadpan expression when performing.
+39:	Despite tangles with the law and a disastrous tour of music halls in the United Kingdom, Keaton was a rising star in the theater.
+40:	In February 1917, he met Roscoe "Fatty" Arbuckle at the Talmadge Studios in New York City, where Arbuckle was under contract to Joseph M. Schenck.
+41:	Buster was such a natural in his first film, The Butcher Boy, he was hired on the spot.
+42:	Keaton later claimed that he was soon Arbuckle's second director and his entire gag department.
+43:	It was based on a successful play, The New Henrietta, which had already been filmed once, under the title The Lamb, with Douglas Fairbanks playing the lead.
+44:	He made a series of two-reel comedies, including One Week (1920), The Playhouse (1921), Cops (1922), and The Electric House (1922).
+45:	Comedy director Leo McCarey, recalling the freewheeling days of making slapstick comedies, said, "All of us tried to steal each other's gagmen.
+46:	During the railroad water-tank scene in Sherlock Jr., Keaton broke his neck when a torrent of water fell on him from a water tower, but he did not realize it until years afterward.
+47:	Keaton's character emerged unscathed, due to a single open window.
+48:	Aside from Steamboat Bill, Jr. (1928), Keaton's most enduring feature-length films include Our Hospitality (1923), The Navigator (1924), Sherlock Jr. (1924), Seven Chances (1925), The Cameraman (1928), and The General (1926).
+49:	Though it would come to be regarded as Keaton's greatest achievement, the film received mixed reviews at the time.
+50:	His distributor, United Artists, insisted on a production manager who monitored expenses and interfered with certain story elements.
+51:	The actors would phonetically memorize the foreign-language scripts a few lines at a time and shoot immediately after.
+52:	The director was usually Jules White, whose emphasis on slapstick and farce made most of these films resemble White's famous Three Stooges shorts.
+53:	However, director White's insistence on blunt, violent gags resulted in the Columbia shorts being the least inventive comedies he made.
+54:	He made his last starring feature El Moderno Barba Azul (1946) in Mexico; the film was a low-budget production, and it may not have been seen in the United States until its release on VHS in the 1980s, under the title Boom in the Moon.
+55:	In In the Good Old Summertime, Keaton personally directed the stars Judy Garland and Van Johnson in their first scene together, where they bump into each other on the street.
+56:	Reaction was strong enough for a local Los Angeles station to offer Keaton his own show, also broadcast live, in 1950.
+57:	Buster Keaton's wife Eleanor also was seen in the series (notably as Juliet to Buster's Romeo in a little-theater vignette).
+58:	Keaton's periodic television appearances during the 1950s and 1960s helped to revive interest in his silent films.
+59:	Well into his fifties, Keaton successfully recreated his old routines, including one stunt in which he propped one foot onto a table, then swung the second foot up next to it and held the awkward position in midair for a moment before crashing to the stage floor.
+60:	Keaton had prints of the features Three Ages, Sherlock Jr., Steamboat Bill, Jr., and College (missing one reel), and the shorts "The Boat" and "My Wife's Relations", which Keaton and Rohauer then transferred to Cellulose acetate film from deteriorating nitrate film stock.
+61:	In a series of silent television commercials for Simon Pure Beer made in 1962 by Jim Mohr in Buffalo, New York, Keaton revisited some of the gags from his silent film days.
+62:	In December 1958, Keaton was a guest star in the episode "A Very Merry Christmas" of The Donna Reed Show on ABC.
+63:	In 1960, he returned to MGM for the final time, playing a lion tamer in a 1960 adaptation of Mark Twain's The Adventures of Huckleberry Finn.
+64:	He worked with comedian Ernie Kovacs on a television pilot tentatively titled "Medicine Man," shooting scenes for it on January 12, 1962—the day before Kovacs died in a car crash. "
+65:	He traveled from one end of Canada to the other on a motorized handcar, wearing his traditional pork pie hat and performing gags similar to those in films that he made 50 years before.
+66:	Also in 1965, he traveled to Italy to play a role in Due Marines e un Generale, co-starring Franco Franchi and Ciccio Ingrassia.
+67:	One of his most biting parodies is The Frozen North (1922), a satirical take on William S. Hart's Western melodramas, like Hell's Hinges (1916) and The Narrow Trail (1917).
+68:	Audiences of the 1920s recognized the parody and thought the film hysterically funny.
+69:	The short also featured the impression of a performing monkey which was likely derived from a co-biller's act (called Peter the Great).
+70:	Note: Source misspells Keaton's frequent appellation as "Great Stoneface".
+71:	Keaton dated actress Dorothy Sebastian beginning in the 1920s and Kathleen Key in the early 1930s.
+72:	He escaped a straitjacket with tricks learned from Harry Houdini.
+73:	She filed for divorce in 1935 after finding Keaton with Leah Clampitt Sewell, the wife of millionaire Barton Sewell, in a hotel in Santa Barbara.
+74:	He stopped drinking for five years.
+75:	The marriage lasted until his death.
+76:	Confined to a hospital during his final days, Keaton was restless and paced the room endlessly, desiring to return home.
+77:	The screenplay, by Sidney Sheldon, who also directed the film, was loosely based on Keaton's life but contained many factual errors and merged his three wives into one character.
+78:	Dedicated to bringing greater public attention to Keaton's life and work, the membership includes many individuals from the television and film industry: actors, producers, authors, artists, graphic novelists, musicians, and designers, as well as those who simply admire the magic of Buster Keaton.
+79:	Hirschfeld said that modern film stars were more difficult to depict, that silent film comedians such as Laurel and Hardy and Keaton "looked like their caricatures".
+80:	Film critic Roger Ebert stated, "The greatest of the silent clowns is Buster Keaton, not only because of what he did, but because of how he did it.
+81:	Filmmaker Mel Brooks has credited Buster Keaton as a major influence, saying: "I owe (Buster) a lot on two levels: One for being such a great teacher for me as a filmmaker myself, and the other just as a human being watching this gifted person doing these amazing things.
+82:	Actor and stunt performer Johnny Knoxville cites Keaton as an inspiration when coming up with ideas for Jackass projects.
+83:	Lewis was particularly moved by the fact that Eleanor said his eyes looked like Keaton's.
+84:	In 1964, he told an interviewer that in making "this particular pork pie", he "started with a good Stetson and cut it down", stiffening the brim with sugar water.
+85:	His paternal great-grandparents were Welsh.
+86:	Lloyd began collaborating with Roach who had formed his own studio in 1913.
+87:	In 1919, she left Lloyd to pursue her dramatic aspirations.
+88:	Reportedly, the more Lloyd watched Davis the more he liked her.
+89:	Harold Lloyd would move away from tragicomic personas, and portray an everyman with unwavering confidence and optimism.
+90:	To create his new character Lloyd donned a pair of lensless horn-rimmed glasses but wore normal clothing; previously, he had worn a fake mustache and ill-fitting clothes as the Chaplinesque "Lonesome Luke". "
+91:	They were natural and the romance could be believable."
+92:	On Sunday, August 24, 1919, while posing for some promotional still photographs in the Los Angeles Witzel Photography Studio, he picked up what he thought was a prop bomb and lit it with a cigarette.
+93:	Lloyd was in the act of lighting a cigarette from the fuse of the bomb when it exploded, also badly burning his face and chest and injuring his eye.
+94:	Lloyd and Roach parted ways in 1924, and Lloyd became the independent producer of his own films.
+95:	All of these films were enormously successful and profitable, and Lloyd would eventually become the highest paid film performer of the 1920s.
+96:	However, his go-getting screen character was out of touch with Great Depression movie audiences of the 1930s.
+97:	On March 23, 1937, Lloyd sold the land of his studio, Harold Lloyd Motion Picture Company, to The Church of Jesus Christ of Latter-day Saints.
+98:	He returned for an additional starring appearance in The Sin of Harold Diddlebock, an ill-fated homage to Lloyd's career, directed by Preston Sturges and financed by Howard Hughes.
+99:	Lloyd and Sturges had different conceptions of the material and fought frequently during the shoot; Lloyd was particularly concerned that while Sturges had spent three to four months on the script of the first third of the film, "the last two-thirds of it he wrote in a week or less".
+100:	Some saw The Old Gold Comedy Theater as being a lighter version of Lux Radio Theater, and it featured some of the best-known film and radio personalities of the day, including Fred Allen, June Allyson, Lucille Ball, Ralph Bellamy, Linda Darnell, Susan Hayward, Herbert Marshall, Dick Powell, Edward G. Robinson, Jane Wyman, and Alan Young.
+101:	Many years later, acetate discs of 29 of the shows were discovered in Lloyd's home, and they now circulate among old-time radio collectors.
+102:	He was a Past Potentate of Al-Malaikah Shrine in Los Angeles, and was eventually selected as Imperial Potentate of the Shriners of North America for the year 1949–50.
+103:	Lloyd was invested with the Rank and Decoration of Knight Commander Court of Honour in 1955 and coroneted an Inspector General Honorary, 33°, in 1965.
+104:	It said, as first step, Lloyd will write the story of his life for Simon and Schuster.
+105:	He became known for his nude photographs of models, such as Bettie Page and stripper Dixie Evans, for a number of men's magazines.
+106:	We never intended them to be played with pianos."
+107:	They've come close to it, but they haven't come all the way up".
+108:	In the early 1960s, Lloyd produced two compilation films, featuring scenes from his old comedies, Harold Lloyd's World of Comedy and The Funny Side of Life.
+109:	Time-Life released several of the feature films more or less intact, also using some of Scharf's scores which had been commissioned by Lloyd.
+110:	The Brownlow and Gill documentary was shown as part of the PBS series American Masters, and created a renewed interest in Lloyd's work in the United States, but the films were largely unavailable.
+111:	They also adopted Gloria Freeman (1924–1986) in September 1930, whom they renamed Marjorie Elizabeth Lloyd but was known as "Peggy" for most of her life.
+112:	Davis died from a heart attack in 1969, two years before Lloyd's death.
+113:	In 1925, at the height of his movie career, Lloyd entered into Freemasonry at the Alexander Hamilton Lodge No.
+114:	In 1926, he became a 32° Scottish Rite Mason in the Valley of Los Angeles, California.
+115:	A portion of Lloyd's personal inventory of his silent films (then estimated to be worth $2 million) was destroyed in August 1943 when his film vault caught fire.
+116:	The fire spared the main house and outbuildings.
+117:	Lloyd was honored in 1960 for his contribution to motion pictures with a star on the Hollywood Walk of Fame located at 1503 Vine Street.
+118:	The second citation was a snub to Chaplin, who at that point had fallen foul of McCarthyism and had his entry visa to the United States revoked.
+119:	Gladys Marie Smith (April 8, 1892 – May 29, 1979), known professionally as Mary Pickford, was a Canadian-American film actress and producer with a career that spanned five decades.
+120:	Her father, John Charles Smith was the son of English Methodist immigrants, and worked a variety of odd jobs.
+121:	To please her husband's relatives, Pickford's mother baptized her children as Methodists, the religion of their father.
+122:	Gladys, her mother and two younger siblings toured the United States by rail, performing in third-rate companies and plays.
+123:	Gladys finally landed a supporting role in a 1907 Broadway play, The Warrens of Virginia.
+124:	After completing the Broadway run and touring the play, however, Pickford was again out of work.
+125:	She quickly grasped that movie acting was simpler than the stylized stage acting of the day.
+126:	As Pickford said of her success at Biograph:I played scrubwomen and secretaries and women of all nationalities ... I decided that if I could get into as many pictures as possible, I'd become known, and there would be a demand for my work.
+127:	In January 1910, Pickford traveled with a Biograph crew to Los Angeles.
+128:	Actors were not listed in the credits in Griffith's company.
+129:	Pickford left Biograph in December 1910.
+130:	She returned to Broadway in the David Belasco production of A Good Little Devil (1912).
+131:	In 1913, she decided to work exclusively in film.
+132:	Pickford left the stage to join Zukor's roster of stars.
+133:	Comedy-dramas, such as In the Bishop's Carriage (1913), Caprice (1913), and especially Hearts Adrift (1914), made her irresistible to moviegoers.
+134:	Tess of the Storm Country was released five weeks later.
+135:	Only Charlie Chaplin, who slightly surpassed Pickford's popularity in 1916, had a similarly spellbinding pull with critics and the audience.
+136:	She also became vice-president of Pickford Film Corporation.
+137:	Due to her lack of a normal childhood, she enjoyed making these pictures.
+138:	In August 1918, Pickford's contract expired and, when refusing Zukor's terms for a renewal, she was offered $250,000 to leave the motion picture business.
+139:	Through United Artists, Pickford continued to produce and perform in her own movies; she could also distribute them as she chose.
+140:	During this period, she also made Little Annie Rooney (1925), another film in which Pickford played a child, Sparrows (1926), which blended the Dickensian with newly minted German expressionist style, and My Best Girl (1927), a romantic comedy featuring her future husband Charles "Buddy" Rogers.
+141:	She played a reckless socialite in Coquette (1929), her first talkie, a role for which her famous ringlets were cut into a 1920s' bob.
+142:	The public failed to respond to her in the more sophisticated roles.
+143:	Established Hollywood actors were panicked by the impending arrival of the talkies.
+144:	She retired from film acting in 1933 following three costly failures with her last film appearance being Secrets.
+145:	During World War I she promoted the sale of Liberty Bonds, making an intensive series of fund-raising speeches, beginning in Washington, D.C., where she sold bonds alongside Charlie Chaplin, Douglas Fairbanks, Theda Bara, and Marie Dressler.
+146:	In a single speech in Chicago, she sold an estimated five million dollars' worth of bonds.
+147:	At the end of World War I, Pickford conceived of the Motion Picture Relief Fund, an organization to help financially needy actors.
+148:	As a result, in 1940, the Fund was able to purchase land and build the Motion Picture Country House and Hospital, in Woodland Hills, California.
+149:	She demanded (and received) these powers in 1916, when she was under contract to Zukor's Famous Players in Famous Plays (later Paramount).
+150:	The Mary Pickford Corporation was briefly Pickford's motion-picture production company.
+151:	Distributors (also part of the studios) arranged for company productions to be shown in the company's movie venues.
+152:	It was solely a distribution company, offering independent film producers access to its own screens as well as the rental of temporarily unbooked cinemas owned by other companies.
+153:	As a co-founder, as well as the producer and star of her own films, Pickford became the most powerful woman who has ever worked in Hollywood.
+154:	She and Chaplin remained partners in the company for decades.
+155:	It is rumored she became pregnant by Moore in the early 1910s and had a miscarriage or an abortion.
+156:	The couple lived together on-and-off for several years.
+157:	Around this time, Pickford also suffered from the flu during the 1918 flu pandemic.
+158:	They went to Europe for their honeymoon; fans in London and in Paris caused riots trying to get to the famous couple.
+159:	Pickford continued to epitomize the virtuous but fiery girl next door.
+160:	Foreign heads of state and dignitaries who visited the White House often asked if they could also visit Pickfair, the couple's mansion in Beverly Hills.
+161:	Other guests included George Bernard Shaw, Albert Einstein, Elinor Glyn, Helen Keller, H. G. Wells, Lord Mountbatten, Fritz Kreisler, Amelia Earhart, F. Scott Fitzgerald, Noël Coward, Max Reinhardt, Baron Nishi, Vladimir Nemirovich-Danchenko, Sir Arthur Conan Doyle, Austen Chamberlain, Sir Harry Lauder, and Meher Baba, among others.
+162:	They were also constantly on display as America's unofficial ambassadors to the world, leading parades, cutting ribbons, and making speeches.
+163:	They divorced January 10, 1936.
+164:	She criticized their physical imperfections, including Ronnie's small stature and Roxanne's crooked teeth.
+165:	Her siblings, Lottie and Jack, both died of alcohol-related causes in 1936 and 1933, respectively.
+166:	Pickford withdrew and gradually became a recluse, remaining almost entirely at Pickfair and allowing visits only from Lillian Gish, her stepson Douglas Fairbanks Jr., and few other people.
+167:	She appeared in court in 1959, in a matter pertaining to her co-ownership of North Carolina TV station WSJS-TV.
+168:	Charles "Buddy" Rogers often gave guests tours of Pickfair, including views of a genuine western bar Pickford had bought for Douglas Fairbanks, and a portrait of Pickford in the drawing room.
+169:	She also owned a house in Toronto, Ontario, Canada.
+170:	Her handprints and footprints are displayed at Grauman's Chinese Theatre in Hollywood, California.
+171:	The Mary Pickford Theater at the James Madison Memorial Building of the Library of Congress is named in her honor.
+172:	A first-run movie theatre in Cathedral City, California is called The Mary Pickford Theatre, which was established on May 25, 2001.
+173:	Among them are a rare and spectacular beaded gown she wore in the film Dorothy Vernon of Haddon Hall (1924) designed by Mitchell Leisen, her special Oscar, and a jewelry box.
+174:	The family home had been demolished in 1943, and many of the bricks delivered to Pickford in California.
+175:	In 1993, a Golden Palm Star on the Palm Springs Walk of Stars was dedicated to her.
+176:	From January 2011 until July 2011, the Toronto International Film Festival exhibited a collection of Mary Pickford memorabilia in the Canadian Film Gallery of the TIFF Bell LightBox building.
+177:	It was donated to Keene State College and is currently undergoing restoration by the Library of Congress for exhibition.
+178:	The Google Doodle of April 8, 2017 commemorated Mary Pickford's 125th birthday.
+179:	Gloria Josephine May Swanson (March 27, 1899 – April 4, 1983) was an American actress, producer, and businesswoman.
+180:	Her schoolgirl crush on Essanay Studios actor Francis X. Bushman led to her aunt taking her to tour the actor's Chicago studio.
+181:	Her sound film debut performance in the 1929 The Trespasser, earned her a second Academy Award nomination.
+182:	Her father was a Swedish American and her mother was of German, French, and Polish ancestry.
+183:	In either version, she was soon hired as an extra.
+184:	Her first role was a brief walk-on with actress Gerda Holmes, that paid an enormous (in those days) $3.25.
+185:	In 1915, she co-starred in Sweedie Goes to College with her future first husband Wallace Beery.
+186:	Vernon and Swanson projected a great screen chemistry that proved popular with audiences.
+187:	Badger was sufficiently impressed by Swanson to recommend her to the director Jack Conway for Her Decision and You Can't Believe Everything in 1918.
+188:	1920), Something to Think About (1920), and The Affairs of Anatol (1921) soon followed.
+189:	He had become a star in 1921 for his appearance in The Four Horsemen of the Apocalypse, but Swanson had known him since his days as an aspiring actor getting small parts, with no seeming hope for his professional future.
+190:	Filming was allowed for the first time at many of the historic sites relating to Napoleon.
+191:	At the time, Swanson was considered the most bankable star of her era.
+192:	The production was a disaster, with Parker being indecisive and the actors not experienced enough to deliver the performances she wanted.
+193:	The members took further steps by registering their discontent with Will H. Hays, Chairman of the Motion Picture Producers and Distributors of America.
+194:	Hays was enthusiastic about the basic story, but did have specific issues that were dealt with before the film's release.
+195:	He proposed to personally bankroll her next picture and conducted a thorough examination of her financial records.
+196:	Kennedy, however, advised her to hire Erich von Stroheim to direct another silent film, The Swamp, subsequently retitled Queen Kelly.
+197:	Stroheim worked for several months on writing the basic script.
+198:	Shooting was shut down in January, and Stroheim fired, after complaints by Swanson about him and about the general direction the film was taking.
+199:	The Trespasser in 1929 was a sound production, and garnered Swanson her second Oscar nomination.
+200:	The world premiere was held in London, the first American sound production to do so.
+201:	Perfect Understanding, a 1933 sound production comedy, was the only film produced by this company.
+202:	She began appearing in stage productions and starred in The Gloria Swanson Hour on WPIX-TV in 1948.
+203:	The storyline of the film follows a faded silent movie actress Norma Desmond (Swanson), in love with a failed screenwriter Joe Gillis (William Holden).
+204:	Norma plays a card game of bridge with a group of actors also known as "the Waxworks".
+205:	Norma dreams of a comeback are subverted, and when Gillis tries to break up with her, she threatens to kill herself, but instead kills him.
+206:	Although Swanson had objected to enduring a screen test for the film, she had been glad to be making much more money than she had been in television and on stage.
+207:	Swanson later hosted Crown Theatre with Gloria Swanson, a television anthology series in which she occasionally acted.
+208:	She was the "mystery guest" on What's My Line.
+209:	She made a notable appearance in a 1966 episode of The Beverly Hillbillies, in which she plays herself.
+210:	Actor and playwright Harold J. Kennedy, who had learned the ropes at Yale and with Orson Wells' Mercury Theatre, suggested Swanson do a road tour of "Reflected Glory", a comedy that had run on the Broadway stage with Tallulah Bankhead as its star.
+211:	After her success with Sunset Boulevard, she starred on Broadway in a revival of Twentieth Century with José Ferrer, and in Nina with David Niven.
+212:	As a Republican she supported the 1940 and 1944 campaigns for president of Wendell Willkie and the 1964 presidential campaign of Barry Goldwater.
+213:	Taking medication given to her by Beery, purported to be for morning sickness, she aborted the fetus and was taken unconscious to the hospital.
+214:	In 1923, she adopted 1-year-old Sonny Smith, whom she renamed Joseph Patrick Swanson after her father.
+215:	She had conceived a child with him before her divorce from Somborn was final, a situation that would have led to a public scandal and possible end of her film career.
+216:	Following a four-month recuperation from her abortion, they returned to the United States as European nobility.
+217:	He became a film executive representing Pathé (USA) in France.
+218:	Swanson described herself as a "mental vampire", someone with a searching curiosity about how things worked, and who pursued the possibilities of turning those ideas into reality.
+219:	They met by chance in Paris when Swanson was being fitted by Coco Chanel for her 1931 film Tonight or Never.
+220:	Her friends, some of whom openly disliked him, thought she was making a mistake.
+221:	Swanson had initially thought she was going to be able to retire from acting, but the marriage was troubled by Davey's alcoholism from the start.
+222:	He was the co-author (ghostwriter) of Billie Holiday's autobiography Lady Sings the Blues, the author of Sugar Blues, a 1975 best-selling health book still in print, and the author of the English version of Georges Ohsawa's You Are All Sanpaku.
+223:	Swanson and her husband first got to know John Lennon and Yoko Ono because they were fans of Dufty's work.
+224:	She was cremated and her ashes interred at the Episcopal Church of the Heavenly Rest on Fifth Avenue in New York City, attended by only a small circle of family.
+225:	In 1974, Swanson was one of the honorees of the first Telluride Film Festival.
+226:	Due to the erotic nature of her performances, Nielsen's films were censored in the United States, and her work remained relatively obscure to American audiences.
+227:	Nielsen's family moved several times during her childhood while her father sought employment.
+228:	Nielsen's father died when she was fourteen years old.
+229:	In 1901, 21-year-old Nielsen became pregnant and gave birth to a daughter, Jesta.
+230:	Nielsen graduated from the Theater school in 1902.
+231:	Nielsen's minimalist acting style was evidenced in her successful portrayal of a naive young woman lured into a tragic life.
+232:	Nielsen and Gad married, then made four more films together.
+233:	I realised that the age of short film was past.
+234:	It was international film sales that provided Union with eight Nielsen films per year.
+235:	I used every available means – and devised many new ones – in order to bring the Asta Nielsen films to the world."
+236:	In a Russian popularity poll of 1911, Nielsen was voted the world's top female movie star, behind Linder and ahead of her Danish compatriot Valdemar Psilander.
+237:	In 1921, Nielsen, through her own film distribution company of Asta Films, appeared in the Svend Gade and Heinz Schall directed Hamlet.
+238:	However, scholarly works such as the authoritative filmography published by Filmarchiv Austria in 2010 make no mention of such a film.
+239:	She worked in German films until the start of sound movies.
+240:	Thereafter, Nielsen acted only on stage.
+241:	Understanding the implications, Nielsen declined and left Germany in 1936.
+242:	They were divorced by 1919 when Nielsen married the Swedish shipbuilder Freddy Windgårdh.
+243:	They began a long-term common-law marriage that lasted from 1923 until the late 1930s.
+244:	Fred Astaire (born Frederick Austerlitz; May 10, 1899 – June 22, 1987) was an American dancer, actor, singer, choreographer, and television presenter.
+245:	He starred in more than 10 Broadway and West End musicals, made 31 musical films, four television specials, and numerous recordings.
+246:	Astaire's mother was born in the US to Lutheran German immigrants from East Prussia and Alsace.
+247:	Fritz was seeking work in the brewing trade and moved to Omaha, Nebraska, where he was employed by the Storz Brewing Company.
+248:	Johanna planned a "brother and sister act", common in vaudeville at the time, for her two children.
+249:	They began training at the Alviene Master School of the Theatre and Academy of Cultural Arts.
+250:	They were taught dance, speaking, and singing in preparation for developing an act.
+251:	In an interview, Astaire's daughter, Ava Astaire McKenzie, observed that they often put Fred in a top hat to make him look taller.
+252:	As a result of their father's salesmanship, Fred and Adele landed a major contract and played the Orpheum Circuit in the Midwest, Western and some Southern cities in the US.
+253:	In 1912, Fred became an Episcopalian.
+254:	From vaudeville dancer Aurelio Coccia, they learned the tango, waltz, and other ballroom dances popularized by Vernon and Irene Castle.
+255:	He first met George Gershwin, who was working as a song plugger for Jerome H. Remick's music publishing company, in 1916.
+256:	Of their work in The Passing Show of 1918, Heywood Broun wrote: "In an evening in which there was an abundance of good dancing, Fred Astaire stood out ... He and his partner, Adele Astaire, made the show pause early in the evening with a beautiful loose-limbed dance."
+257:	But by this time, Astaire's dancing skill was beginning to outshine his sister's.
+258:	Astaire's tap dancing was recognized by then as among the best.
+259:	After the close of Funny Face, the Astaires went to Hollywood for a screen test (now lost) at Paramount Pictures, but Paramount deemed them unsuitable for films.
+260:	The end of the partnership was traumatic for Astaire but stimulated him to expand his range.
+261:	They lent him for a few days to MGM in 1933 for his significant Hollywood debut in the successful musical film Dancing Lady.
+262:	He wrote his agent, "I don't mind making another picture with her, but as for this 'team' idea, it's 'out!'
+263:	The partnership, and the choreography of Astaire and Hermes Pan, helped make dancing an important element of the Hollywood film musical.
+264:	Six out of the nine Astaire–Rogers musicals became the biggest moneymakers for RKO; all of the films brought a certain prestige and artistry that all studios coveted at the time.
+265:	This gave the illusion of an almost stationary camera filming an entire dance in a single shot.
+266:	Astaire's style of dance sequences allowed the viewer to follow the dancers and choreography in their entirety.
+267:	Astaire's second innovation involved the context of the dance; he was adamant that all song and dance routines be integral to the plotlines of the film.
+268:	One would be a solo performance by Astaire, which he termed his "sock solo."
+269:	I think Ginger Rogers was.
+270:	She faked it an awful lot.
+271:	In 1976, British talk-show host Sir Michael Parkinson asked Astaire who his favorite dancing partner was on Parkinson.
+272:	Despite their success, Astaire was unwilling to have his career tied exclusively to any partnership.
+273:	Throughout this period, Astaire continued to value the input of choreographic collaborators.
+274:	They starred in Broadway Melody of 1940, in which they performed a celebrated extended dance routine to Cole Porter's "Begin the Beguine."
+275:	He played alongside Bing Crosby in Holiday Inn (1942) and later Blue Skies (1946).
+276:	The latter film featured "Puttin' On the Ritz", an innovative song-and-dance routine indelibly associated with him.
+277:	The first film, You'll Never Get Rich (1941), catapulted Hayworth to stardom.
+278:	It featured a duet to Kern's "I'm Old Fashioned," which became the centerpiece of Jerome Robbins's 1983 New York City Ballet tribute to Astaire.
+279:	Astaire choreographed this film alone and achieved modest box office success.
+280:	The fantasy Yolanda and the Thief (1945) featured an avant-garde surrealistic ballet.
+281:	Always insecure and believing his career was beginning to falter, Astaire surprised his audiences by announcing his retirement during the production of his next film Blue Skies (1946).
+282:	Both of these films revived Astaire's popularity and in 1950 he starred in two musicals.
+283:	While Three Little Words did quite well at the box office, Let's Dance was a financial disappointment.
+284:	But because of its high cost, it failed to make a profit on its first release.
+285:	Then, his wife Phyllis became ill and suddenly died of lung cancer.
+286:	Daddy Long Legs only did moderately well at the box office.
+287:	Similarly, Astaire's next project – his final musical at MGM, Silk Stockings (1957), in which he co-starred with Cyd Charisse, also lost money at the box office.
+288:	The first of these programs, 1958's An Evening with Fred Astaire, won nine Emmy Awards, including "Best Single Performance by an Actor" and "Most Outstanding Single Program of the Year."
+289:	The choice had a controversial backlash because many believed his dancing in the special was not the type of "acting" for which the award was designed.
+290:	They restored the original videotape, transferring its contents to a modern format and filling in gaps where the tape had deteriorated with kinescope footage.
+291:	Astaire appeared in non-dancing roles in three other films and several television series from 1957 to 1969.
+292:	Astaire's dance partner was Petula Clark, who played his character's skeptical daughter.
+293:	Astaire continued to act in the 1970s.
+294:	In the second compilation, aged seventy-six, he performed brief dance linking sequences with Kelly, his last dance performances in a musical film.
+295:	In 1978, he co-starred with Helen Hayes in a well received television film A Family Upside Down in which they played an elderly couple coping with failing health.
+296:	Astaire asked his agent to obtain a role for him on Galactica because of his grandchildren's interest in the series and the producers were delighted at the opportunity to create an entire episode to feature him.
+297:	Long after the photography for the solo dance number "I Want to Be a Dancin' Man" was completed for the 1952 feature The Belle of New York, it was decided that Astaire's humble costume and the threadbare stage set were inadequate and the entire sequence was reshot.
+298:	Frame for frame, the two performances are identical, down to the subtlest gesture.
+299:	His was a uniquely recognizable dance style that greatly influenced the American Smooth style of ballroom dance and set standards against which subsequent film dance musicals would be judged.
+300:	He notes Astaire's dance style was consistent in subsequent films made with or without the assistance of Pan.
+301:	However, this was almost always confined to the area of extended fantasy sequences, or "dream ballets".
+302:	Later in life, he admitted, "I had to do most of it myself."
+303:	Many dance routines were built around a "gimmick," like dancing on the walls in Royal Wedding or dancing with his shadows in Swing Time.
+304:	They would work with a rehearsal pianist (often the composer Hal Borne) who in turn would communicate modifications to the musical orchestrators.
+305:	With all the preparation completed, the actual shooting would go quickly, conserving costs.
+306:	He will not even go to see his rushes... He always thinks he is no good."
+307:	Michael Kidd, Astaire's co-choreographer on the 1953 film The Band Wagon, found that his own concern about the emotional motivation behind the dance was not shared by Astaire.
+308:	Let's add the looks later.' "
+309:	Irving Berlin considered Astaire the equal of any male interpreter of his songs—"as good as Jolson, Crosby or Sinatra, not necessarily because of his voice, but for his conception of projecting a song.
+310:	In his heyday, Astaire was referenced in lyrics of songwriters Cole Porter, Lorenz Hart and Eric Maschwitz and continues to inspire modern songwriters.
+311:	During 1952, Astaire recorded The Astaire Story, a four-volume album with a quintet led by Oscar Peterson.
+312:	Bogart began acting in Broadway shows, beginning his career in motion pictures with Up the River (1930) for Fox and appeared in supporting roles for the next decade, sometimes portraying gangsters.
+313:	Bogart's private detectives, Sam Spade (in The Maltese Falcon) and Phillip Marlowe (in 1946's The Big Sleep), became the models for detectives in other noir films.
+314:	Soon after the principal photography for The Big Sleep (1946, their second film together), he filed for divorce from his third wife and married Bacall.
+315:	He reprised those unsettled, unstable characters as a World War II naval-vessel commander in The Caine Mutiny (1954), which was a critical and commercial hit and earned him another Best Actor nomination.
+316:	The name "Bogart" derives from the Dutch surname, "Bogaert".
+317:	Maud was an Episcopalian of English heritage, and a descendant of Mayflower passenger John Howland.
+318:	Clifford McCarty wrote that Warner Bros. publicity department had altered it to January 23, 1900 "to foster the view that a man born on Christmas Day couldn't really be as villainous as he appeared to be on screen".
+319:	Lauren Bacall wrote in her autobiography that Bogart's birthday was always celebrated on Christmas Day, saying that he joked about being cheated out of a present every year.
+320:	Maud was a commercial illustrator who received her art training in New York and France, including study with James Abbott McNeill Whistler.
+321:	She earned over $50,000 a year at the peak of her career – a very large sum of money at the time, and considerably more than her husband's $20,000.
+322:	He had two younger sisters: Frances ("Pat") and Catherine Elizabeth ("Kay").
+323:	A kiss, in our family, was an event.
+324:	He inherited a tendency to needle, a fondness for fishing, a lifelong love of boating, and an attraction to strong-willed women from his father.
+325:	Bogart later attended Phillips Academy, a boarding school to which he was admitted based on family connections.
+326:	Several reasons have been given; according to one, he was expelled for throwing the headmaster (or a groundskeeper) into Rabbit Pond on campus.
+327:	He then volunteered for the Coast Guard Temporary Reserve in 1944, patrolling the California coastline in his yacht, the Santana.
+328:	In one, his lip was cut by shrapnel when his ship (the ) was shelled.
+329:	While changing trains in Boston, the handcuffed prisoner reportedly asked Bogart for a cigarette.
+330:	By the time Bogart was treated by a doctor, a scar had formed.
+331:	Instead of stitching it up, he screwed it up."
+332:	His character and values developed separately from his family during his navy days, and he began to rebel.
+333:	Bogart resumed his friendship with Bill Brady Jr. (whose father had show-business connections), and obtained an office job with William A. Brady's new World Films company.
+334:	He made his stage debut a few months later as a Japanese butler in Alice's 1921 play Drifting (nervously delivering one line of dialogue), and appeared in several of her subsequent plays.
+335:	A barroom brawl at this time was also a purported cause of Bogart's lip damage, dovetailing with Louise Brooks' account.
+336:	Bogart disliked his trivial, effeminate early-career parts, calling them "White Pants Willie" roles.
+337:	Menken said in her divorce filing that Bogart valued his career more than marriage, citing neglect and abuse.
+338:	There he met Spencer Tracy, a Broadway actor whom Bogart liked and admired, and they became close friends and drinking companions.
+339:	Tracy received top billing, but Bogart appeared on the film's posters.
+340:	A quarter of a century later, the two men planned to make The Desperate Hours together.
+341:	Bogart shuttled back and forth between Hollywood and the New York stage from 1930 to 1935, out of work for long periods.
+342:	Although Leslie Howard was the star, The New York Times critic Brooks Atkinson said that the play was "a peach ... a roaring Western melodrama ... Humphrey Bogart does the best work of his career as an actor."
+343:	Warner Bros. bought the screen rights to The Petrified Forest in 1935.
+344:	Howard, who held the production rights, made it clear that he wanted Bogart to star with him.
+345:	When Warner Bros. saw that Howard would not budge, they gave in and cast Bogart.
+346:	According to Variety, "Bogart's menace leaves nothing wanting".
+347:	There must be something in my tone of voice, or this arrogant face—something that antagonizes everybody.
+348:	In spite of his success, Warner Bros. had no interest in raising Bogart's profile.
+349:	Bogart used these years to begin developing his film persona: a wounded, stoical, cynical, charming, vulnerable, self-mocking loner with a code of honor.
+350:	His disputes with Warner Bros. over roles and money were similar to those waged by the studio with more established and less malleable stars such as Bette Davis and James Cagney.
+351:	His only leading role during this period was in Dead End (1937, on loan to Samuel Goldwyn), as a gangster modeled after Baby Face Nelson.
+352:	In Black Legion (1937), a movie Graham Greene described as "intelligent and exciting, if rather earnest", he played a good man who was caught up with (and destroyed by) a racist organization.
+353:	The trouble was they were drinking mine and I was making this stinking movie."
+354:	On August 21, 1938, Bogart entered a turbulent third marriage to actress Mayo Methot, a lively, friendly woman when sober but paranoid and aggressive when drunk.
+355:	She set their house afire, stabbed him with a knife, and slashed her wrists several times.
+356:	According to their friend, Julius Epstein, "The Bogart-Methot marriage was the sequel to the Civil War".
+357:	Methot's influence was increasingly destructive, however, and Bogart also continued to drink.
+358:	When he thought an actor, director or studio had done something shoddy, he spoke up publicly about it.
+359:	Paul Muni, George Raft, Cagney and Robinson turned down the lead role, giving Bogart the opportunity to play a character with some depth.
+360:	He worked well with Ida Lupino, sparking jealousy from Mayo Methot.
+361:	He could quote Plato, Pope, Ralph Waldo Emerson and over a thousand lines of Shakespeare, and subscribed to the Harvard Law Review.
+362:	Based on the Dashiell Hammett novel, it was first serialized in the pulp magazine Black Mask in 1929 and was the basis of two earlier film versions; the second was Satan Met a Lady (1936), starring Bette Davis.
+363:	Huston then eagerly accepted Bogart as his Sam Spade.
+364:	The film, directed by Michael Curtiz and produced by Hal Wallis, featured Ingrid Bergman, Claude Rains, Sydney Greenstreet, Paul Henreid, Conrad Veidt, Peter Lorre and Dooley Wilson.
+365:	Bogart is reported to have been responsible for the notion that Rick Blaine should be portrayed as a chess player, a metaphor for the relationships he maintained with friends, enemies, and allies.
+366:	Bogart was nominated for Best Actor in a Leading Role, but lost to Paul Lukas for his performance in Watch on the Rhine.
+367:	Bogart went on United Service Organizations and War Bond tours with Methot in 1943 and 1944, making arduous trips to Italy and North Africa (including Casablanca).
+368:	When they met, Bacall was 19 and Bogart 44; he nicknamed her "Baby."
+369:	We'll have a lot of fun together".
+370:	By Myself and Then Some, HarperCollins, New York, 2005.
+371:	He considered himself Bacall's protector and mentor, and Bogart was usurping that role.
+372:	Also, he has a sense of humor that contains that grating undertone of contempt."
+373:	The dialogue, especially in the added scenes supplied by Hawks, was full of sexual innuendo, and Bogart is convincing as private detective Philip Marlowe.
+374:	The marriage was a happy one, with tensions due to their differences.
+375:	According to Bogart's biographer, Stefan Kanfer, it was "a production line film noir with no particular distinction".
+376:	Lacking a love interest or a happy ending, it was considered a risky project.
+377:	James Agee wrote, "Bogart does a wonderful job with this character ... miles ahead of the very good work he has done before."
+378:	Bogart appeared in his final films for Warners, Chain Lightning (1950) and The Enforcer (1951).
+379:	Santana also made two films without him: And Baby Makes Three (1949) and The Family Secret (1951).
+380:	Several Bogart biographers, and actress-writer Louise Brooks, have felt that this role is closest to the real Bogart.
+381:	A parody of sorts of The Maltese Falcon, Beat the Devil was the final film for Bogart and John Huston.
+382:	Huston's love of adventure, his deep, longstanding friendship (and success) with Bogart, and the chance to work with Hepburn convinced the actor to leave Hollywood for a difficult shoot on location in the Belgian Congo.
+383:	Bacall came for the over-four-month duration, leaving their young son in Los Angeles.
+384:	She Luxed my undies in darkest Africa."
+385:	Hepburn (a teetotaler) fared worse in the difficult conditions, losing weight and at one point becoming very ill.
+386:	Despite the discomfort of jumping from the boat into swamps, rivers and marshes, The African Queen apparently rekindled Bogart's early love of boats; when he returned to California, he bought a classic mahogany Hacker-Craft runabout which he kept until his death.
+387:	When Bogart won, however, he said: "It's a long way from the Belgian Congo to the stage of this theatre.
+388:	As in tennis, you need a good opponent or partner to bring out the best in you.
+389:	Though he retained some of his old bitterness about having to do so, he delivered a strong performance in the lead; he received his final Oscar nomination and was the subject of a June 7, 1954 Time magazine cover story.
+390:	He is the type of director I don't like to work with ... the picture is a crock of crap.
+391:	Despite the acrimony, the film was successful; according to a review in The New York Times, Bogart was "incredibly adroit ... the skill with which this old rock-ribbed actor blends the gags and such duplicities with a manly manner of melting is one of the incalculable joys of the show".
+392:	He was uneasy with Ava Gardner in the female lead; she had just broken up with his Rat Pack buddy Frank Sinatra, and Bogart was annoyed by her inexperienced performance.
+393:	When Bacall found them together, she extracted an expensive shopping spree from her husband; the three traveled together after the shooting.
+394:	He also appeared on The Jack Benny Show, where a surviving kinescope of the live telecast captures him in his only TV sketch-comedy performance (October 25, 1953).
+395:	Stephen became an author and biographer and hosted a television special about his father on Turner Classic Movies.
+396:	In the wake of Santana, Bogart had formed a new company and had plans for a film (Melville Goodwin, U.S.A.) in which he would play a general and Bacall a press magnate.
+397:	He did not talk about his health and visited a doctor in January 1956 after considerable persuasion from Bacall.
+398:	He had additional surgery in November 1956, when the cancer had metastasized.
+399:	On it was inscribed, "If you want anything, just whistle."
+400:	Having studied with Stella Adler in the 1940s, he is credited with being one of the first actors to bring the Stanislavski system of acting and method acting, derived from the Stanislavski system, to mainstream audiences.
+401:	He directed and starred in the cult western One-Eyed Jacks, a critical and commercial flop, after which he delivered a series of notable box-office failures, beginning with Mutiny on the Bounty (1962).
+402:	He refused the award due to alleged mistreatment and misportrayal of Native Americans by Hollywood.
+403:	According to the Guinness Book of World Records, Brando was paid a record $3.7 million ($ million in inflation-adjusted dollars) and 11.75% of the gross profits for 13 days' work on Superman.
+404:	His ancestry was mostly German, Dutch, English, and Irish.
+405:	Brando was raised a Christian Scientist.
+406:	However, she was an alcoholic and often had to be brought home from bars in Chicago by her husband.
+407:	Brando harbored far more enmity for his father, stating, "I was his namesake, but nothing I did ever pleased or even interested him.
+408:	Around 1930, Brando's parents moved to Evanston, Illinois, when his father's work took him to Chicago, but separated in 1935 when Brando was 11 years old.
+409:	Brando, whose childhood nickname was "Bud", was a mimic from his youth.
+410:	In the 2007 TCM biopic Brando: The Documentary, childhood friend George Englund recalls Brando's earliest acting as imitating the cows and horses on the family farm as a way to distract his mother from drinking.
+411:	Brando's sister Frances left college in California to study art in New York.
+412:	Brando excelled at theater and did well in the school.
+413:	The faculty voted to expel him, though he was supported by the students, who thought expulsion was too harsh.
+414:	In a 1988 documentary, Marlon Brando: The Wild One, Brando's sister Jocelyn remembered, "He was in a school play and enjoyed it ... So he decided he would go to New York and study acting because that was the only thing he had enjoyed.
+415:	For a time he lived with Roy Somlyo, who later became a four time Emmy winning Broadway producer.
+416:	Brando's remarkable insight and sense of realism were evident early on.
+417:	According to Dustin Hoffman in his online Masterclass, Brando would often talk to camera men and fellow actors about their weekend even after the director would call action.
+418:	His behavior had him kicked out of the cast of the New School's production in Sayville, but he was soon afterwards discovered in a locally produced play there.
+419:	Cornell also cast him as the Messenger in her production of Jean Anouilh's Antigone that same year.
+420:	Bankhead had turned down the role of Blanche Dubois in A Streetcar Named Desire, which Williams had written for her, to tour the play for the 1946–1947 season.
+421:	Wilson was largely tolerant of Brando's behavior, but he reached his limit when Brando mumbled through a dress rehearsal shortly before the November 28, 1946, opening. "
+422:	It was marvelous," a cast member recalled. "
+423:	Critics were not as kind, however.
+424:	He received better reviews at subsequent tour stops, but what his colleagues recalled was only occasional indications of the talent he would later demonstrate. "
+425:	Brando displayed his apathy for the production by demonstrating some shocking onstage manners.
+426:	After several weeks on the road, they reached Boston, by which time Bankhead was ready to dismiss him.
+427:	Pierpont writes that John Garfield was first choice for the role, but "made impossible demands."
+428:	It humanizes the character of Stanley in that it becomes the brutality and callousness of youth rather than a vicious old man ... A new value came out of Brando's reading which was by far the best reading I have ever heard."
+429:	He said, "The curtain went up and on the stage is that son of a bitch from the gym, and he's playing me."
+430:	Brando's first screen role was a bitter paraplegic veteran in The Men (1950).
+431:	By Brando's own account, it may have been because of this film that his draft status was changed from 4-F to 1-A. He had had surgery on his trick knee, and it was no longer physically debilitating enough to incur exclusion from the draft.
+432:	Coincidentally, the psychiatrist knew a doctor friend of Brando.
+433:	The role is regarded as one of Brando's greatest.
+434:	The film was directed by Elia Kazan and co-starred Anthony Quinn.
+435:	During our scenes together, I sensed a bitterness toward me, and if I suggested a drink after work, he either turned me down or else was sullen and said little.
+436:	After achieving the desired effect, Kazan never told Quinn that he had misled him.
+437:	Gielgud was so impressed that he offered Brando a full season at the Hammersmith Theatre, an offer he declined.
+438:	It was like a furnace door opening—the heat came off the screen.
+439:	By all accounts, Brando was upset by his mentor's decision, but he worked with him again in On The Waterfront. "
+440:	Triumph's importers were ambivalent at the exposure, as the subject matter was rowdy motorcycle gangs taking over a small town.
+441:	When initially offered the role, Brando—still stung by Kazan's testimony to HUAC—demurred and the part of Terry Malloy nearly went to Frank Sinatra.
+442:	Brando won the Oscar for his role as Irish-American stevedore Terry Malloy in On the Waterfront.
+443:	In his July 29, 1954, review, The New York Times critic A. H. Weiler praised the film, calling it "an uncommonly powerful, exciting, and imaginative use of the screen by gifted professionals."
+444:	He portrayed Napoleon in the 1954 film Désirée.
+445:	Brando was especially contemptuous of director Henry Koster.
+446:	Relations between Brando and costar Frank Sinatra were also frosty, with Stefan Kanfer observing: "The two men were diametrical opposites: Marlon required multiple takes; Frank detested repeating himself."
+447:	Frank Sinatra called Brando "the world's most overrated actor", and referred to him as "mumbles".
+448:	Pauline Kael was not particularly impressed by the movie, but noted "Marlon Brando starved himself to play the pixie interpreter Sakini, and he looks as if he's enjoying the stunt—talking with a mad accent, grinning boyishly, bending forward, and doing tricky movements with his legs.
+449:	Newsweek found the film a "dull tale of the meeting of the twain", but it was nevertheless a box-office success.
+450:	The film went on to win four Academy Awards.
+451:	By all accounts, Brando was devastated by her death, with biographer Peter Manso telling A&E's Biography, "She was the one who could give him approval like no one else could and, after his mother died, it seems that Marlon stops caring."
+452:	The Young Lions also features Brando's only appearance in a film with friend and rival Montgomery Clift (although they shared no scenes together).
+453:	Brando portrays the lead character Rio, and Karl Malden plays his partner "Dad" Longworth.
+454:	Brando's inexperience as an editor also delayed postproduction and Paramount eventually took control of the film.
+455:	By then, I was bored with the whole project and walked away from it."
+456:	Brando's revulsion with the film industry reportedly boiled over on the set of his next film, Metro-Goldwyn-Mayer's remake of Mutiny on the Bounty, which was filmed in Tahiti.
+457:	Mutiny director Lewis Milestone claimed that the executives "deserve what they get when they give a ham actor, a petulant child, complete control over an expensive picture."
+458:	The Ugly American (1963) was the first of these films.
+459:	All of Brando's other Universal films during this period, including Bedtime Story (1964), The Appaloosa (1966), A Countess from Hong Kong (1967) and The Night of the Following Day (1969), were also critical and commercial flops.
+460:	Brando had also appeared in the spy thriller Morituri in 1965; that, too, failed to attract an audience.
+461:	Candy was especially appalling for many; a 1968 sex farce film directed by Christian Marquand and based on the 1958 novel by Terry Southern, the film satirizes pornographic stories through the adventures of its naive heroine, Candy, played by Ewa Aulin.
+462:	In the March 1966 issue of The Atlantic, Pauline Kael wrote that in his rebellious days, Brando "was antisocial because he knew society was crap; he was a hero to youth because he was strong enough not to take the crap", but now Brando and others like him had become "buffoons, shamelessly, pathetically mocking their public reputations."
+463:	I was very convincing in my pose of indifference, but I was very sensitive and it hurt a lot."
+464:	The film overall received mixed reviews.
+465:	Brando dedicated a full chapter to the film in his memoir, stating that the director, Gillo Pontecorvo, was the best director he had ever worked with next to Kazan and Bernardo Bertolucci.
+466:	In 1971, Michael Winner directed him in the British horror film The Nightcomers with Stephanie Beacham, Thora Hird, Harry Andrews and Anna Palk.
+467:	He bested Brando at the 1972 New York Film Critics Circle Awards.)
+468:	Brando also had One-Eyed Jacks working against him, a troubled production that lost money for Paramount when it was released in 1961.
+469:	Coppola convinced Brando to a videotaped "make-up" test, in which Brando did his own makeup (he used cotton balls to simulate the character's puffed cheeks).
+470:	Brando had doubts himself, stating in his autobiography, "I had never played an Italian before, and I didn't think I could do it successfully."
+471:	Brando was signed for a low fee of $50,000, but in his contract, he was given a percentage of the gross on a sliding scale: 1% of the gross for each $10 million over a $10 million threshold, up to 5% if the picture exceeded $60 million.
+472:	In a 1994 interview that can be found on the Academy of Achievement website, Coppola insisted, "The Godfather was a very unappreciated movie when we were making it.
+473:	They didn't like the way I was shooting it.
+474:	In a 2010 television interview with Larry King, Al Pacino also talked about how Brando's support helped him keep the role of Michael Corleone in the movie—despite the fact Coppola wanted to fire him.
+475:	He broke the ice by toasting the group with a glass of wine.
+476:	Caan adds, 'The first day we met Brando everybody was in awe.'"
+477:	Also, because he had so much power and unquestioned authority, I thought it would be an interesting contrast to play him as a gentle man, unlike Al Capone, who beat up people with baseball bats."
+478:	There was really no beginning.
+479:	He boycotted the award ceremony, instead sending indigenous American rights activist Sacheen Littlefeather, who appeared in full Apache attire, to state Brando's reasons, which were based on his objection to the depiction of indigenous Americans by Hollywood and television.
+480:	As with previous films, Brando refused to memorize his lines for many scenes; instead, he wrote his lines on cue cards and posted them around the set for easy reference, leaving Bertolucci with the problem of keeping them out of the picture frame.
+481:	His gross participation deal earned him $3 million.
+482:	Pauline Kael, in The New Yorker review, wrote "The movie breakthrough has finally come.
+483:	In 1973, Brando was devastated by the death of his childhood best friend Wally Cox.
+484:	Absent for the first hour of the movie, Clayton enters on horseback, dangling upside down, caparisoned in white buckskin, Littlefeather-style.
+485:	Penn, who believed in letting actors do their thing, indulged Marlon all the way."
+486:	In 1978, Brando narrated the English version of Raoni, a French-Belgian documentary film directed by Jean-Pierre Dutilleux and Luiz Carlos Saldanha that focused on the life of Raoni Metuktire and issues surrounding the survival of the indigenous Indian tribes of north central Brazil.
+487:	In 1979, he made a rare television appearance in the miniseries Roots: The Next Generations, portraying George Lincoln Rockwell; he won a Primetime Emmy Award for Outstanding Supporting Actor in a Miniseries or a Movie for his performance.
+488:	Brando was paid $1 million a week for 3 weeks work.
+489:	In the documentary, Coppola talks about how astonished he was when an overweight Brando turned up for his scenes and, feeling desperate, decided to portray Kurtz, who appears emaciated in the original story, as a man who had indulged every aspect of himself.
+490:	However, he returned in 1989 in A Dry White Season, based on André Brink's 1979 anti-apartheid novel.
+491:	Brando received praise for his performance, earning an Academy Award nomination for Best Supporting Actor and winning the Best Actor Award at the Tokyo Film Festival.
+492:	Variety also praised Brando's performance as Sabatini and noted, "Marlon Brando's sublime comedy performance elevates The Freshman from screwball comedy to a quirky niche in film history."
+493:	The Island of Dr. Moreau screenwriter Ron Hutchinson would later say in his memoir, Clinging to the Iceberg: Writing for a Living on the Stage and in Hollywood (2017), that Brando sabotaged the film's production by feuding and refusing to cooperate with his colleagues and the film crew.
+494:	This was his last role and his only role as a female character.
+495:	The actor's son, Miko, was Jackson's bodyguard and assistant for several years, and was a friend of the singer.
+496:	Dad had a hard time breathing in his final days, and he was on oxygen much of the time.
+497:	So Michael got Dad a golf cart with a portable oxygen tank so he could go around and enjoy Neverland.
+498:	He also suffered from diabetes and liver cancer.
+499:	His single recorded line was included within the final game as a tribute to the actor.
+500:	A distressed Brando told Malden he kept falling over.
+501:	Shortly before his death, he had apparently refused permission for tubes carrying oxygen to be inserted into his lungs, which, he was told, was the only way to prolong his life.
+502:	In 1976, he told a French journalist, "Homosexuality is so much in fashion, it no longer makes news.
+503:	He also claimed numerous other romances, although he did not discuss his marriages, his wives, or his children in his autobiography.
+504:	Brando met actress Rita Moreno in 1954, and they began a love affair.
+505:	Years after they broke up, Moreno played his love interest in the film The Night of the Following Day.
+506:	She is said to have been the daughter of a Welsh steel worker of Irish descent, William O'Callaghan, who had been superintendent on the Indian State railways.
+507:	Brando and Kashfi had a son, Christian Brando, on May 11, 1958; they divorced in 1959.
+508:	They had two children together: Miko Castaneda Brando (born 1961) and Rebecca Brando (born 1966).
+509:	Because Teriipaia was a native French speaker, Brando became fluent in the language and gave numerous interviews in French.
+510:	Brando and Teriipaia divorced in July 1972.
+511:	Brando had a long-term relationship with his housekeeper Maria Cristina Ruiz, with whom he had three children: Ninna Priscilla Brando (born May 13, 1989), Myles Jonathan Brando (born January 16, 1992), and Timothy Gahan Brando (born January 6, 1994).
+512:	His numerous grandchildren also include Prudence Brando and Shane Brando, children of Miko C. Brando; the children of Rebecca Brando; and the three children of Teihotu Brando among others.
+513:	His behavior during the filming of Mutiny on the Bounty (1962) seemed to bolster his reputation as a difficult star.
+514:	Galella had followed Brando, who was accompanied by talk show host Dick Cavett, after a taping of The Dick Cavett Show in New York City.
+515:	The filming of Mutiny on the Bounty affected Brando's life in a profound way, as he fell in love with Tahiti and its people.
+516:	The 1983 hurricane destroyed many of the structures including his resort.
+517:	He was listed in the Federal Communications Commission (FCC) records as Martin Brandeaux to preserve his privacy.
+518:	He attended some fundraisers for John F. Kennedy in the 1960 presidential election.
+519:	In autumn of 1967, Brando visited Helsinki, Finland at a charity party organized by UNICEF at the Helsinki City Theatre.
+520:	He spoke in favor of children’s rights and development aid in developing countries.
+521:	I felt I'd better go find out where it is; what it is to be black in this country; what this rage is all about," Brando said on the late-night ABC-TV talk show Joey Bishop Show.
+522:	It was one of the most incredible acts of courage I ever saw, and it meant a lot and did a lot."
+523:	In 1964 Brando was arrested at a "fish-in" held to protest a broken treaty that had promised Native Americans fishing rights in Puget Sound.
+524:	Brando ended his financial support for the group over his perception of its increasing radicalization, specifically a passage in a Panther pamphlet put out by Eldridge Cleaver advocating indiscriminate violence, "for the Revolution."
+525:	Sacheen Littlefeather represented him at the ceremony.
+526:	The event grabbed the attention of the US and the world media.
+527:	He was also an activist against apartheid.
+528:	He is listed by the American Film Institute as the fourth greatest male star whose screen debut occurred before or during 1950 (it occurred in 1950).
+529:	Retrieved August 19, 2009.Encyclopedia Britannica describes him as "the most celebrated of the method actors, and his slurred, mumbling delivery marked his rejection of classical dramatic training.
+530:	He was a development from the gangster leader and the outlaw.
+531:	His portrayal of the gang leader Johnny Strabler in The Wild One has become an iconic image, used both as a symbol of rebelliousness and a fashion accessory that includes a Perfecto style motorcycle jacket, a tilted cap, jeans and sunglasses.
+532:	The "I coulda been a contender" scene from On the Waterfront, according to the author of Brooklyn Boomer, Martin H. Levinson, is "one of the most famous scenes in motion picture history, and the line itself has become part of America's cultural lexicon."
+533:	You have to make 'em believe that you are dying ... Try to think of the most intimate moment you've ever had in your life."
+534:	In 1999 the American Film Institute ranked him eighth among its list of greatest male stars of the Golden Age of Hollywood.
+535:	He spent several years in vaudeville as a dancer and comedian, until he got his first major acting part in 1925.
+536:	After rave reviews, Warner Bros. signed him for an initial $400-a-week, three-week contract; when the executives at the studio saw the first dailies for the film, Cagney's contract was immediately extended.
+537:	He was nominated a third time in 1955 for Love Me or Leave Me with Doris Day.
+538:	Cagney walked out on Warner Bros. several times over the course of his career, each time returning on much improved personal and artistic terms.
+539:	He worked for an independent film company for a year while the suit was being settled, establishing his own production company, Cagney Productions, in 1942 before returning to Warner seven years later.
+540:	Cagney was the second of seven children, two of whom died within months of their births.
+541:	The family moved twice while he was still young, first to East 79th Street, and then to East 96th Street.
+542:	I feel sorry for the kid who has too cushy a time of it.
+543:	He was a good street fighter, defending his older brother Harry, a medical student, when necessary.
+544:	He became involved in amateur dramatics, starting as a scenery boy for a Chinese pantomime at Lenox Hill Neighborhood House (one of the first settlement houses in the nation) where his brother Harry performed and Florence James directed.
+545:	The show began Cagney's 10-year association with vaudeville and Broadway.
+546:	Eventually, they borrowed some money and headed back to New York via Chicago and Milwaukee, enduring failure along the way when they attempted to make money on the stage.
+547:	As with Pitter Patter, Cagney went to the audition with little confidence he would get the part.
+548:	This was a devastating turn of events for Cagney; apart from the logistical difficulties this presented—the couple's luggage was in the hold of the ship and they had given up their apartment.
+549:	He made up his mind that he would get a job doing something else."
+550:	Cagney also established a dance school for professionals, and then landed a part in the play Women Go On Forever, directed by John Cromwell, which ran for four months.
+551:	The show received rave reviews and was followed by Grand Street Follies of 1929.
+552:	Retitled Sinners' Holiday, the film was released in 1930.
+553:	However, the contract allowed Warners to drop him at the end of any 40-week period, effectively guaranteeing him only 40 weeks’ income at a time.
+554:	Due to the strong reviews he had received in his short film career, Cagney was cast as nice-guy Matt Doyle, opposite Edward Woods as Tom Powers.
+555:	Producer Darryl Zanuck claimed he thought of it in a script conference; Wellman said the idea came to him when he saw the grapefruit on the table during the shoot; and writers Glasmon and Bright claimed it was based on the real life of gangster Hymie Weiss, who threw an omelette into his girlfriend's face.
+556:	I never dreamed it would be shown in the movie.
+557:	He saw the film repeatedly just to see that scene, and was often shushed by angry patrons when his delighted laughter got too loud."
+558:	Warner Bros. was quick to team its two rising gangster stars—Edward G. Robinson and Cagney—for the 1931 film Smart Money.
+559:	As he completed filming, The Public Enemy was filling cinemas with all-night showings.
+560:	The studio heads also insisted that Cagney continue promoting their films, even ones he was not in, which he opposed.
+561:	The success of The Public Enemy and Blonde Crazy forced Warner Bros.' hand.
+562:	The film was swiftly followed by The Crowd Roars and Winner Take All.
+563:	Historians also debate the nature of history as an end in itself, as well as its usefulness to give perspective on the problems of the present.
+564:	However, ancient cultural influences have helped spawn variant interpretations of the nature of history which have evolved over the centuries and continue to change today.
+565:	Herodotus, a 5th-century BC Greek historian, is often considered the "father of history" in the Western tradition, although he has also been criticized as the "father of lies".
+566:	In Middle English, the meaning of history was "story" in general.
+567:	In modern German, French, and most Germanic and Romance languages, which are solidly synthetic and highly inflected, the same word is still used to mean both "history" and "story".
+568:	In the words of Benedetto Croce, "All history is contemporary history".
+569:	Therefore, the constitution of the historian's archive is a result of circumscribing a more general archive by invalidating the usage of certain texts and documents (by falsifying their claims to represent the "true past").
+570:	The study of history has sometimes been classified as part of the humanities and at other times as part of the social sciences.
+571:	In the 20th century, French historian Fernand Braudel revolutionized the study of history, by using such outside disciplines as economics, anthropology, and geography in the study of global history.
+572:	In general, the sources of historical knowledge can be separated into three categories: what is written, what is said, and what is physically preserved, and historians often consult all three.
+573:	Archaeological finds rarely stand alone, with narrative sources complementing its discoveries.
+574:	For example, Mark Leone, the excavator and interpreter of historical Annapolis, Maryland, USA, has sought to understand the contradiction between textual documents idealizing "liberty" and the material record, demonstrating the possession of slaves and the inequalities of wealth made apparent by the study of the total historical environment.
+575:	It is possible for historians to concern themselves with both the very specific and the very general, although the modern trend has been toward specialization.
+576:	Thirdly, it may refer to why history is produced: the philosophy of history.
+577:	By whom was it produced (authorship)?
+578:	What is the evidential value of its contents (credibility)?
+579:	The historical method comprises the techniques and guidelines by which historians use primary sources and other evidence to research and then to write history.
+580:	Thucydides, unlike Herodotus, regarded history as being the product of the choices and actions of human beings, and looked at cause and effect, rather than as the result of divine intervention (though Herodotus was not wholly committed to this idea himself).
+581:	There were historical traditions and sophisticated use of historical method in ancient and medieval China.
+582:	Chinese historians of subsequent dynastic periods in China used his Shiji as the official format for historical texts, as well as for biographical literature.
+583:	Around 1800, German philosopher and historian Georg Wilhelm Friedrich Hegel brought philosophy and a more secular approach in historical study.
+584:	The originality of Ibn Khaldun was to claim that the cultural difference of another age must govern the evaluation of relevant historical material, to distinguish the principles according to which it might be possible to attempt the evaluation, and lastly, to feel the need for experience, in addition to rational principles, in order to assess a culture of the past.
+585:	His historical method also laid the groundwork for the observation of the role of state, communication, propaganda and systematic bias in history,H. Mowlana (2001). "
+586:	Dr. S.W. Akhtar (1997). "
+587:	For Ranke, historical data should be collected carefully, examined objectively and put together with critical rigor.
+588:	In the 20th century, academic historians focused less on epic nationalistic narratives, which often tended to glorify the nation or great men, to more objective and complex analyses of social and intellectual forces.
+589:	Many of the advocates of history as a social science were or are noted for their multi-disciplinary approach.
+590:	So far only one theory of history came from the pen of a professional Historian.
+591:	Intellectual historians such as Herbert Butterfield, Ernst Nolte and George Mosse have argued for the significance of ideas in history.
+592:	Scholars such as Martin Broszat, Ian Kershaw and Detlev Peukert sought to examine what everyday life was like for ordinary people in 20th-century Germany, especially in the Nazi period.
+593:	Feminist historians such as Joan Wallach Scott, Claudia Koonz, Natalie Zemon Davis, Sheila Rowbotham, Gisela Bock, Gerda Lerner, Elizabeth Fox-Genovese, and Lynn Hunt have argued for the importance of studying the experience of women in the past.
+594:	Another defence of history from post-modernist criticism was the Australian historian Keith Windschuttle's 1994 book, The Killing of History.
+595:	Historical omissions can occur in many ways and can have a profound effect on historical records.
+596:	Ancient history: the study from the beginning of human history until the Early Middle Ages.
+597:	Comparative history: historical analysis of social and cultural entities not confined to national boundaries.
+598:	Cultural history: the study of culture in the past.
+599:	Intellectual history: the study of ideas in the context of the cultures that produced them and their development over time.
+600:	Modern history: the study of the Modern Times, the era after the Middle Ages.
+601:	Palaeography: study of ancient texts.
+602:	Psychohistory: study of the psychological motivations of historical events.
+603:	Women's history: the history of female human beings.
+604:	Centuries and decades are commonly used periods and the time they represent depends on the dating system used.
+605:	To do this, historians often turn to geography.
+606:	For example, to explain why the ancient Egyptians developed a successful civilization, studying the geography of Egypt is essential.
+607:	History of the Americas is the collective history of North and South America, including Central America and the Caribbean.
+608:	History of the Caribbean begins with the oldest evidence where 7,000-year-old remains have been found.
+609:	History of Eurasia is the collective history of several distinct peripheral coastal regions: the Middle East, South Asia, East Asia, Southeast Asia, and Europe, linked by the interior mass of the Eurasian steppe of Central Asia and Eastern Europe.
+610:	History of East Asia is the study of the past passed down from generation to generation in East Asia.
+611:	History of Southeast Asia has been characterized as interaction between regional players and foreign powers.
+612:	The "old" social history before the 1960s was a hodgepodge of topics without a central theme, and it often included political movements, like Populism, that were "social" in the sense of being outside the elite system.
+613:	It examines the records and narrative descriptions of past knowledge, customs, and arts of a group of people.
+614:	This type of political history is the study of the conduct of international relations between states or across state boundaries over time.
+615:	It gained popularity in the United States, Japan and other countries after the 1980s with the realization that students need a broader exposure to the world as globalization proceeds.
+616:	Despite being a relatively new field, gender history has had a significant effect on the general study of history.
+617:	At Oxford and Cambridge, scholarship was downplayed.
+618:	The tutors dominated the debate until after the Second World War.
+619:	In the United States after World War I, a strong movement emerged at the university level to teach courses in Western Civilization, so as to give students a common heritage with Europe.
+620:	Many view the field from both perspectives.
+621:	In the United States, textbooks published by the same company often differ in content from state to state.
+622:	Academic historians have often fought against the politicization of the textbooks, sometimes with success.
+623:	A civilization (or civilisation) is a complex society that is characterized by urban development, social stratification, a form of government, and symbolic systems of communication (such as writing).
+624:	In this broad sense, a civilization contrasts with non-centralized tribal societies, including the cultures of nomadic pastoralists, Neolithic societies or hunter-gatherers; however, sometimes it also contrasts with the cultures found within civilizations themselves.
+625:	The fundamental treatise is Norbert Elias's The Civilizing Process (1939), which traces social mores from medieval courtly society to the Early Modern period.
+626:	Related words like "civility" developed in the mid-16th century.
+627:	In the late 1700s and early 1800s, during the French Revolution, "civilization" was used in the singular, never in the plural, and meant the progress of humanity as a whole.
+628:	Only in this generalized sense does it become possible to speak of a "medieval civilization", which in Elias's sense would have been an oxymoron.
+629:	Here, civilization, being more rational and socially driven, is not fully in accord with human nature, and "human wholeness is achievable only through the recovery of or approximation to an original discursive or prerational natural unity" (see noble savage).
+630:	Civilizations have been distinguished by their means of subsistence, types of livelihood, settlement patterns, forms of government, social stratification, economic systems, literacy and other cultural traits.
+631:	All civilizations have depended on agriculture for subsistence, with the possible exception of some early civilizations in Peru which may have depended upon maritime resources.
+632:	Grain surpluses have been especially important because grain can be stored for a long time.
+633:	However, in some places hunter-gatherers have had access to food surpluses, such as among some of the indigenous peoples of the Pacific Northwest and perhaps during the Mesolithic Natufian culture.
+634:	The word "civilization" is sometimes simply defined as "'living in cities'".
+635:	State societies are more stratified than other societies; there is a greater difference among the social classes.
+636:	Civilizations, with complex social hierarchies and organized, institutional governments.
+637:	Some people also acquire landed property, or private ownership of the land.
+638:	By the early Iron Age, contemporary civilizations developed money as a medium of exchange for increasingly complex transactions.
+639:	These people may not be personally acquainted with one another and their needs may not occur all at the same time.
+640:	The transition from simpler to more complex economies does not necessarily mean an improvement in the living standards of the populace.
+641:	The average stature of a population is a good measurement of the adequacy of its access to necessities, especially food.
+642:	Like money, the writing was necessitated by the size of the population of a city and the complexity of its commerce among people who are not all personally acquainted with each other.
+643:	These include organized religion, development in the arts, and countless new advances in science and technology.
+644:	These cultures are called by some "primitive", a term that is regarded by others as pejorative. "
+645:	Anthropologists today use the term "non-literate" to describe these peoples.
+646:	But civilization is also spread by the technical, material and social dominance that civilization engenders.
+647:	Civilizations tend to develop intricate cultures, including a state-based decision making apparatus, a literature, professional art, architecture, organized religion and complex customs of education, coercion and control associated with maintaining the elite.
+648:	The civilization in which someone lives is that person's broadest cultural identity.
+649:	The aim is to preserve the cultural heritage of humanity and also the cultural identity, especially in the case of war and armed conflict.
+650:	Early twentieth-century philosopher Oswald Spengler,Spengler, Oswald, Decline of the West: Perspectives of World History (1919) uses the German word Kultur, "culture", for what many call a "civilization".
+651:	Spengler states civilization is the beginning of the decline of a culture as "the most external and artificial states of which a species of developed humanity is capable".
+652:	Civilizations generally declined and fell, according to Toynbee, because of the failure of a "creative minority", through moral or religious decline, to meet some important challenge, rather than mere economic or environmental causes.
+653:	For example, trade networks were, until the nineteenth century, much larger than either cultural spheres or political spheres.
+654:	During the Uruk period, Guillermo Algaze has argued that trade relations connected Egypt, Mesopotamia, Iran and Afghanistan.
+655:	Different civilizations and societies all over the globe are economically, politically, and even culturally interdependent in many ways.
+656:	Central Civilization later expanded to include the entire Middle East and Europe, and then expanded to a global scale with European colonization, integrating the Americas, Australia, China and Japan by the nineteenth century.
+657:	This encouraged a secondary products revolution in which people used domesticated animals not just for meat, but also for milk, wool, manure and pulling ploughs and carts – a development that spread through the Eurasian Oecumene.
+658:	This area has been identified as having "inspired some of the most important developments in human history including the invention of the wheel, the planting of the first cereal crops and the development of the cursive script".
+659:	This climate change shifted the cost-benefit ratio of endemic violence between communities, which saw the abandonment of unwalled village communities and the appearance of walled cities, associated with the first civilizations.
+660:	The civilized urban revolution in turn was dependent upon the development of sedentism, the domestication of grains and animals, the permanence of settlements and development of lifestyles that facilitated economies of scale and accumulation of surplus production by certain social sectors.
+661:	Some focus on historical examples, and others on general theory.
+662:	For Gibbon, "The decline of Rome was the natural and inevitable effect of immoderate greatness.
+663:	Theodor Mommsen in his History of Rome suggested Rome collapsed with the collapse of the Western Roman Empire in 476 CE and he also tended towards a biological analogy of "genesis", "growth", "senescence", "collapse" and "decay".
+664:	Arnold J. Toynbee in his A Study of History suggested that there had been a much larger number of civilizations, including a small number of arrested civilizations, and that all civilizations tended to go through the cycle identified by Mommsen.
+665:	During the intermediate phase, the increasing population growth leads to the decrease of per capita production and consumption levels, it becomes more and more difficult to collect taxes, and state revenues stop growing, whereas the state expenditures grow due to the growth of the population controlled by the state.
+666:	Secular Cycles and Millennial Trends.
+667:	The fact that Rome needed to generate ever greater revenues to equip and re-equip armies that were for the first time repeatedly defeated in the field, led to the dismemberment of the Empire.
+668:	He argues that the collapse of the Maya has lessons for civilization today.
+669:	The energy expended to energy yield ratio is central to limiting the survival of civilizations.
+670:	Koneczny claimed that civilizations cannot be mixed into hybrids, an inferior civilization when given equal rights within a highly developed civilization will overcome it.
+671:	Cultural Historian Morris Berman suggests in Dark Ages America: the End of Empire that in the corporate consumerist United States, the very factors that once propelled it to greatness―extreme individualism, territorial and economic expansion, and the pursuit of material wealth―have pushed the United States across a critical threshold where collapse is inevitable.
+672:	The corrosion of these pillars, Jacobs argues, is linked to societal ills such as environmental crisis, racism and the growing gulf between rich and poor.
+673:	This need for civilizations to import ever more resources, he argues, stems from their over-exploitation and diminution of their own local resources.
+674:	In the graphic, Ma means "million years ago".)
+675:	Much of the Earth was molten because of frequent collisions with other bodies which led to extreme volcanism.
+676:	Recognizable humans emerged at most 2 million years ago, a vanishingly small period on the geological scale.
+677:	It is estimated that 99 percent of all species that ever lived on Earth, over five billion, have gone extinct.
+678:	The Earth's crust has constantly changed since its formation, as has life since its first appearance.
+679:	The Moon is formed around this time probably due to a protoplanet's collision into Earth.
+680:	The atmosphere is composed of volcanic and greenhouse gases.
+681:	Bacteria begin producing oxygen, shaping the third and current of Earth's atmospheres.
+682:	The early continents of Columbia, Rodinia and Pannotia, in that order, may have existed in this eon.
+683:	Gradually, life expands to land and familiar forms of plants, animals and fungi begin appearing, including annelids, insects and reptiles, hence the eon's name, which means "visible life".
+684:	It was composed of hydrogen and helium created shortly after the Big Bang 13.8 Ga (billion years ago) and heavier elements ejected by supernovae.
+685:	As the cloud began to accelerate, its angular momentum, gravity, and inertia flattened it into a protoplanetary disk perpendicular to its axis of rotation.
+686:	After more contraction, a T Tauri star ignited and evolved into the Sun.
+687:	Earth formed in this manner about 4.54 billion years ago (with an uncertainty of 1%) and was largely completed within 10–20 million years.
+688:	The proto-Earth grew by accretion until its interior was hot enough to melt the heavy, siderophile metals.
+689:	From crater counts on other celestial bodies, it is inferred that a period of intense meteorite impacts, called the Late Heavy Bombardment, began about 4.1 Ga, and concluded around 3.8 Ga, at the end of the Hadean.
+690:	By the beginning of the Archean, the Earth had cooled significantly.
+691:	New evidence suggests the Moon formed even later, 4.48 ± 0.02 Ga, or 70–110 million years after the start of the Solar System.
+692:	The collision released about 100 million times more energy than the more recent Chicxulub impact that is believed to have caused the extinction of the non-avian dinosaurs.
+693:	The giant impact hypothesis predicts that the Moon was depleted of metallic material, explaining its abnormal composition.
+694:	The initial crust, formed when the Earth's surface first solidified, totally disappeared from a combination of this fast Hadean plate tectonics and the intense impacts of the Late Heavy Bombardment.
+695:	These pieces of late Hadean and early Archean crust form the cores around which today's continents grew.
+696:	Cratons consist primarily of two alternating types of terranes.
+697:	For this reason, greenstones are sometimes seen as evidence for subduction during the Archean.
+698:	Now it is considered likely that many of the volatiles were delivered during accretion by a process known as impact degassing in which incoming bodies vaporize on impact.
+699:	Planetesimals at a distance of 1 astronomical unit (AU), the distance of the Earth from the Sun, probably did not contribute any water to the Earth because the solar nebula was too hot for ice to form and the hydration of rocks by water vapor would have taken too long.
+700:	Recent evidence suggests the oceans may have begun forming as early as 4.4 Ga. By the start of the Archean eon, they already covered much of the Earth.
+701:	Thus, the Sun has become 30% brighter in the last 4.5 billion years.
+702:	There are many models, but little consensus, on how life emerged from non-living chemicals; chemical systems created in the laboratory fall well short of the minimum complexity for a living organism.
+703:	Although atmospheric composition was probably different from that used by Miller and Urey, later experiments with more realistic compositions also managed to synthesize organic molecules.
+704:	RNA would later have been replaced by DNA, which is more stable and therefore can build longer genomes, expanding the range of capabilities a single organism can have.
+705:	A difficulty with the metabolism-first scenario is finding a way for organisms to evolve.
+706:	Research in 2003 reported that montmorillonite could also accelerate the conversion of fatty acids into "bubbles", and that the bubbles could encapsulate RNA attached to the clay.
+707:	This LUA cell is the ancestor of all life on Earth today.
+708:	The change to an oxygen-rich atmosphere was a crucial development.
+709:	They used fermentation, the breakdown of more complex compounds into less complex compounds with less energy, and used the energy so liberated to grow and reproduce.
+710:	Most of the life that covers the surface of the Earth depends directly or indirectly on photosynthesis.
+711:	To supply the electrons in the circuit, hydrogen is stripped from water, leaving oxygen as a waste product.
+712:	The simpler anoxygenic form arose about 3.8 Ga, not long after the appearance of life.
+713:	At first, the released oxygen was bound up with limestone, iron, and other minerals.
+714:	Though each cell only produced a minute amount of oxygen, the combined metabolism of many cells over a vast time transformed Earth's atmosphere to its current state.
+715:	The ozone layer absorbed, and still absorbs, a significant amount of the ultraviolet radiation that once had passed through the atmosphere.
+716:	As a result, the Earth began to receive more heat from the Sun in the Proterozoic eon.
+717:	Glacial deposits found in South Africa date back to 2.2 Ga, at which time, based on paleomagnetic evidence, they must have been located near the equator.
+718:	The Huronian ice age might have been caused by the increased oxygen concentration in the atmosphere, which caused the decrease of methane (CH4) in the atmosphere.
+719:	However, the term Snowball Earth is more commonly used to describe later extreme ice ages during the Cryogenian period.
+720:	Carbon dioxide combines with rain to weather rocks to form carbonic acid, which is then washed out to sea, thus extracting the greenhouse gas from the atmosphere.
+721:	The Bacteria domain probably first split off from the other forms of life (sometimes called Neomura), but this supposition is controversial.
+722:	The earliest fossils possessing features typical of fungi date to the Paleoproterozoic era, some 2.4 ago; these multicellular benthic organisms had filamentous structures capable of anastomosis.
+723:	Perhaps the large cell attempted to digest the smaller one but failed (possibly due to the evolution of prey defenses).
+724:	Using oxygen, it metabolized the larger cell's waste products and derived more energy.
+725:	Soon, a stable symbiosis developed between the large cell and the smaller cells inside it.
+726:	A similar event occurred with photosynthetic cyanobacteria entering large heterotrophic cells and becoming chloroplasts.
+727:	Besides the well-established endosymbiotic theory of the cellular origin of mitochondria and chloroplasts, there are theories that cells led to peroxisomes, spirochetes led to cilia and flagella, and that perhaps a DNA virus led to the cell nucleus, though none of them are widely accepted.
+728:	Around 1.1 Ga, the supercontinent Rodinia was assembling.
+729:	Although the division between a colony with specialized cells and a multicellular organism is not always clear, around 1 billion years ago, the first multicellular plants emerged, probably green algae.
+730:	Paleomagnetic poles are supplemented by geologic evidence such as orogenic belts, which mark the edges of ancient plates, and past distributions of flora and fauna.
+731:	About 1000 to 830 Ma, most continental mass was united in the supercontinent Rodinia.
+732:	The hypothetical supercontinent is sometimes referred to as Pannotia or Vendia.
+733:	The intensity and mechanism of both glaciations are still under investigation and harder to explain than the early Proterozoic Snowball Earth.
+734:	Because CO2 is an important greenhouse gas, climates cooled globally.
+735:	Increased volcanic activity resulted from the break-up of Rodinia at about the same time.
+736:	The new forms of life, called Ediacara biota, were larger and more diverse than ever.
+737:	It consists of three eras: The Paleozoic, Mesozoic, and Cenozoic, and is the time when multi-cellular life greatly diversified into almost all the organisms known today.
+738:	This causes the sea level to rise.
+739:	Traces of glaciation from this period are only found on former Gondwana.
+740:	The continents Laurentia and Baltica collided between 450 and 400 Ma, during the Caledonian Orogeny, to form Laurussia (also known as Euramerica).
+741:	The collision of Siberia with Laurussia caused the Uralian Orogeny, the collision of Gondwana with Laurussia is called the Variscan or Hercynian Orogeny in Europe or the Alleghenian Orogeny in North America.
+742:	Whereas the Ediacaran life forms appear yet primitive and not easy to put in any modern group, at the end of the Cambrian most modern phyla were already present.
+743:	Some of these Cambrian groups appear complex but are seemingly quite different from modern life; examples are Anomalocaris and Haikouichthys.
+744:	A creature that could have been the ancestor of the fishes, or was probably closely related to it, was Pikaia.
+745:	Fish, the earliest vertebrates, evolved in the oceans around 530 Ma.
+746:	The oldest fossils of land fungi and plants date to 480–460 Ma, though molecular evidence suggests the fungi may have colonized the land as early as 1000 Ma and the plants 700 Ma.
+747:	Fins evolved to become limbs that the first tetrapods used to lift their heads out of the water to breathe air.
+748:	Eventually, some of them became so well adapted to terrestrial life that they spent their adult lives on land, although they hatched in the water and returned to lay their eggs.
+749:	Plants evolved seeds, which dramatically accelerated their spread on land, around this time (by approximately 360 Ma).
+750:	Another 30 million years (310 Ma) saw the divergence of the synapsids (including mammals) from the sauropsids (including birds and reptiles).
+751:	The Triassic–Jurassic extinction event at 200 Ma spared many of the dinosaurs, and they soon became dominant among the vertebrates.
+752:	60% of marine invertebrates became extinct and 25% of all families.
+753:	The third mass extinction was the Permian-Triassic, or the Great Dying, event was possibly caused by some combination of the Siberian Traps volcanic event, an asteroid impact, methane hydrate gasification, sea level fluctuations, and a major anoxic event.
+754:	This was by far the deadliest extinction ever, with about 57% of all families and 83% of all genera killed.
+755:	By the early Paleocene the earth recovered from the extinction, and mammalian diversity increased.
+756:	Grassless savanna began to predominate much of the landscape, and mammals such as Andrewsarchus rose up to become the largest known terrestrial predatory mammal ever, and early whales like Basilosaurus took control of the seas.
+757:	Giant ungulates like Paraceratherium and Deinotherium evolved to rule the grasslands.
+758:	The Tethys Sea was closed off by the collision of Africa and Europe.
+759:	The land bridge allowed the isolated creatures of South America to migrate over to North America, and vice versa.
+760:	The ice ages led to the evolution of modern man in Saharan Africa and expansion.
+761:	It is believed by many that a huge migration took place along Beringia which is why, today, there are camels (which evolved and became extinct in North America), horses (which evolved and became extinct in North America), and Native Americans.
+762:	Brain size increased rapidly, and by 2 Ma, the first animals classified in the genus Homo had appeared.
+763:	The ability to control fire probably began in Homo erectus (or Homo ergaster), probably at least 790,000 years ago but perhaps as early as 1.5 Ma.
+764:	It is more difficult to establish the origin of language; it is unclear whether Homo erectus could speak or if that capability had not begun until Homo sapiens.
+765:	Social skills became more complex, language became more sophisticated, and tools became more elaborate.
+766:	The first humans to show signs of spirituality are the Neanderthals (usually classified as a separate species with no surviving descendants); they buried their dead, often with no sign of food or tools.
+767:	As language became more complex, the ability to remember and communicate information resulted, according to a theory proposed by Richard Dawkins, in a new replicator: the meme.
+768:	Between 8500 and 7000 BC, humans in the Fertile Crescent in the Middle East began the systematic husbandry of plants and animals: agriculture.
+769:	However, among those civilizations that did adopt agriculture, the relative stability and increased productivity provided by farming allowed the population to expand.
+770:	This led to Earth's first civilization at Sumer in the Middle East, between 4000 and 3000 BC.
+771:	Humans no longer had to spend all their time working for survival, enabling the first specialized occupations (e.g. craftsmen, merchants, priests, etc.).
+772:	By around 500 BC, there were advanced civilizations in the Middle East, Iran, India, China, and Greece, at times expanding, at times entering into decline.
+773:	This civilization developed in warfare, arts, science, mathematics and in architect.
+774:	The Roman Empire was Christianized by Emperor Constantine in the early 4th century and declined by the end of the 5th.
+775:	The House of Wisdom was established in Abbasid-era Baghdad, Iraq.
+776:	In the 14th century, the Renaissance began in Italy with advances in religion, art, and science.
+777:	European civilization began to change beginning in 1500, leading to the scientific and industrial revolutions.
+778:	From 1914 to 1918 and 1939 to 1945, nations around the world were embroiled in world wars.
+779:	After the war, many new states were formed, declaring or being granted independence in a period of decolonization.
+780:	Technological developments include nuclear weapons, computers, genetic engineering, and nanotechnology.
+781:	Major concerns and problems such as disease, war, poverty, violent radicalism, and recently, human-caused climate change have risen as the world population increases.
+782:	Human history, or recorded history, is the narrative of humanity's past.
+783:	The Neolithic saw the Agricultural Revolution begin, between 10,000 and 5000 BCE, in the Near East's Fertile Crescent.
+784:	As farming developed, grain agriculture became more sophisticated and prompted a division of labour to store food between growing seasons.
+785:	Hinduism developed in the late Bronze Age on the Indian subcontinent.
+786:	Post-classical history (the "Middle Ages," c. 500–1500 CE,) witnessed the rise of Christianity, the Islamic Golden Age (c. 750 CE – c. 1258 CE), and the Timurid and Italian Renaissances (from around 1300 CE).
+787:	By the 18th century, the accumulation of knowledge and technology had reached a critical mass that brought about the Industrial Revolution and began the late modern period, which started around 1800 and has continued through the present.
+788:	Anatomically modern humans arose in Africa about 300,000 years ago, and achieved behavioral modernity about 50,000 years ago.
+789:	Perhaps as early as 1.8 million years ago, but certainly by 500,000 years ago, humans began to use fire for heat and cooking.
+790:	Paleolithic humans lived as hunter-gatherers, and were generally nomadic.
+791:	The rapid expansion of humankind to North America and Oceania took place at the climax of the most recent ice age.
+792:	The Yellow River valley in China cultivated millet and other cereal crops by about 7000 BCE; the Yangtze valley domesticated rice earlier, by at least 8000 BCE.
+793:	Metalworking, was first used in the creation of copper tools and ornaments around 6000 BCE.
+794:	Cities were centres of trade, manufacturing and political power.
+795:	The development of cities was synonymous with the rise of civilization.
+796:	These cultures variously invented the wheel, mathematics, bronze-working, sailing boats, the potter's wheel, woven cloth, construction of monumental buildings, and writing.
+797:	Typical of the Neolithic was a tendency to worship anthropomorphic deities.
+798:	These settlements were concentrated in fertile river valleys: the Tigris and Euphrates in Mesopotamia, the Nile in Egypt, the Indus in the Indian subcontinent, and the Yangtze and Yellow Rivers in China.
+799:	Cuneiform writing began as a system of pictographs, whose pictorial representations eventually became simplified and more abstract.
+800:	Transport was facilitated by waterways—by rivers and seas.
+801:	These developments led to the rise of territorial states and empires.
+802:	In Crete the Minoan civilization had entered the Bronze Age by 2700 BCE and is regarded as the first civilization in Europe.
+803:	Over the following millennia, civilizations developed across the world.
+804:	In India, this era was the Vedic period (1750-600 BCE), which laid the foundations of Hinduism and other cultural aspects of early Indian society, and ended in the 6th century BCE.
+805:	During the formative stage in Mesoamerica (about 1500 BCE to 500 CE), more complex and centralized civilizations began to develop, mostly in what is now Mexico, Central America, and Peru.
+806:	Karl Jaspers' Axial-Age theory also includes Persian Zoroastrianism, but other scholars dispute his timeline for Zoroastrianism.)
+807:	These were Taoism, Legalism, and Confucianism.
+808:	The great empires depended on military annexation of territory and on the formation of defended settlements to become agricultural centres.
+809:	There were a number of regional empires during this period.
+810:	The Median Empire gave way to successive Iranian empires, including the Achaemenid Empire (550–330 BCE), the Parthian Empire (247 BCE–224 CE), and the Sasanian Empire (224–651 CE).
+811:	Later, Alexander the Great (356–323 BCE), of Macedon, founded an empire of conquest, extending from present-day Greece to present-day India.
+812:	From the 3rd century CE, the Gupta dynasty oversaw the period referred to as ancient India's Golden Age.
+813:	The ensuing stability contributed to heralding in the golden age of Hindu culture in the 4th and 5th centuries.
+814:	By the time of Augustus (63 BCE – 14 CE), the first Roman Emperor, Rome had already established dominion over most of the Mediterranean.
+815:	The Western empire would fall, in 476 CE, to German influence under Odoacer.
+816:	The Han dynasty was comparable in power and influence to the Roman Empire that lay at the other end of the Silk Road.
+817:	As with other empires during the Classical Period, Han China advanced significantly in the areas of government, education, mathematics, astronomy, technology, and many others.
+818:	Successful regional empires were also established in the Americas, arising from cultures established as early as 2500 BCE.
+819:	The great Mayan city-states slowly rose in number and prominence, and Maya culture spread throughout the Yucatán and surrounding areas.
+820:	There were, however, in some regions, periods of rapid technological progress.
+821:	China's Han dynasty fell into civil war in 220 CE, beginning the Three Kingdoms period, while its Roman counterpart became increasingly decentralized and divided about the same time in what is known as the Crisis of the Third Century.
+822:	The development of the stirrup and the breeding of horses strong enough to carry a fully armed archer made the nomads a constant threat to the more settled civilizations.
+823:	The remaining part of the Roman Empire, in the eastern Mediterranean, continued as what came to be called the Byzantine Empire.
+824:	The era is commonly dated from the 5th-century fall of the Western Roman Empire, which fragmented into many separate kingdoms, some of which would later be confederated under the Holy Roman Empire.
+825:	South Asia saw a series of middle kingdoms of India, followed by the establishment of Islamic empires in India.
+826:	This allowed Africa to join the Southeast Asia trading system, bringing it contact with Asia; this, along with Muslim culture, resulted in the Swahili culture.
+827:	This was also a cultural battle, with the Byzantine Hellenistic and Christian culture competing against the Persian Iranian traditions and Zoroastrian religion.
+828:	From their centre on the Arabian Peninsula, Muslims began their expansion during the early Postclassical Era.
+829:	Much of this learning and development can be linked to geography.
+830:	The influence held by Muslim merchants over African-Arabian and Arabian-Asian trade routes was tremendous.
+831:	Motivated by religion and dreams of conquest, European leaders launched a number of Crusades to try to roll back Muslim power and retake the Holy Land.
+832:	Arab domination of the region ended in the mid-11th century with the arrival of the Seljuq Turks, migrating south from the Turkic homelands in Central Asia.
+833:	The region will later be called the Barbary Coast and will host pirates and privateers who will use several North African ports for their raids against the coastal towns of several European countries in search of slaves to be sold in North African markets as part of the Barbary slave trade.
+834:	In the 8th century, Islam began to penetrate the region and soon became the sole faith of most of the population, though Buddhism remained strong in the east.
+835:	After Genghis Khan died in 1227, most of Central Asia continued to be dominated by a successor state, Chagatai Khanate.
+836:	The region then became divided into a series of smaller khanates that were created by the Uzbeks.
+837:	The barbarian invaders formed their own new kingdoms in the remains of the Western Roman Empire.
+838:	Christianity expanded in western Europe, and monasteries were founded.
+839:	Manorialism, the organization of peasants into villages that owed rents and labour service to nobles, and feudalism, a political structure whereby knights and lower-status nobles owed military service to their overlords in return for the right to rents from lands and manors, were two of the ways of organizing medieval society that developed during the High Middle Ages.
+840:	Italian merchants imported slaves to work in households or in sugar processing.
+841:	Famine, plague, and war devastated the population of western Europe.
+842:	They eventually gave way to the Zagwe dynasty who are famed for their rock cut architecture at Lalibela.
+843:	They controlled the trans-Saharan trade in gold, ivory, salt and slaves.
+844:	Central Africa saw the birth of several states, including the Kingdom of Kongo.
+845:	They built large defensive stone structures without mortar such as Great Zimbabwe, capital of the Kingdom of Zimbabwe, Khami, capital of Kingdom of Butua, and Danangombe (Dhlo-Dhlo), capital of the Rozvi Empire.
+846:	The ninth century saw a Tripartite Struggle for control of northern India, among the Pratihara Empire, the Pala Empire, and the Rashtrakuta Empire.
+847:	The Tang dynasty eventually splintered, however, and after half a century of turmoil the Song dynasty reunified China, when it was, according to William McNeill, the "richest, most skilled, and most populous country on earth".
+848:	After about a century of Mongol Yuan dynasty rule, the ethnic Chinese reasserted control with the founding of the Ming dynasty (1368).
+849:	The Nara period of the 8th century marked the emergence of a strong Japanese state and is often portrayed as a golden age.
+850:	The feudal period of Japanese history, dominated by powerful regional lords (daimyos) and the military rule of warlords (shoguns) such as the Ashikaga shogunate and Tokugawa shogunate, stretched from 1185 to 1868.
+851:	Silla conquered Baekje in 660, and Goguryeo in 668, marking the beginning of the Northern and Southern States period (남북국시대), with Unified Silla in the south and Balhae, a successor state to Goguryeo, in the north.
+852:	Starting in the 9th century, the Bagan Kingdom rose to prominence in modern Myanmar.
+853:	The Ancestral Puebloans and their predecessors (9th – 13th centuries) built extensive permanent settlements, including stone structures that would remain the largest buildings in North America until the 19th century.
+854:	In South America, the 14th and 15th centuries saw the rise of the Inca.
+855:	The Scientific Revolution received impetus from Johannes Gutenberg's introduction to Europe of printing, using movable type, and from the invention of the telescope and microscope.
+856:	The late modern period continues either to the end of World War II, in 1945, or to the present.
+857:	The early Modern period was characterized by the rise of science, and by increasingly rapid technological progress, secularized civic politics, and the nation state.
+858:	During the early modern period, Europe was able to regain its dominance; historians still debate the causes.
+859:	It had developed an advanced monetary economy by 1000 CE.
+860:	It enjoyed a technological advantage and had a monopoly in cast iron production, piston bellows, suspension bridge construction, printing, and the compass.
+861:	One theory of Europe's rise holds that Europe's geography played an important role in its success.
+862:	This gave Europe some degree of protection from the peril of Central Asian invaders.
+863:	The Golden Age of Islam was ended by the Mongol sack of Baghdad in 1258.
+864:	Geography contributed to important geopolitical differences.
+865:	By contrast, Europe was almost always divided into a number of warring states.
+866:	Nearly all the agricultural civilizations have been heavily constrained by their environments.
+867:	Technological advance and the wealth generated by trade gradually brought about a widening of possibilities.
+868:	Europe's maritime expansion unsurprisingly—given the continent's geography—was largely the work of its Atlantic states: Portugal, Spain, England, France, and the Netherlands.
+869:	In North Africa, the Saadi Sultanate remained as an independent Berber state until 1659.
+870:	The Swahili coast declined after coming under the Portuguese Empire and later the Omani Empire.
+871:	The South African Kingdom of Zimbabwe gave way to smaller kingdoms such as Mutapa, Butua, and Rozvi.
+872:	Other civilizations in Africa advanced during this period.
+873:	Japan experienced its Azuchi–Momoyama period (1568–1603), followed by the Edo period (1603–1868).
+874:	The Johor Sultanate, centred on the southern tip of the Malay Peninsula, became the dominant trading power in the region.
+875:	Russia made incursions onto the northwest coast of North America, with a first colony in present-day Alaska in 1784, and the outpost of Fort Ross in present-day California in 1812.
+876:	The Industrial Revolution began in Great Britain and used new modes of production—the factory, mass production, and mechanization—to manufacture a wide array of goods faster and using less labour than previously required.
+877:	After Europeans had achieved influence and control over the Americas, imperial activities turned to the lands of Asia and Oceania.
+878:	The British also colonized Australia, New Zealand and South Africa with large numbers of British colonists emigrating to these colonies.
+879:	Within Europe, economic and military challenges created a system of nation states, and ethno-linguistic groupings began to identify themselves as distinctive nations with aspirations for cultural and political autonomy.
+880:	Meanwhile, industrial pollution and environmental damage, present since the discovery of fire and the beginning of civilization, accelerated drastically.
+881:	Much of the rest of the world was influenced by heavily Europeanized nations: the United States and Japan.
+882:	World War I led to the collapse of four empires – Austria-Hungary, the German Empire, the Ottoman Empire, and the Russian Empire – and weakened the United Kingdom and France.
+883:	Ongoing national rivalries, exacerbated by the economic turmoil of the Great Depression, helped precipitate World War II.
+884:	The Cold War ended peacefully in 1991 after the Pan-European Picnic, the subsequent fall of the Iron Curtain and the Berlin Wall, and the collapse of the Eastern Bloc and the Warsaw Pact.
+885:	In the early postwar decades, the colonies in Asia and Africa of the Belgian, British, Dutch, French, and other west European empires won their formal independence.
+886:	The European Union's effectiveness was handicapped by the immaturity of its common economic and political institutions, somewhat comparable to the inadequacy of United States institutions under the Articles of Confederation prior to the adoption of the Constitution of the United States that came into force in 1789.
+887:	In the decades after World War II, these advances led to jet travel, artificial satellites with innumerable applications including the Global Positioning System (GPS), and the Internet.
+888:	Worldwide competition for natural resources has risen due to growing populations and industrialization, especially in India, China, and Brazil.
+889:	An archive is an accumulation of historical records – in any media – or the physical facility in which they are located.
+890:	They have been metaphorically defined as "the secretions of an organism", and are distinguished from documents that have been consciously written or created to communicate a particular message to posterity.
+891:	This means that archives are quite distinct from libraries with regard to their functions and organization, although archival collections can often be found within library buildings.
+892:	Archaeologists have discovered archives of hundreds (and sometime thousands) of clay tablets going back to the third and second millennia BC in sites like Ebla, Mari, Amarna, Hattusas, Ugarit, and Pylos.
+893:	However, they have been lost, since documents written on materials like papyrus and paper deteriorated at a faster pace, unlike their stone tablet counterparts.
+894:	England after 1066 developed archives and archival research methods.
+895:	While there are many kinds of archives, the most recent census of archivists in the United States identifies five major types: academic, business (for profit), government, non-profit, and other.
+896:	Access to the collections in these archives is usually by prior appointment only; some have posted hours for making inquiries.
+897:	Examples of prominent business archives in the United States include Coca-Cola (which also owns the separate museum World of Coca-Cola), Procter and Gamble, Motorola Heritage Services and Archives, and Levi Strauss & Co. These corporate archives maintain historic documents and items related to the history and administration of their companies.
+898:	Workers in these types of archives may have any combination of training and degrees, from either a history or library background.
+899:	In the United States, National Archives and Records Administration (NARA) maintains central archival facilities in the District of Columbia and College Park, Maryland, with regional facilities distributed throughout the United States.
+900:	In the UK, the National Archives (formerly known as the Public Record Office) is the government archive for England and Wales.
+901:	Put together, the total volume of archives under the supervision of the French Archives Administration is the largest in the world.
+902:	Archdioceses, dioceses, and parishes also have archives in the Roman Catholic and Anglican Churches.
+903:	Often these institutions rely on grant funding from the government as well as the private funds.
+904:	Many museums keep archives in order to prove the provenance of their pieces.
+905:	This was a separate figure from the 1.3% that identified themselves as self-employed.
+906:	The archive's mission is to gather stories from women who want to express themselves, and want their stories heard.
+907:	The archives of an organization (such as a corporation or government) tend to contain other types of records, such as administrative files, business records, memos, official correspondence, and meeting minutes.
+908:	Many of these donations have yet to be cataloged, but are currently in the process of being digitally preserved and made available to the public online.
+909:	International partners for archives are UNESCO and Blue Shield International in accordance with the Hague Convention for the Protection of Cultural Property from 1954 and its 2nd Protocol from 1999.
+910:	Page, Morgan M. "One from the Vaults: Gossip, Access, and Trans History-Telling."
+911:	An example of this is Morgan M. Page’s description of disseminating transgender history directly to trans people through various social media and networking platforms like tumblr, Twitter, and Instagram, as well as via podcast.
+912:	With the options available through counter-archiving, there is the potential to "challenge traditional conceptions of history" as they are perceived within contemporary archives, which creates space for narratives that are often not present in many archival materials.
+913:	A biography, or simply bio, is a detailed description of a person's life.
+914:	Biographical works are usually non-fiction, but fiction can also be used to portray a person's life.
+915:	Another well-known collection of ancient biographies is De vita Caesarum ("On the Lives of the Caesars") by Suetonius, written about AD 121 in the time of the emperor Hadrian.
+916:	Hermits, monks, and priests used this historic period to write biographies.
+917:	One significant secular example of a biography from this period is the life of Charlemagne by his courtier Einhard.
+918:	They contained more social data for a large segment of the population than other works of that period.
+919:	By the late Middle Ages, biographies became less church-oriented in Europe as biographies of kings, knights, and tyrants began to appear.
+920:	Following Malory, the new emphasis on humanism during the Renaissance promoted a focus on secular subjects, such as artists and poets, and encouraged writing in the vernacular.
+921:	Two other developments are noteworthy: the development of the printing press in the 15th century and the gradual increase in literacy.
+922:	Influential in shaping popular conceptions of pirates, A General History of the Pyrates (1724), by Charles Johnson, is the prime source for the biographies of many well-known pirates.
+923:	Carlyle asserted that the lives of great human beings were essential to understanding society and its institutions.
+924:	Boswell's work was unique in its level of research, which involved archival study, eye-witness accounts and interviews, its robust and attractive narrative, and its honest depiction of all aspects of Johnson's life and character – a formula which serves as the basis of biographical literature to this day.
+925:	However, the number of biographies in print experienced a rapid growth, thanks to an expanding reading public.
+926:	Periodicals began publishing a sequence of biographical sketches.
+927:	Sociological" biographies conceived of their subjects' actions as the result of the environment, and tended to downplay individuality.
+928:	The conventional concept of heroes and narratives of success disappeared in the obsession with psychological explorations of personality.
+929:	Up until this point, as Strachey remarked in the preface, Victorian biographies had been "as familiar as the cortège of the undertaker", and wore the same air of "slow, funereal barbarism."
+930:	The book achieved worldwide fame due to its irreverent and witty style, its concise and factually accurate nature, and its artistic prose.
+931:	Robert Graves (I, Claudius, 1934) stood out among those following Strachey's model of "debunking biographies."
+932:	By World War I, cheap hard-cover reprints had become popular.
+933:	Along with documentary biographical films, Hollywood produced numerous commercial films based on the lives of famous people.
+934:	Unlike books and films, they often do not tell a chronological narrative: instead they are archives of many discrete media elements related to an individual person, including video clips, photographs, and text articles.
+935:	General "life writing" techniques are a subject of scholarly study.
+936:	The information can come from "oral history, personal narrative, biography and autobiography” or "diaries, letters, memoranda and other materials".
+937:	European-style castles originated in the 9th and 10th centuries, after the fall of the Carolingian Empire resulted in its territory being divided among individual lords and princes.
+938:	Urban castles were used to control the local populace and important travel routes, and rural castles were often situated near features that were integral to life in the community, such as mills, fertile land, or a water source.
+939:	In the late 12th and early 13th centuries, a scientific approach to castle defence emerged.
+940:	These changes in defence have been attributed to a mixture of castle technology from the Crusades, such as concentric fortification, and inspiration from earlier defences, such as Roman forts.
+941:	Although gunpowder was introduced to Europe in the 14th century, it did not significantly affect castle building until the 15th century, when artillery became powerful enough to break through stone walls.
+942:	Feudalism was the link between a lord and his vassal where, in return for military service and the expectation of loyalty, the lord would grant the vassal land.
+943:	Castles served a range of purposes, the most important of which were military, administrative, and domestic.
+944:	As William the Conqueror advanced through England, he fortified key positions to secure the land he had taken.
+945:	A castle could act as a stronghold and prison but was also a place where a knight or lord could entertain his peers.
+946:	In different areas of the world, analogous structures shared features of fortification and other defining characteristics associated with the concept of a castle, though they originated in different periods and circumstances and experienced differing evolutions and influences.
+947:	By the 16th century, when Japanese and European cultures met, fortification in Europe had moved beyond castles and relied on innovations such as the Italian trace italienne and star forts.
+948:	The excavation of earth to make the mound left a ditch around the motte, called a moat (which could be either wet or dry).
+949:	It was a common feature of castles, and most had at least one.
+950:	Water was supplied by a well or cistern.
+951:	Although often associated with the motte-and-bailey type of castle, baileys could also be found as independent defensive structures.
+952:	Keep" was not a term used in the medieval period – the term was applied from the 16th century onwards – instead "donjon" was used to refer to great towers, or turris in Latin.
+953:	Although often the strongest part of a castle and a last place of refuge if the outer defences fell, the keep was not left empty in case of attack but was used as a residence by the lord who owned the castle, or his guests or representatives.
+954:	Walkways along the tops of the curtain walls allowed defenders to rain missiles on enemies below, and battlements gave them further protection.
+955:	The front of the gateway was a blind spot and to overcome this, projecting towers were added on each side of the gate in a style similar to that developed by the Romans.
+956:	The passage through the gatehouse was lengthened to increase the amount of time an assailant had to spend under fire in a confined space and unable to retaliate.
+957:	They were most likely used to drop objects on attackers, or to allow water to be poured on fires to extinguish them.
+958:	A smaller horizontal opening could be added to give an archer a better view for aiming.
+959:	The earliest fortifications originated in the Fertile Crescent, the Indus Valley, Egypt, and China where settlements were protected by large walls.
+960:	Many earthworks survive today, along with evidence of palisades to accompany the ditches.
+961:	Although primitive, they were often effective, and were only overcome by the extensive use of siege engines and other siege warfare techniques, such as at the Battle of Alesia.
+962:	Discussions have typically attributed the rise of the castle to a reaction to attacks by Magyars, Muslims, and Vikings and a need for private defence.
+963:	Some high concentrations of castles occur in secure places, while some border regions had relatively few castles.
+964:	Building the hall in stone did not necessarily make it immune to fire as it still had windows and a wooden door.
+965:	Castles were not just defensive sites but also enhanced a lord's control over his lands.
+966:	In 864 the King of West Francia, Charles the Bald, prohibited the construction of castella without his permission and ordered them all to be destroyed.
+967:	Switzerland is an extreme case of there being no state control over who built castles, and as a result there were 4,000 in the country.
+968:	In 950 Provence was home to 12 castles, by 1000 this figure had risen to 30, and by 1030 it was over 100.
+969:	In the early 11th century, the motte and keep – an artificial mound with a palisade and tower on top – was the most common form of castle in Europe, everywhere except Scandinavia.
+970:	Although stone construction would later become common elsewhere, from the 11th century onwards it was the primary building material for Christian castles in Spain, while at the same time timber was still the dominant building material in north-west Europe.
+971:	Before the 12th century castles were as uncommon in Denmark as they had been in England before the Norman Conquest.
+972:	Their decoration emulated Romanesque architecture, and sometimes incorporated double windows similar to those found in church bell towers.
+973:	Although superseded by their stone successors, timber and earthwork castles were by no means useless.
+974:	Until the late 12th century castles generally had few towers; a gateway with few defensive features such as arrowslits or a portcullis; a great keep or donjon, usually square and without arrowslits; and the shape would have been dictated by the lay of the land (the result was often irregular or curvilinear structures).
+975:	The towers would have protruded from the walls and featured arrowslits on each level to allow archers to target anyone nearing or at the curtain wall.
+976:	Where keeps did exist, they were no longer square but polygonal or cylindrical.
+977:	Probably developed in the 12th century, the towers provided flanking fire.
+978:	It seemed that the Crusaders had learned much about fortification from their conflicts with the Saracens and exposure to Byzantine architecture.
+979:	Legends were discredited, and in the case of James of Saint George it was proven that he came from Saint-Georges-d'Espéranche, in France.
+980:	The castle builders of Western Europe were aware of and influenced by Roman design; late Roman coastal forts on the English "Saxon Shore" were reused and in Spain the wall around the city of Ávila imitated Roman architecture when it was built in 1091.
+981:	An example of this approach is Kerak.
+982:	The castles they founded to secure their acquisitions were designed mostly by Syrian master-masons.
+983:	While castles were used to hold a site and control movement of armies, in the Holy Land some key strategic positions were left unfortified.
+984:	Design varied not just between orders, but between individual castles, though it was common for those founded in this period to have concentric defences.
+985:	If assailants made it past the first line of defence they would be caught in the killing ground between the inner and outer walls and have to assault the second wall.
+986:	For instance, it was common in Crusader castles to have the main gate in the side of a tower and for there to be two turns in the passageway, lengthening the time it took for someone to reach the outer enclosure.
+987:	Although there were hundreds of wooden castles in Prussia and Livonia, the use of bricks and mortar was unknown in the region before the Crusaders.
+988:	Arrowslits did not compromise the wall's strength, but it was not until Edward I's programme of castle building that they were widely adopted in Europe.
+989:	Although machicolations performed the same purpose as the wooden galleries, they were probably an Eastern invention rather than an evolution of the wooden form.
+990:	Conflict and interaction between the two groups led to an exchange of architectural ideas, and Spanish Christians adopted the use of detached towers.
+991:	French historian François Gebelin wrote: "The great revival in military architecture was led, as one would naturally expect, by the powerful kings and princes of the time; by the sons of William the Conqueror and their descendants, the Plantagenets, when they became dukes of Normandy.
+992:	The new castles were generally of a lighter build than earlier structures and presented few innovations, although strong sites were still created such as that of Raglan in Wales.
+993:	These guns were too heavy for a man to carry and fire, but if he supported the butt end and rested the muzzle on the edge of the gun port he could fire the weapon.
+994:	This adaptation is found across Europe, and although the timber rarely survives, there is an intact example at Castle Doornenburg in the Netherlands.
+995:	Other types of port, though less common, were horizontal slits – allowing only lateral movement – and large square openings, which allowed greater movement.
+996:	Ham is an example of the trend for new castles to dispense with earlier features such as machicolations, tall towers, and crenellations.
+997:	In an effort to make them more effective, guns were made ever bigger, although this hampered their ability to reach remote castles.
+998:	While this sufficed for new castles, pre-existing structures had to find a way to cope with being battered by cannon.
+999:	A solution to this was to pull down the top of a tower and to fill the lower part with the rubble to provide a surface for the guns to fire from.

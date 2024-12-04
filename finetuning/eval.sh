@@ -7,4 +7,4 @@
 #SBATCH -e log_%j.err
 #SBATCH --gres=gpu:1
 
-python finetune.py --data nllb-seed --dev_src lij_Latn --dev_tgt eng_Latn --model_dir /mnt/storage/fking/models/seed_$SLURM_JOB_ID
+python validate.py --data nllb-seed --src eng_Latn --tgt xx --model_dir /mnt/storage/fking/models/seed_5687 --nllb_model 1.3B

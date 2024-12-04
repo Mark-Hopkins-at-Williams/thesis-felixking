@@ -127,7 +127,7 @@ if __name__ == "__main__":
     dev_bitext = corpus.create_bitext(args.dev_src, args.dev_tgt, 'dev')    
 
     print(f"language pairs: {lps}")
-    print(f"train_data: {train_data}")
-    print(f"dev_bitext: {dev_bitext}")
+    print(model_name)
+    print(model_dir)
 
     finetune(train_data, dev_bitext, model_name, model_dir)
