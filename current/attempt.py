@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/mnt/storage/fking/thesis-felixking/finetuning')
+#sys.path.append('/mnt/storage/fking/thesis-felixking/finetuning')
 
 import torch
 import faiss
@@ -7,7 +7,7 @@ import itertools
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from finetune import tokenize
+from finetuning.finetune import tokenize
 import torch.nn.functional as F
 from heatmaps import make_heatmap
 from bottle import CustomM2M100Model

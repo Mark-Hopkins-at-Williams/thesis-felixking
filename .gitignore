@@ -2,4 +2,6 @@
 *.pyc
 *.model
 log*
+.eggs
+*.egg-info
 __pycache__
