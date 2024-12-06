@@ -8,11 +8,11 @@ from tqdm import tqdm
 from transformers.optimization import Adafactor
 from transformers import get_constant_schedule_with_warmup
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-from validate import evaluate_translations, batched_translate
-from configure import USE_CUDA
-from configure import AMERICAS_NLP_CSV, AMERICAS_NLP_LPS
-from configure import NLLB_SEED_CSV, NLLB_SEED_LPS
-from multilingualdata import MultilingualCorpus
+from finetuning.validate import evaluate_translations, batched_translate
+from finetuning.configure import USE_CUDA
+from finetuning.configure import AMERICAS_NLP_CSV, AMERICAS_NLP_LPS
+from finetuning.configure import NLLB_SEED_CSV, NLLB_SEED_LPS
+from finetuning.multilingualdata import MultilingualCorpus
 
 
 def cleanup():
