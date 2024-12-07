@@ -7,31 +7,11 @@
 
 \section{Motivation}
 
-Over the last ten years, the field of neural machine translation (NMT) has seen great advancements. The Transformer model [1] 
-has become the standard architecture of sequence-to-sequence tasks and data mining methods have expanded the availability of 
-high quality parallel corpora. Still, translation into and from low-resource languages represents a core challenge in NMT. 
-Meta AI’s 2022 paper “No Language Left Behind: Scaling Human-Centered Machine Translation” [2] introduces an attempt to attack 
-this challenge with large multilingual models which employ novel conditional computing techniques to improve performance and 
-accuracy. The No Language Left Behind (NLLB) project uses training data in just over 200 languages, most of which are 
-“low-resource.” Part of their aim is to exploit transfer learning, the idea that a model’s performance in one task can 
-significantly benefit from training in analogous tasks. For example, sentences in the low-resource language Sardinian might 
-be better “understood” by a model if it has been trained with Italian data too. 
+Over the last ten years, the field of neural machine translation (NMT) has seen great advancements. The Transformer model \cite{vaswani2017attention} has become the standard architecture for sequence-to-sequence tasks and data mining methods \cite{schwenk-etal-2021-ccmatrix} have expanded the availability of high quality parallel corpora. Still, translation involving so-called "low-resource" languages (i.e. languages with relatively little accessible written data) continues to be a challenge in NMT. Meta AI’s 2022 paper “No Language Left Behind: Scaling Human-Centered Machine Translation” \cite{nllbteam2022language} addressed this challenge with large multilingual models which incorporated recent conditional computing techniques \cite{lepikhin2020gshard} to improve performance and accuracy. The No Language Left Behind (NLLB) project supports over 200 languages, most of which are “low-resource.” Part of their aim is to exploit transfer learning, the idea that a model’s performance in one task can significantly benefit from training in analogous tasks. For example, sentences in the low-resource language Sardinian might be better “understood” by a model if it has been trained with Italian data too. 
 
-Transfer learning is still not fully understood, though common intuition would say that in this context, the multilingual 
-model’s performance on tasks involving language X data from should benefit from inclusion in training of language data in 
-the same language family as X. But what exactly are the language families? The World Atlas of Language Structures provides 
-about 100 ways to categorize languages into families. Which might predict the extent of transfer learning in multilingual 
-models best, and how might that influence our understanding of these models and their learning?
+Common wisdom says that a multilingual model’s performance language X  should benefit from training data in from languages inthe same language family as X. But The World Atlas of Language Structures \cite{wals} provides about 100 ways to categorize languages into families. Which might predict the extent of transfer learning in multilingual models best, and how might that influence our understanding of these models and their learning?
 
-More attention has been devoted in recent years to collection of high quality data for neural network training across an 
-array of tasks. Results from the 2023 paper Small Data, Big Impact: Leveraging Minimal Data for Effective Machine Translation 
-show that addition of even 1,000 high-quality sentence translations can significantly improve translation accuracy for 
-low-resource languages. But several of the languages included in NLLB’s extensive list still perform poorly, even in translation 
-tasks involving English (in which, generally, the most high-quality training data exists). Pinpointing the differences in model 
-behavior between high-performing and low-performing languages could lead to more effective training and translation.
+More attention has been devoted in recent years to the collection of high quality data. Results from the 2023 paper Small Data, Big Impact: Leveraging Minimal Data for Effective Machine Translation \cite{maillard-etal-2023-small} show that addition of even 1,000 high-quality sentence translations can significantly improve translation accuracy for low-resource languages. But several of the languages included in NLLB’s extensive list still perform poorly. Pinpointing the differences in model behavior between high-performing and low-performing languages could lead to more effective training and translation.
 
-In this project I aim to first confirm that cross-lingual transfer is happening in the models published by the NLLB project, 
-then investigate the causes and of this phenomenon. Dissection of translation models and examination of their encodings of 
-parallel sentences may explain the phenomenon of transfer learning in the context of NMT and lead to future research directions.
+In this project I aim to first confirm that cross-lingual transfer is happening in the models published by the NLLB project, then investigate the causes and of this phenomenon. Dissection of translation models and examination of their encodings of parallel sentences may explain the phenomenon of transfer learning in the context of NMT and lead to future research directions.
 
-\cite{vaswani2017attention} (why isn't this working?)
