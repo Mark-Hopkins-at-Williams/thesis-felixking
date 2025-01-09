@@ -23,29 +23,27 @@ from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 def load_and_filter_data(
     csv_path,
-    languages = None,
+    languages,
     sent_id_range = None,
     sample_size = None
 ):
-
-    # read
+    """Loads in the NLLB-SEED csv (or any csv with that structure).
+    
+    Filters out any unspecified languages and sentences outside of the provided range.    
+    
+    """
     df = pd.read_csv(csv_path)
-
-    # filter by lang
-    df = df[(df.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (df['split'] == 'train')]
-
-    # filter by sentence ID range if specified
-    if sent_id_range:
+    df = df[(df.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (df['split'] == 'train')] # filter by lang
+    if sent_id_range: # filter by sentence ID range if specified
         start_id, end_id = sent_id_range
         df = df[df['sent_id'].between(start_id, end_id)]
-    
-    # sample sentences if specified
-    if sample_size:
+    if sample_size: # sample sentences if specified
         df = df.groupby('language').apply(
             lambda x: x.sample(min(len(x), sample_size), random_state=42)
         ).reset_index(drop=True)
     
     return df
+
 
 def get_sentence_embeddings(
     model,
@@ -517,13 +515,7 @@ def main(
 
     print(f"Analyzing {len(data)} sentences...")
     embeddings = analyze_sentences(model, tokenizer, data, languages)
-    fur_mask = (data['language'] == 'fur') & (data['script'] == 'Latn')
-    fur_embeddings = embeddings[fur_mask]
-    print(len(fur_embeddings))
-    print(fur_embeddings[0])
-
-
-    exit()
+   
     reduced_embeddings = get_reduction(embeddings, perplexity=perplexity, n_iter=n_iter)
 
     print("Creating visualizations...")
