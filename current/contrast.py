@@ -1,54 +1,86 @@
 import sys
-sys.path.append('/mnt/storage/fking/thesis-felixking/finetuning')
 
-import torch
-import faiss
+import torch    # type: ignore
+import faiss    # type: ignore
 import itertools
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from finetune import tokenize
-import torch.nn.functional as F
+from finetuning.finetune import tokenize    # type: ignore
+import torch.nn.functional as F             # type: ignore
 from heatmaps import make_heatmap
 from bottle import CustomM2M100Model
-from scipy.spatial.distance import cosine
-from configure import NLLB_SEED_CSV, NLLB_SEED_LANGS, SEED_EMBED_PICKLE, TEN_SEED_LANGS
+from scipy.spatial.distance import cosine   # type: ignore
+from configure import NLLB_SEED_CSV, NLLB_SEED_LANGS, SEED_EMBED_PICKLE, TEN_SEED_LANGS 
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import time
 
+def unwrap_if_needed(embedding):
+    if len(embedding) == 1:  # If it's a length-1 list
+        return embedding[0]  # Return the inner list
+    return embedding        # Otherwise return as-is
 
-def make_dataframe(langs, csv_path, pickle_path):    
+def coalesce_df(df, problems, size):
+
+
+    total_size = len(df)
+    print('removing problems...')
+    for problem in problems:
+        df = df[df['sent_id'] != problem]
+
+    filtered_size = len(df)
+    sents_per_lang = filtered_size // ((total_size-filtered_size) // len(problems))
+    
+    print('coalescing...')
+    df['sent_id'] = np.arange(len(df)) % sents_per_lang
+    
+    if sents_per_lang < size:
+        print("can't trim any sentences from df")
+    else:
+        df = df[(df['sent_id'] < size)]
+
+    df = df.reset_index(drop=True) # convenient
+    df['embedding'] = df['embedding'].apply(unwrap_if_needed) # necessary
+
+    return df
+
+def make_dataframe(langs, csv_path, size, token_text=False):    
     base_model = "facebook/nllb-200-distilled-600M"
 
-    # the important paramters
+    # the important parameters
     df = pd.read_csv(csv_path)
-    df = df[df['split'] == 'train']
+    # df = df[df['split'] == 'train']
 
-    print("Loading NLLB model.")
+    print("Loading NLLB model...")
     tokenizer = AutoTokenizer.from_pretrained(base_model)
     model = AutoModelForSeq2SeqLM.from_pretrained(base_model)
     replacement_model = CustomM2M100Model(model.model.config)
     replacement_model.load_state_dict(model.model.state_dict())
     model.model = replacement_model
 
-    embeddings = analyze_sentences(model, tokenizer, df, langs)
+    embeddings, problems = analyze_sentences(model, tokenizer, df, langs)
     embeddings_col = []
-    tokens_col = []
+    if token_text:
+        tokens_col = []
 
+    print('getting embeddings...')
     for index, row in tqdm(df.iterrows()):
         embeddings_col.append(embeddings[f"{row['language']}_{row['script']}"][row['sent_id']])
 
         sentence = row['text']
-
-        tokenized = tokenize(sentence, f"{row['language']}_{row['script']}", tokenizer, 128)
-        tokens = [tokenizer.decode(token_id) for token_id in tokenized.input_ids[0]]
-        tokens_col.append(tokens)
+        if token_text:
+            tokenized = tokenize(sentence, f"{row['language']}_{row['script']}", tokenizer, 128)
+            tokens = [tokenizer.decode(token_id) for token_id in tokenized.input_ids[0]]
+            tokens_col.append(tokens)
 
     df['embedding'] = embeddings_col
-    df['tokens'] = tokens_col
+    if token_text:
+        df['tokens'] = tokens_col
 
-    df.to_pickle(pickle_path)
-    print('wrote to file')
+    df = coalesce_df(df, problems, size)
+    print(len(df))
+
+    return df
 
 
 def get_sentence_embeddings(model, tokenizer, sents, language, max_length = 128):
@@ -74,17 +106,36 @@ def analyze_sentences(model, tokenizer, sentence_data, langs, batch_size = 16):
     model = model.to(device)
     model.eval() 
     all_embeddings = dict() 
+
+    problems = set()
     for lang in tqdm(langs):
         embeddings = []
         code, script = lang.split('_')
         sents = sentence_data[(sentence_data['language'] == code) & (sentence_data['script'] == script)]
+
+        batchno = 1
         for i in range(0, len(sents), batch_size):
             batch = sents.iloc[i:i+batch_size]['text'].to_list()
-            next_embeddings = get_sentence_embeddings(model, tokenizer, batch, code)                
+            try:
+                next_embeddings = get_sentence_embeddings(model, tokenizer, batch, code)
+                # print(f'got batch {batchno} => {batchno*batch_size} sents')
+            except Exception as e:
+                print(f'error on line {(batchno-1)*batch_size + index} in {lang}')
+                next_embeddings = []
+                for index, sent in enumerate(batch):
+                    try:
+                        next_embeddings.append(get_sentence_embeddings(model, tokenizer, sent, code))
+                    except Exception:
+                        problems.add((batchno-1)*batch_size + index)
+                        next_embeddings.append([0])
+                        
+                
+            batchno += 1 
+                        
             embeddings.extend(next_embeddings)
 
         all_embeddings[lang] = embeddings
-    return all_embeddings
+    return all_embeddings, problems
 
 
 def cosine_similarity(lang1_encodings, lang2_encodings):
@@ -215,76 +266,37 @@ def main():
     # print(f'mean score for languages with same script: {same_script_avg:.3f}')
     # print(f'mean score for languages with different script: {diff_script_avg:.3f}')
 
+ep_langs = [
+    'bul_Cyrl',
+    'ces_Latn',
+    'dan_Latn',
+    'deu_Latn',
+    'ell_Grek',
+    'eng_Latn',
+    'spa_Latn',
+    'est_Latn',
+    'fin_Latn',
+    'fra_Latn',
+    'hun_Latn',
+    'ita_Latn',
+    'lit_Latn',
+    'lvs_Latn',
+    'nld_Latn',
+    'pol_Latn',
+    'por_Latn',
+    'ron_Latn',
+    'slk_Latn',
+    'slv_Latn',
+    'swe_Latn'
+]
 
 if __name__ == "__main__":
-    main()
+    csv_path = sys.argv[1]
+    pkl_path = csv_path[:-3] + "pkl"
+ 
+    num_sents_to_keep = int(sys.argv[2])
 
-
-"""
-eng_Latn with fra_Latn
-0. eng_Latn ---  une    - similarity 0.096
-1. She      ---  Elle   - similarity 0.190
-2. has      ---  une    - similarity 0.217
-3. a        ---  une    - similarity 0.303
-4. red      ---  rouge  - similarity 0.406
-5. car      ---  voiture - similarity 0.437
-6. .        ---  .      - similarity 0.226
-7. </s>     ---  </s>   - similarity 0.033
-
-fra_Latn with eng_Latn
-0. fra_Latn --- She     - similarity 0.099
-1. Elle     ---  She    - similarity 0.189
-2. a        ---  has    - similarity 0.210
-3. une      ---  a      - similarity 0.282
-4. voiture  ---  car    - similarity 0.433
-5. rouge    ---  red    - similarity 0.398
-6. .        ---  .      - similarity 0.221
-7. </s>     ---  </s>   - similarity 0.032
-
-some results which make sense - 
-looks like english, french, and german have much higher average maxes between
-tokens than any of them with chinese. Whether this is because of script or other 
-features, don't know. Can check with seed
-
-But we see that the averaging of the token embeddings seems to erase a good amount of 
-information in terms of angle. 
-
-eng_Latn, fra_Latn
-sentence 0
-average angle between tokens: 0.350
-angle between averaged embedding: 0.847
-
-eng_Latn, deu_Latn
-sentence 0
-average angle between tokens: 0.362
-angle between averaged embedding: 0.840
-
-eng_Latn, zho_Hans
-sentence 0
-average angle between tokens: 0.266
-angle between averaged embedding: 0.826
-
-fra_Latn, deu_Latn
-sentence 0
-average angle between tokens: 0.361
-angle between averaged embedding: 0.832
-
-fra_Latn, zho_Hans
-sentence 0
-average angle between tokens: 0.252
-angle between averaged embedding: 0.797
-
-deu_Latn, zho_Hans
-sentence 0
-average angle between tokens: 0.251
-angle between averaged embedding: 0.819
-
-
-
-Ran experiment on all seed languages with sentences 100-199:
-
-mean score for languages with same script: 0.099
-mean score for languages with different script: 0.087
-
-is that anything?
-"""
+    df = make_dataframe(ep_langs, csv_path, num_sents_to_keep)
+    
+    print('writing to file...')
+    df.to_pickle(pkl_path)

@@ -1,11 +1,10 @@
 import os
-import time
 import torch
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from tqdm import tqdm
-from finetune import tokenize
+from finetuning.finetune import tokenize
 import matplotlib.pyplot as plt
 from sklearn.manifold import TSNE
 from hierarchical import perform_hierarchical_clustering, plot_clustering_results
@@ -91,18 +90,21 @@ def analyze_sentences(
         code = lang.split('_')[0]
         script = lang.split('_')[1]
         sents = sentence_data[(sentence_data['language'] == code) & (sentence_data['script'] == script)]
-
+        # print(len(sents))
+        # batchno = 1
         for i in range(0, len(sents), batch_size):
 
             batch = sents.iloc[i:i+batch_size]['text'].to_list()
-
+            
             embeddings = get_sentence_embeddings(
                 model,
                 tokenizer,
                 batch,
-                code
+                code,
+                max_length= 2048 // batch_size
             )
-                
+            # print('did batch', batchno, '=', batchno*batch_size, 'sents')
+            # batchno += 1
             if all_embeddings is None:
                 all_embeddings = embeddings
             else:

@@ -1,6 +1,6 @@
 import random
 import pandas as pd
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader #type ignore
 from tqdm import tqdm
 
 class Bitext(Dataset):

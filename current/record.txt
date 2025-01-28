@@ -1,4 +1,3 @@
-
 pbt_Arab, bho_Deva: 0.718359649181366
 pbt_Arab, nus_Latn: 0.5340027213096619
 pbt_Arab, ban_Latn: 0.5953453779220581
