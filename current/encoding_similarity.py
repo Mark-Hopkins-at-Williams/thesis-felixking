@@ -7,10 +7,14 @@ import shutil
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from make_index import make_index, get_index
 from heatmaps import make_heatmap
-from configure import NLLB_SEED_LANGS, SEED_EMBED_PICKLE, TEN_SEED_LANGS
 
+def get_index(data, lang, sent_id):
+    embeddings = data[(lang, sent_id)][1:-1]
+    embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
+    index = faiss.IndexFlatIP(embeddings.shape[1])
+    index.add(np.float32(embeddings))
+    return index
 
 def find_closest_distances(embedding_matrix, lang, sent_id, index=None):
     query_vector = embedding_matrix / np.linalg.norm(embedding_matrix, axis=1, keepdims=True)
@@ -22,27 +26,16 @@ def find_closest_distances(embedding_matrix, lang, sent_id, index=None):
     return [a[0] for a in distances] # the closest distance is the zeroth element of each list
 
 
-def check_index(data, lang1, lang2, sent_id):   # memoizes the faiss index
-    if not os.path.exists(f'indices/{lang1}_{sent_id}'):
-        make_index(data, lang1, sent_id)
-    if not os.path.exists(f'indices/{lang2}_{sent_id}'):
-        make_index(data, lang2, sent_id)
-
-
-def token_pair_similarity(data, lang1, lang2, sent_id, memoize, verbose=False, geometric_mean=False):
+def token_pair_similarity(data, lang1, lang2, sent_id, verbose=False, geometric_mean=False):
     """Computes the average max similarity for the sentence tokens."""
     l1_embeddings = data[(lang1, sent_id)]
     l2_embeddings = data[(lang2, sent_id)]
     l1_query_vector = l1_embeddings[1:-1].astype('float32') # exclude language tag and end of sentence token
     l2_query_vector = l2_embeddings[1:-1].astype('float32') # exclude language tag and end of sentence token
-    if memoize:
-        check_index(data, lang1, lang2, sent_id)
-        distancesAB = find_closest_distances(l1_query_vector, lang2, sent_id)
-        distancesBA = find_closest_distances(l2_query_vector, lang1, sent_id)
-    else:
-        distancesAB = find_closest_distances(l1_query_vector, lang2, sent_id, index=get_index(data, lang2, sent_id))
-        distancesBA = find_closest_distances(l2_query_vector, lang1, sent_id, index=get_index(data, lang1, sent_id))
-     
+    
+    distancesAB = find_closest_distances(l1_query_vector, lang2, sent_id, index=get_index(data, lang2, sent_id))
+    distancesBA = find_closest_distances(l2_query_vector, lang1, sent_id, index=get_index(data, lang1, sent_id))
+
     if geometric_mean:
         return np.sqrt(np.mean(distancesAB) * np.mean(distancesBA))
     else:
@@ -64,7 +57,6 @@ def main():
     df = pd.read_pickle(config['parallel_corpus_file'])
     languages = config['languages']
     range_start, range_end = config['sentence_range']
-    memoize = bool(config['memoize'])
     primary_lang = config['primary']
     primary_sim_col = primary_lang.split('_')[0] + '_sim'
     secondary_lang = config['secondary']
@@ -81,9 +73,7 @@ def main():
         language = f"{row['language']}_{row['script']}"
         id = row['sent_id']
         data[(language, id)] = row['embedding']
-        print(len(row['embedding']))
-    exit()
-
+        print(len(row['embedding'])) 
 
     avgs = [{} for l in languages]
 
@@ -95,7 +85,7 @@ def main():
             lang1=languages[i]
             lang2=languages[j]
             for id in range(range_start, range_end):   
-                score = token_pair_similarity(data, lang1, lang2, id, memoize, verbose=False)
+                score = token_pair_similarity(data, lang1, lang2, id, verbose=False)
                 lp_scores.append(score)
             mean = np.mean(lp_scores)
             score_table[i][j] = mean

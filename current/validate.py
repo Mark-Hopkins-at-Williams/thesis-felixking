@@ -51,18 +51,6 @@ def evaluate_translations(candidate_translations, reference_translations):
 
     return bleu_score, chrf_score
 
-
-def logSet(scores, model_name, results_path):
-
-    df = pd.read_csv(results_path)
-    
-    print(scores)
-    new_data = pd.DataFrame([{"model":model_name, "source":s, "target":t, "bleu":b, "chrf":c} for ((s, t), (b, c)) in scores])
-    df = pd.concat([df, new_data]).drop_duplicates(ignore_index=True)
-
-    df.to_csv(results_path, index=False)
-
-
 if __name__ == "__main__":
 
     config_file = sys.argv[1] 
@@ -76,6 +64,7 @@ if __name__ == "__main__":
 
     src = config['source']
     tgt = config['target']
+    saving_translations = bool(config['save'])
     languages = config['languages']
     base_model = "facebook/nllb-200-distilled-" + config['nllb_model_size']
     save_path = os.path.join(exp_dir, f'{src}-{tgt}_scores.csv')
@@ -99,19 +88,31 @@ if __name__ == "__main__":
 
     scores = pd.DataFrame(columns=['source', 'target', 'bleu', 'chrf++'])
         
+    if saving_translations:
+        save_col = f"{config['nllb_model_size']}_{tgt}_translations"
+        df = pd.read_csv(csv_file)
+        df[save_col] = None
+
     for (s, t) in tqdm(pairs):
         if s == t:
-            scores.loc[len(scores)] = {'source': s, 'target': t, 'bleu': 100.0, 'chrf++': chrf_score}
+            scores.loc[len(scores)] = {'source': s, 'target': t, 'bleu': 100.0, 'chrf++': 100.0}
             continue
         dev_bitext = corpus.create_bitext(s, t, 'train')   
         src_texts, tgt_texts = dev_bitext.lang1_sents, dev_bitext.lang2_sents
 
         print(f"translating {s} to {t}")
         candidate_translations = batched_translate(src_texts, tokenizer=tokenizer, model=model, src_lang=dev_bitext.lang1_code, tgt_lang=dev_bitext.lang2_code)
+        if saving_translations:
+            lang, script = s.split('_')
+            mask = ((df['language'] == lang) & (df['script'] == script) & (df['split'] == 'train'))
+            df.loc[mask, save_col] = candidate_translations
+
         bleu_score, chrf_score = evaluate_translations(candidate_translations, tgt_texts)
         scores.loc[len(scores)] = {'source': s, 'target': t, 'bleu': bleu_score, 'chrf++': chrf_score}
 
     print('saving results...')
+    if saving_translations:
+        df.to_csv(csv_file)
     scores.to_csv(save_path, index=False)
     shutil.copy(config_file, os.path.join(exp_dir, os.path.basename(config_file)))
 

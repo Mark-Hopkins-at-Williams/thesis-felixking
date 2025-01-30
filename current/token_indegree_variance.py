@@ -5,7 +5,7 @@ import json
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from make_index import get_index
+from encoding_similarity import get_index
 from heatmaps import make_heatmap
 from configure import NLLB_SEED_LANGS, SEED_EMBED_PICKLE, TEN_SEED_LANGS
 

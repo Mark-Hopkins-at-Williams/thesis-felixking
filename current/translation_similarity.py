@@ -7,8 +7,7 @@ import shutil
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from validate import translate, batched_translate
-from make_index import make_index
+from validate import batched_translate
 from heatmaps import make_heatmap
 from finetuning.finetune import tokenize # type: ignore
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
