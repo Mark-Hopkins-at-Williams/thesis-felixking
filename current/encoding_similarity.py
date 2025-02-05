@@ -49,12 +49,10 @@ def main():
     exp_dir = config['experiment_directory']
     if not os.path.exists(exp_dir):
         os.mkdir(exp_dir)
-    # else:
-        # raise Exception(f'Experiment directory already exists: {exp_dir}')
 
 
     print('loading embeddings...')
-    df = pd.read_pickle(config['parallel_corpus_file'])
+    df = pd.read_pickle(config['parallel_corpus_pkl'])
     languages = config['languages']
     range_start, range_end = config['sentence_range']
     primary_lang = config['primary']
@@ -64,51 +62,55 @@ def main():
 
     df = df[(df.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (range_start <= df['sent_id']) & (df['sent_id'] <= range_end)]
 
-    score_table = np.full((len(languages), len(languages)), 1.0)
+    for model_size in ['600M', '1.3B']:
 
-    print('compiling embeddings...')
-    data = {}
-    # make dict for speed & cleanliness
-    for _, row in df.iterrows():
-        language = f"{row['language']}_{row['script']}"
-        id = row['sent_id']
-        data[(language, id)] = row['embedding']
-        print(len(row['embedding'])) 
+        save_dir = os.path.join(exp_dir, model_size)
+        os.mkdir(save_dir)
 
-    avgs = [{} for l in languages]
+        score_table = np.full((len(languages), len(languages)), 1.0)
 
-    print('computing similarities...')
-    for i in tqdm(range(0, len(languages))):
-        avgs[i]['language'] = languages[i]
-        for j in range(i + 1, len(languages)):
-            lp_scores = []
-            lang1=languages[i]
-            lang2=languages[j]
-            for id in range(range_start, range_end):   
-                score = token_pair_similarity(data, lang1, lang2, id, verbose=False)
-                lp_scores.append(score)
-            mean = np.mean(lp_scores)
-            score_table[i][j] = mean
-            score_table[j][i] = mean
+        print('compiling embeddings...')
+        data = {}
+        # make dict for speed & cleanliness
+        for _, row in df.iterrows():
+            language = f"{row['language']}_{row['script']}"
+            id = row['sent_id']
+            data[(language, id)] = row[f'{model_size}_embedding']
 
-            if lang2 == primary_lang:         # capture similarities to eng and ces
-                avgs[i][primary_sim_col] = mean   # for plotting later
-            elif lang1 == primary_lang:
-                avgs[i][primary_sim_col] = 1.0
-                avgs[j][primary_sim_col] = mean
-            if lang2 == secondary_lang:
-                avgs[i][secondary_sim_col] = mean
-            elif lang1 == secondary_lang:
-                avgs[i][secondary_sim_col] = 1.0
-                avgs[j][secondary_sim_col] = mean
+        avgs = [{} for l in languages]
 
-        avgs[i]['avg_sim'] = np.mean(score_table[i]) # also get avg similarity
-            
-    scores = pd.DataFrame(avgs)
-    scores.to_csv(os.path.join(exp_dir, 'similarities.csv'), index=False)
+        print('computing similarities...')
+        for i in tqdm(range(0, len(languages))):
+            avgs[i]['language'] = languages[i]
+            for j in range(i + 1, len(languages)):
+                lp_scores = []
+                lang1=languages[i]
+                lang2=languages[j]
+                for id in range(range_start, range_end):   
+                    score = token_pair_similarity(data, lang1, lang2, id, verbose=False)
+                    lp_scores.append(score)
+                mean = np.mean(lp_scores)
+                score_table[i][j] = mean
+                score_table[j][i] = mean
 
-    make_heatmap(score_table, "unordered", exp_dir, languages)
-    make_heatmap(score_table, "clustered", exp_dir, languages, cluster=True)
+                if lang2 == primary_lang:         # capture similarities to eng and ces
+                    avgs[i][primary_sim_col] = mean   # for plotting later
+                elif lang1 == primary_lang:
+                    avgs[i][primary_sim_col] = 1.0
+                    avgs[j][primary_sim_col] = mean
+                if lang2 == secondary_lang:
+                    avgs[i][secondary_sim_col] = mean
+                elif lang1 == secondary_lang:
+                    avgs[i][secondary_sim_col] = 1.0
+                    avgs[j][secondary_sim_col] = mean
+
+            avgs[i]['avg_sim'] = np.mean(score_table[i]) # also get avg similarity
+                
+        scores = pd.DataFrame(avgs)
+        scores.to_csv(os.path.join(save_dir, 'similarities.csv'), index=False)
+
+        make_heatmap(score_table, "unordered", save_dir, languages)
+        make_heatmap(score_table, "clustered", save_dir, languages, cluster=True)
 
     shutil.copy(config_file, os.path.join(exp_dir, os.path.basename(config_file)))
 

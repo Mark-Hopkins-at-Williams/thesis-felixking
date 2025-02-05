@@ -54,7 +54,7 @@ def main(token_indegree, length_var):
         os.mkdir(save_dir)
 
     print('loading embeddings...')
-    df = pd.read_pickle(config['parallel_corpus_file'])
+    df = pd.read_pickle(config['parallel_corpus_pkl'])
     languages = config['languages']
     range_start, range_end = config['sentence_range']
 
@@ -77,9 +77,6 @@ def main(token_indegree, length_var):
         for id in range(range_start, range_end):
             lens = [len(data[(languages[i], id)]) for i in range(0, len(languages))]
             vars.append(np.var(lens, ddof=1))
-            # if id % 100 == 0:
-            #     print(lens)
-            #     print(vars[-1], np.sqrt(vars[-1]))
         avg_stdev = np.mean([np.sqrt(var) for var in vars])
         avg_var = np.mean(vars)
         print('average variance', avg_var)
