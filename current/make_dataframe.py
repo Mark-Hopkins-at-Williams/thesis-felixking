@@ -141,13 +141,20 @@ def main():
     compile(num_sents, corpus_dir, output_stem, 1, word_count, make_csv=True, train=True)
     
 
+europarl_languages = [
+    'bul_Cyrl', 'ces_Latn', 'dan_Latn', 'deu_Latn',
+    'ell_Grek', 'eng_Latn', 'spa_Latn', 'est_Latn',
+    'fin_Latn', 'fra_Latn', 'hun_Latn', 'ita_Latn',
+    'lit_Latn', 'lvs_Latn', 'nld_Latn', 'pol_Latn',
+    'por_Latn', 'ron_Latn', 'slk_Latn', 'slv_Latn',
+    'swe_Latn'
+]
+
 if __name__ == '__main__':
+
     main()
     
 
 # python make_dataframe.py 5 /mnt/storage/fking/data/europarl_line_by_line ./test_data/europarl_small
 # python make_dataframe.py 5 /mnt/storage/fking/data/seed_line_by_line ./test_data/seed_small
 
-"""
-add storage of translations
-"""

@@ -2,12 +2,12 @@ import os
 import time
 import numpy as np
 import pandas as pd
-import seaborn as sns
+import seaborn as sns # type: ignore
 from tqdm import tqdm
 import pyarrow.parquet as pq
-import matplotlib.pyplot as plt
-from scipy.spatial.distance import cosine
-import scipy.cluster.hierarchy as sch
+import matplotlib.pyplot as plt # type: ignore
+from scipy.spatial.distance import cosine # type: ignore
+import scipy.cluster.hierarchy as sch # type: ignore
 from configure import SEED_EMBED_PICKLE
 
 def filter_df(parquet_file, languages, sent_id_range = None, sample_size = None):

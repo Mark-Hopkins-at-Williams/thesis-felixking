@@ -78,7 +78,7 @@ def main():
             data[(language, id)] = row[f'{model_size}_embedding']
 
         avgs = [{} for l in languages]
-
+        save_lines = []
         print('computing similarities...')
         for i in tqdm(range(0, len(languages))):
             avgs[i]['language'] = languages[i]
@@ -92,7 +92,7 @@ def main():
                 mean = np.mean(lp_scores)
                 score_table[i][j] = mean
                 score_table[j][i] = mean
-
+                save_lines.append(f'{lang1}, {lang2}: {mean:.4f}')
                 if lang2 == primary_lang:         # capture similarities to eng and ces
                     avgs[i][primary_sim_col] = mean   # for plotting later
                 elif lang1 == primary_lang:
@@ -106,6 +106,9 @@ def main():
 
             avgs[i]['avg_sim'] = np.mean(score_table[i]) # also get avg similarity
                 
+        with open(os.path.join(save_dir, 'data.txt')) as file:
+            file.write('\n'.join(save_lines))
+            
         scores = pd.DataFrame(avgs)
         scores.to_csv(os.path.join(save_dir, 'similarities.csv'), index=False)
 
