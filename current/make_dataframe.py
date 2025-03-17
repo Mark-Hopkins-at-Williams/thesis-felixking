@@ -24,7 +24,8 @@ def add_embeddings(langs, df, size='600M'):
     embeddings_col = []
     
     print('getting embeddings...')
-    for index, row in tqdm(df.iterrows()):
+    for i in range(len(df)):
+        row = df.iloc[i]
         embeddings_col.append(embeddings[f"{row['language']}_{row['script']}"][row['sent_id']])
         sentence = row['text']
 
@@ -158,3 +159,5 @@ if __name__ == '__main__':
 # python make_dataframe.py 5 /mnt/storage/fking/data/europarl_line_by_line ./test_data/europarl_small
 # python make_dataframe.py 5 /mnt/storage/fking/data/seed_line_by_line ./test_data/seed_small
 
+# python make_dataframe.py 6193 /mnt/storage/fking/data/scrambled_seed_line_by_line/ /mnt/storage/fking/data/scrambled_seed
+# python make_dataframe.py 10000 /mnt/storage/fking/data/scrambled_europarl_line_by_line/ /mnt/storage/fking/data/scrambled_europarl

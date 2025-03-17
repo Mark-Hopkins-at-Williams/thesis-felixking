@@ -85,12 +85,12 @@ def make_heatmap(data, title, output_dir, labels, cluster=False):
             warnings.filterwarnings('ignore')
             sns.clustermap(
                 data,
-                cmap="magma",
+                cmap="viridis",
                 annot=False,
                 xticklabels=labels,
                 yticklabels=labels,
                 figsize=(10, 8),
-                dendrogram_ratio=(.1, .2)
+                dendrogram_ratio=(.1, .1)
             )
     else:
         fig, ax = plt.subplots(figsize=(10, 8))

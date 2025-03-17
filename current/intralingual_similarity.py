@@ -19,19 +19,37 @@ def plot_dict_to_bar(data_dict, filename, figsize=(10,6), title=None, xlabel=Non
    plt.savefig(filename)
    plt.close()
 
-def get_index(data, lang, sent_id):
-    embeddings = data[(lang, sent_id)][1:-1]
+def get_index(data, lang, sent_id, sent_set):
+    embeddings = data[(lang, sent_id, sent_set)][1:-1]
     embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
     index = faiss.IndexFlatIP(embeddings.shape[1])
     index.add(np.float32(embeddings))
     return index
 
-def find_closest_distances(embedding_matrix, index):
+def run_faiss(embedding_matrix, index):
     query_vector = embedding_matrix / np.linalg.norm(embedding_matrix, axis=1, keepdims=True)
     distances, _ = index.search(query_vector, 1)
     return [a[0] for a in distances] # the closest distance is the zeroth element of each list
 
-def token_pair_similarity(data, language, id1, id2, query_vecs, indices, geometric_mean=False):
+def token_pair_similarity(data, language, id):
+    embedsA = data[(language, id, 'a')]
+    embedsB = data[(language, id, 'b')]
+
+    qvA = embedsA[1:-1].astype('float32') 
+    ixB = get_index(data, language, id, 'b')
+
+    qvB = embedsB[1:-1].astype('float32') 
+    ixA = get_index(data, language, id, 'a')
+
+    distancesAB = run_faiss(qvA, ixB)
+    distancesBA = run_faiss(qvB, ixA)
+
+    print(np.mean(distancesAB), np.mean(distancesBA))
+
+    return np.sqrt(np.mean(distancesAB) * np.mean(distancesBA)) # geometric mean
+
+
+def old(data, language, id1, id2, query_vecs, indices):
     """Computes the average max similarity for the sentence tokens."""
 
     if (language, id1) not in query_vecs:
@@ -53,13 +71,11 @@ def token_pair_similarity(data, language, id1, id2, query_vecs, indices, geometr
     qv2 = query_vecs[(language, id2)]
     index2 = indices[(language, id2)]
 
-    distancesAB = find_closest_distances(qv1, index2)
-    distancesBA = find_closest_distances(qv2, index1)
+    distancesAB = run_faiss(qv1, index2)
+    distancesBA = run_faiss(qv2, index1)
 
-    if geometric_mean:
-        return np.sqrt(np.mean(distancesAB) * np.mean(distancesBA))
-    else:
-        return np.mean(distancesAB + distancesBA) # average all bidirectional distances
+    return np.sqrt(np.mean(distancesAB) * np.mean(distancesBA)) # geometric mean
+
 
 def main():
     config_file = sys.argv[1] 
@@ -74,8 +90,10 @@ def main():
     range_start, range_end = config['sentence_range']
     
     print('loading embeddings...')
-    df = pd.read_pickle(config['parallel_corpus_pkl'])
-    df = df[(df.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (range_start <= df['sent_id']) & (df['sent_id'] <= range_end)]
+    dfA = pd.read_pickle(config['intralingual_A_pkl'])
+    dfB = pd.read_pickle(config['intralingual_B_pkl'])
+    dfA = dfA[(dfA.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (range_start <= dfA['sent_id']) & (dfA['sent_id'] <= range_end)]
+    dfB = dfB[(dfA.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (range_start <= dfA['sent_id']) & (dfA['sent_id'] <= range_end)]
 
     for model_size in ['600M', '1.3B']:
 
@@ -83,42 +101,45 @@ def main():
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
 
-
         print('compiling embeddings...')
         print(model_size)
         data = {}
         # make dict for speed & cleanliness
-        for _, row in df.iterrows():
+
+        for i in range(len(dfA)):
+            row = dfA.iloc[i]  # Get row by position
             language = f"{row['language']}_{row['script']}"
             id = row['sent_id']
-            data[(language, id)] = row[f'{model_size}_embedding']
+            sent_set = row['set']
+            
+            data[(language, id, sent_set)] = row[f'{model_size}_embedding']
+        
+        for i in range(len(dfB)):
+            row = dfB.iloc[i]  # Get row by position
+            language = f"{row['language']}_{row['script']}"
+            id = row['sent_id']
+            sent_set = row['set']
 
+            data[(language, id, sent_set)] = row[f'{model_size}_embedding']
 
-        results = []
         scores = {}
         print('computing similarities...')
-        for language in languages:
-            query_vecs = {}
-            indices = {}
-            lang_scores = []
-            for id1 in tqdm(range(range_start, range_end)):
-                for id2 in range(id1 + 1, range_end):
-                    score = token_pair_similarity(data, language, id1, id2, query_vecs, indices)
-                    lang_scores.append(score)
-            mean = np.mean(lang_scores)
-            scores[language] = mean
-            results.append({'language': language, 'self_similarity': mean})
+        with open(os.path.join(save_dir, 'intralingual_similarities.txt'), 'w') as file:
+            for language in tqdm(languages):
+                lang_scores = []
+                for id in range(range_start, range_end):
+                    lang_scores.append(token_pair_similarity(data, language, id))
+                mean = np.mean(lang_scores)
+                scores[language] = mean
+                file.write(f'{language}: {mean}')
                 
         plot_dict_to_bar(
             scores,
-            os.path.join(save_dir, 'self_similarity.png'),
-            title='Average Encoding Similarity Between all Sentence Pairs',
+            os.path.join(save_dir, 'intralingual.png'),
+            title='Average Intralingual Encoding Similarity',
             xlabel='Language',
-            ylabel='Average Max Similarity',
+            ylabel='Average Encoding Similarity',
         )
-
-        res = pd.DataFrame(results)
-        res.to_csv(os.path.join(save_dir, 'intralingual_scores.csv'), index=False)
 
             
 if __name__ == "__main__":

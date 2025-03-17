@@ -2,11 +2,13 @@ import os
 import sys
 import json
 import random
-from tqdm import tqdm
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 from scipy import stats             # type: ignore
+from rapidfuzz import fuzz          # type: ignore
 import matplotlib.pyplot as plt     # type: ignore
+from make_dataframe import add_embeddings
 
 europarl_languages = [
     'bul_Cyrl', 'ces_Latn', 'dan_Latn', 'deu_Latn',
@@ -24,10 +26,84 @@ seed_languages = [
     "bjn_Latn", "scn_Latn", "bug_Latn", "lmo_Latn", "szl_Latn", "hne_Deva", "fuv_Latn", 
     "taq_Tfng", "shn_Mymr", "mag_Deva"]
 
-def make_diff_meaning_set(languages, input_dir, output_dir, num_sents, mean_stdev_dict):
+SEED_PATH = '/mnt/storage/fking/data/seed'
+EUROPARL_PATH = '/mnt/storage/fking/data/europarl'
+
+def too_similar(sent1, sent2, threshold=70):
+    return fuzz.ratio(sent1, sent2) > threshold
+
+def sample_by_distribution(mean, stdev, sents):
+
+    iters = 0
+    while True:
+        candIndex = random.randint(0, len(sents) - 1)
+        candidate = sents[candIndex]
+
+        p = 2 * (1 - stats.norm.cdf(abs(mean - len(candidate)), 0, stdev))
+        r = random.random()
+        if r < p:   # accepted
+            return candIndex
+
+        if iters % 1000 == 0 and iters % 1000 != 0:
+            print(iters)
+
+        iters += 1
+        if iters > 100000:
+            print('tested 100,000 candidates with no successes. Exiting...')
+            exit()
+        
+def RV2(languages, input_dir, output_path, num_sents, mean_stdev_dict):
+
+    dfA = pd.DataFrame()
+    dfB = pd.DataFrame()
+
+    for language in tqdm(languages):
+        sents = []
+        with open(os.path.join(input_dir, f'{language}_sents.txt'), 'r') as file:
+            for line in file:
+                sents.append(line)
+
+        As = random.sample(sents, num_sents)
+        for i, s in enumerate(As): # kinda clunky
+            while len(s) not in mean_stdev_dict:
+                s = random.choice(sents)
+            
+            As[i] = s        
+
+        Bs = []
+        for sent in As:
+            sent_len = len(sent)
+            choice = sent
+            while too_similar(choice, sent):
+                choice = sents[sample_by_distribution(sent_len, mean_stdev_dict[sent_len], sents)]
+            Bs.append(choice)
+            
+        l, s = language.split('_')
+        new_dfA = pd.DataFrame([{'language': l, 'script': s, 'sent_id':i, 'text': a.strip(), 'set': 'a'} for i, a in enumerate(As)])
+        new_dfB = pd.DataFrame([{'language': l, 'script': s, 'sent_id':i, 'text': b.strip(), 'set': 'b'} for i, b in enumerate(Bs)])
+        dfA = pd.concat([dfA, new_dfA])
+        dfB = pd.concat([dfB, new_dfB])
+
+    dfA.to_csv(f'{output_path}_A.csv', index=False)
+    add_embeddings(languages, dfA, size='600M')
+    add_embeddings(languages, dfA, size='1.3B')
+    dfA.to_pickle(f'{output_path}_A.pkl')
+    
+    dfB.to_csv(f'{output_path}_B.csv', index=False)
+    add_embeddings(languages, dfB, size='600M')
+    add_embeddings(languages, dfB, size='1.3B')
+    dfB.to_pickle(f'{output_path}_B.pkl')
+    
+
+# different meaning, different language
+def RV3(languages, input_dir, output_dir, num_sents, mean_stdev_dict):
+
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir)
 
     print('generating random means...')
     means = np.random.choice(list(mean_stdev_dict.keys()), size=num_sents, replace=True)
+    indexChoices = {i: set() for i in range(0, num_sents)}
 
     for language in languages:
         print(f'getting sentences for {language}')
@@ -42,19 +118,13 @@ def make_diff_meaning_set(languages, input_dir, output_dir, num_sents, mean_stde
             mean = means[id]
             stdev = mean_stdev_dict[mean]
 
-            count = 0
-            accepted = False
-            while not accepted:
-                candidate = sents[random.randint(0, len(sents) - 1)]
-                p = 2 * (1 - stats.norm.cdf(abs(mean - len(candidate)), 0, stdev))
-                r = random.random()
-                # print(abs(mean - len(candidate)), r, p)
-                count += 1
-                if count > 50000:
-                    print("help")
-                if r < p:
-                    accepted = True
-                    choices.append(candidate)
+            indexChoice = sample_by_distribution(mean, stdev, sents)
+            while indexChoice in indexChoices[id]:
+                indexChoice = sample_by_distribution(mean, stdev, sents)
+
+            choice = sents[indexChoice]
+            choices.append(choice)
+            indexChoices[id].add(indexChoice)
 
         with open(os.path.join(output_dir, f'{language}_sents.txt'), 'w') as file:
             file.write(''.join(choices))
@@ -76,71 +146,31 @@ def string_len_variance(df, range_start, range_end):
         len_stdev[key] = np.mean(len_stdev[key])
     return len_stdev
 
-def token_num_variance(data, range_start, range_end, languages):
-    vars = []
-    for id in range(range_start, range_end):
-        lens = [len(data[(languages[i], id)]) for i in range(0, len(languages))]
-        vars.append(np.var(lens, ddof=1))
-
-    avg_stdev = np.mean([np.sqrt(var) for var in vars])
-    avg_var = np.mean(vars)
-    print(f'average variance: {avg_var:.3f}')
-    print(f'average standev:  {avg_stdev:.3f}')
-
-def intralingual_length_var(data, range_start, range_end, languages):
-    for lang in languages:
-        lens = [len(data[(lang, id)]) for id in range(range_start, range_end)]
-        variance = np.var(lens, ddof=1)
-        print(lang)
-        # check_normality(lens, lang, plot=True)
-        print(f'\tvariance: {variance:.3f}')
-        print(f'\tstandev:  {np.sqrt(variance):.3f}')
-
-def generate_sent_group(len_stdev):
-    mean = random.sample(list(len_stdev.keys()), 1)[0] # get a random mean from the list of means
-    stdev = len_stdev[mean]
-    rand_range = (int(-3*stdev), int(3*stdev))
-
-    print(mean, stdev)
-
-    for i in range(0, 100):
-        test_len = random.randint(rand_range[0], rand_range[1])
-        
-        p = 2 * (1 - stats.norm.cdf(abs(test_len), 0, stdev))
-        r = random.random()
-        
-        print(f'len: {test_len}, probability: {p:.2f}, \taccepted? {r < p}')
-
-
-
 def main():
 
     config_file = sys.argv[1] 
     with open(config_file) as reader:
         config = json.load(reader)
-
-    exp_dir = config['experiment_directory']
     
     range_start, range_end = config['sentence_range']
     languages = config['languages']
     df = pd.read_csv(config['parallel_corpus_csv'])
-    mean_stdev_dict = string_len_variance(df, range_start, range_end)
     source_dir = config['line_by_line_dir']
-    save_dir = f'{"/".join(source_dir.split("/")[:-1])}/scrambled_{source_dir.split("/")[-1]}'
-    print(save_dir)
-
-    if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+    rv3_save_dir = f'{"/".join(source_dir.split("/")[:-1])}/scrambled_{source_dir.split("/")[-1]}'
+    rv2_save_path = config['parallel_corpus_csv'].split('.')[0] + '_intralingual_TEST'
 
     num_sents = range_end - range_start + 1
 
+    mean_stdev_dict = string_len_variance(df, range_start, range_end)
     mean_stdev = np.mean(list(mean_stdev_dict.values()))
-    print(mean_stdev)
+    mean_mean = np.mean(list(mean_stdev_dict.keys()))
+    print(mean_stdev, mean_mean)
 
-    if len(sys.argv) > 2 and sys.argv[2] == 'check':
-        exit()
-
-    make_diff_meaning_set(languages, source_dir, save_dir, num_sents, mean_stdev_dict)
+    if len(sys.argv) > 2:
+        if sys.argv[2] == 'rv2':
+            RV2(languages, source_dir, rv2_save_path, num_sents, mean_stdev_dict)
+        elif sys.argv[2] == 'rv3':
+            RV3(languages, source_dir, rv3_save_dir, num_sents, mean_stdev_dict)
 
 if __name__ == "__main__":
     main()
@@ -152,20 +182,4 @@ then to generate a set of random different-meaning sentences with lenths matchin
 randomly choose a mean in the range, go through random sentences for each language, and based on the
 randomly chosen sentence's length, use normal distribution to determine whether to add it
 
-
-df = pd.read_pickle(config['parallel_corpus_pkl'])
-df = df[(df.apply(lambda row: f"{row['language']}_{row['script']}" in languages, axis=1)) & (range_start <= df['sent_id']) & (df['sent_id'] <= range_end)]
-data = {}
-for _, row in df.iterrows():
-    language = f"{row['language']}_{row['script']}"
-    id = row['sent_id']
-    data[(language, id)] = row['600M_embedding']
-
-if parallel:
-    print('computing length variances of parallel sentences...')
-    token_num_variance(data, range_start, range_end, languages)
-
-if by_lang:
-    print('\ncomputing length variances of sentences in each language...')
-    intralingual_length_var(data, range_start, range_end, languages)
 """

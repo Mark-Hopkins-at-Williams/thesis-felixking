@@ -7,4 +7,4 @@
 #SBATCH -e log_%j.err
 #SBATCH --gres=gpu:1
 
-python make_dataframe.py 6193 /mnt/storage/fking/data/seed_line_by_line /mnt/storage/fking/data/seed/seed
+python length_variance.py exp_configs/europarl.json rv2

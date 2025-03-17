@@ -26,7 +26,7 @@ def find_closest_distances(embedding_matrix, lang, sent_id, index=None):
     return [a[0] for a in distances] # the closest distance is the zeroth element of each list
 
 
-def token_pair_similarity(data, lang1, lang2, sent_id, verbose=False, geometric_mean=False):
+def token_pair_similarity(data, lang1, lang2, sent_id, geometric_mean=True):
     """Computes the average max similarity for the sentence tokens."""
     l1_embeddings = data[(lang1, sent_id)]
     l2_embeddings = data[(lang2, sent_id)]
@@ -65,7 +65,8 @@ def main():
     for model_size in ['600M', '1.3B']:
 
         save_dir = os.path.join(exp_dir, model_size)
-        os.mkdir(save_dir)
+        if not os.path.exists(save_dir):
+            os.mkdir(save_dir)
 
         score_table = np.full((len(languages), len(languages)), 1.0)
 
@@ -87,7 +88,7 @@ def main():
                 lang1=languages[i]
                 lang2=languages[j]
                 for id in range(range_start, range_end):   
-                    score = token_pair_similarity(data, lang1, lang2, id, verbose=False)
+                    score = token_pair_similarity(data, lang1, lang2, id)
                     lp_scores.append(score)
                 mean = np.mean(lp_scores)
                 score_table[i][j] = mean
@@ -106,14 +107,14 @@ def main():
 
             avgs[i]['avg_sim'] = np.mean(score_table[i]) # also get avg similarity
                 
-        with open(os.path.join(save_dir, 'data.txt')) as file:
+        with open(os.path.join(save_dir, 'data.txt'), 'w') as file:
             file.write('\n'.join(save_lines))
             
         scores = pd.DataFrame(avgs)
         scores.to_csv(os.path.join(save_dir, 'similarities.csv'), index=False)
 
-        make_heatmap(score_table, "unordered", save_dir, languages)
-        make_heatmap(score_table, "clustered", save_dir, languages, cluster=True)
+        make_heatmap(score_table, "geom_unordered", save_dir, languages)
+        make_heatmap(score_table, "geom_clustered", save_dir, languages, cluster=True)
 
     shutil.copy(config_file, os.path.join(exp_dir, os.path.basename(config_file)))
 
