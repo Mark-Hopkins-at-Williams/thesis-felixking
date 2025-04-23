@@ -1,0 +1,12 @@
+{
+    "experiment_directory": "/mnt/storage/fking/thesis-felixking/experiments/ep_10k",
+    "parallel_corpus_file": "/mnt/storage/fking/data/europarl/europarl_10k.csv",
+    "languages": ["bul_Cyrl", "ces_Latn", "dan_Latn", "deu_Latn", "ell_Grek", "eng_Latn",
+                  "spa_Latn", "est_Latn", "fin_Latn", "fra_Latn", "hun_Latn", "ita_Latn",
+                  "lit_Latn", "lvs_Latn", "nld_Latn", "pol_Latn", "por_Latn", "ron_Latn",
+                  "slk_Latn", "slv_Latn", "swe_Latn" ],
+    "nllb_model_size": "600M",
+    "source": "all",
+    "target": "ces_Latn"
+}
+           

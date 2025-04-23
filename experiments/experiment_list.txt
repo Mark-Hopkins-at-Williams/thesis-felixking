@@ -1,0 +1,96 @@
+Random Variable X - interlingual similarity
+
+- Heatmaps and saved data
+    • europarl 600M     √
+    • europarl 1.3B     √
+    • seed 600M         √
+    • seed 1.3B         √
+
+view:
+• all clustered:    code /mnt/storage/fking/thesis-felixking/experiments/{seed,europarl}/{600M,1.3B}/geom_clustered_heatmap.png
+• all europarl:     code /mnt/storage/fking/thesis-felixking/experiments/europarl/{600M,1.3B}/geom_{clustered,unordered}_heatmap.png
+• all seed:         code /mnt/storage/fking/thesis-felixking/experiments/seed/{600M,1.3B}/geom_{clustered,unordered}_heatmap.png
+• all of above:     code /mnt/storage/fking/thesis-felixking/experiments/{seed,europarl}/{600M,1.3B}/geom_{clustered,unordered}_heatmap.png
+
+-------------------------------------------------------------------------------------------------
+
+Random Variable Y - intralingual similarity
+
+- bar graphs and saved data
+    • europarl 600M     √
+    • europarl 1.3B     √
+    • seed 600M         √
+    • seed 1.3B         √
+
+view:
+• all europarl:     code /mnt/storage/fking/thesis-felixking/experiments/europarl/{600M,1.3B}/intralingual.png
+• all seed:         code /mnt/storage/fking/thesis-felixking/experiments/seed/{600M,1.3B}/intralingual.png
+• all of above:     code /mnt/storage/fking/thesis-felixking/experiments/{seed,europarl}/{600M,1.3B}/intralingual.png
+
+-------------------------------------------------------------------------------------------------
+
+Random Variable Z - scrambled similarity
+
+- Heatmaps and saved data
+    • europarl 600M     √
+    • europarl 1.3B     √
+    • seed 600M         √
+    • seed 1.3B         √
+
+view:
+• all clustered:    code /mnt/storage/fking/thesis-felixking/experiments/scrambled_{seed,europarl}/{600M,1.3B}/geom_clustered_heatmap.png
+• all europarl:     code /mnt/storage/fking/thesis-felixking/experiments/scrambled_europarl/{600M,1.3B}/geom_{clustered,unordered}_heatmap.png
+• all seed:         code /mnt/storage/fking/thesis-felixking/experiments/scrambled_seed/{600M,1.3B}/geom_{clustered,unordered}_heatmap.png
+• all of above:     code /mnt/storage/fking/thesis-felixking/experiments/scrambled_{seed,europarl}/{600M,1.3B}/geom_{clustered,unordered}_heatmap.png
+
+-------------------------------------------------------------------------------------------------
+
+Translation
+
+- create translations into English
+    • europarl      √
+    • seed          √
+
+- create translations into Second Language
+    • europarl (hungarian? did Czech before)
+    • seed (Magahi)
+
+- translation similarity
+    • symmetrical version (averaged Bleu)
+        ~ seed      √
+        ~ europarl  √
+    • asymmetrical version 
+        ~ seed      √
+        ~ europarl  √
+
+directories:
+• seed:         cd /mnt/storage/fking/thesis-felixking/experiments/seed/translation_similarity
+• europarl:     cd /mnt/storage/fking/thesis-felixking/experiments/europarl/translation_similarity
+
+scatterplot of Bleu vs. interlingual similarity
+- English
+    • average similarity
+        ~ seed      
+        ~ europarl  √
+    • English similarity
+        ~ seed      
+        ~ europarl  √
+- Second Language
+    • average similarity
+        ~ seed      
+        ~ europarl  
+    • Second Language similarity
+        ~ seed      
+        ~ europarl  
+
+scatterplot of Bleu vs. intralingual similarity
+
+-------------------------------------------------------------------------------------------------
+
+Null Hypothesis 1: Random Variable X vs Y
+
+Since rvY produces one statistic per language, we want to use the per-language-average of the rvX data
+and the overall averages. 
+
+ACTUALLY we may need the standard deviation for each language if we want to do the per-language version
+but given that we have…
