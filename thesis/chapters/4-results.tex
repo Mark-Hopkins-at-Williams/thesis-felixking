@@ -1,0 +1,106 @@
+
+
+%%%%%%%% Chapters %%%%%%%%%%%%
+%% Introduction
+\chapter{Results}
+\label{chap:results}
+
+Now that we have defined the encoding similarity between two sentences, we are able to systematically compare encoded sentences in the Europarl and Seed datasets to test the hypothesis that sentences of the same meaning are similarly encoded. But just because the encoding similarity calculation produces values in the range [-1.0, 1.0], it is not necessarily the case that a positive encoding similarity indicates that two encodings are more similar than dissimilar in the context of a particular model. It may be that the encoder has learned to produce token encoding vectors with only non-negative elements, in which case the minimum possible similarity becomes 0.0. That is to say that calculation of encoding similarity between sentences of the same meaning in different languages will not itself support or contradict the hypothesis. 
+
+In order to show how encoding similarity and meaning are related, it is necessary to compare the encoding similarity among sentences grouped by some other feature to the similarity among sentences of the same meaning. We will calculate the similarity between pairs of sentences with three types of relationships:
+
+% would it be good to give these names? like affinity, sociability, coherence?
+\begin{enumerate}
+  \item Sentences with the same meaning in different languages (interlingual)
+  \item Sentences with different meanings in the same language (intralingual)
+  \item Sentences with different meanings in different languages (spurious)
+\end{enumerate}
+
+The missing fourth group, sentences with the same meaning in the same language, is trivial. The encoding similarity between a sentence and itself is 1.0, regardless of its meaning or language. It might be interesting to study the encodings of sentences with the same semantic meaning but written slightly differently, but our parallel corpora contain only one version of each sentence per language.
+
+\section{Random Variables}
+By calculating the encoding similarity in the groups listed above, we define three random variables, X, Y, and Z. Random variable X represents interlingual encoding similarity, Y represents intralingual encoding similarity, and Z represents spurious encoding similarity. The expected value of each random variable is the average encoding similarity over a large set of sentences. Thus we produce several statistics, comparable by dataset, model size, language, language pair, or other data characteristics. 
+
+\subsection{Random Variable X: Interlingual Similarity}
+
+Interlingual similarity can be viewed at three levels: 
+
+\begin{itemize}
+	\item A particular language’s average similarity to one other language. 
+	\item A particular language’s average similarity to all other languages.
+	\item The average similarity between each pair of languages.
+\end{itemize}
+
+The starting point for these three types of statistics is bullet point 1 - pairwise encoding similarity. We calculate pairwise similarity simply by taking the arithmetic mean of the similarities between each pair of parallel sentences. In a dataset with N languages, there are (N * (N-1))/2 language pairs. We can display the pairwise similarities on a square heatmap, which, because pairwise similarity is symmetrical, will exhibit symmetry along the diagonal. The squares along the diagonal have the maximum similarity of 1.0 because they represent the previously-mentioned trivial self-similarity of the sentences in each language.  
+
+The second kind of interlingual similarity, a particular language’s average similarity to all other languages, is easily calculated by taking the arithmetic mean of each row. In this example, Estonian has the lowest average interlingual similarity, 0.590, and English has the highest, 0.763. (maybe ok to keep values)
+
+By taking yet another average, we can distill all this information into a single statistic, the average encoding similarity between all pairs of sentences with the same meaning; for this set of 10,000 Europarl sentences encoded by the 600-million-parameter NLLB model, that value is 0.699. (maybe exclude last sentence)
+
+\subsection{Random Variable Y: Intralingual Similarity}
+
+use pseudocode algorithm for rejection sampling thing
+
+Although calculation of intralingual similarity does not require comparison of sentences with the same meaning, other variables should be kept constant. A feature of sentences with the same meaning is that they tend to have similar lengths. thus, we choose pairs not by matching sentences to arbitrary sentences from the same language, but by sampling by length according to the distributions we measure in their dataset. For each dataset, Seed and Europarl, we sampled pairs of sentences for comparison not only with the criterion that they have officially different meanings, but that they also have a minimum edit distance between them. The second stipulation is more likely to matter in the Europarl dataset, in which many diplomatic phrases are repeated, possibly with very small variations. After producing a number of pairs equivalent to the number of sentences per language in the original dataset, intralingual similarity is calculated as the average of the encoding similarities of each pair.  
+
+Intralingual similarity is calculated by language, not by language pair. Thus we can compare the intralingual similarity of each language to its average interlingual similarity and the overall average intralingual similarity to the overall average interlingual similarity. 
+
+\subsection{Random Variable Z: Spurious Similarity}
+
+Spurious similarity involves calculations between pairs of languages (like interlingual similarity) and length-based sampling to select sets of sentences with different meanings (like intralingual similarity). We sample N sentences per language, again with the stipulations that they neither have identical meaning nor very similar text. Then we produce the same three types of statistics as we do with random variable X: language pair similarity, average language pair similarity by language, and an overall average similarity. That is, we produce another heatmap of similarities, an average for each language, and finally a single statistic for the dataset. 
+
+\section{Null Hypotheses}
+
+With the three random variables X, Y, and Z, we define three kinds of statistics about a dataset. Our hypothesis, that multilingual encoders encode sentences with the same meaning similarly, only refers only the first random variable, interlingual similarity, but it also involves the other two. We must show that interlingual, intralingual, and spurious similarities are not equal, that is, we aim to reject the following null hypotheses which would contradict our hypothesis:
+
+	\begin{enumerate}
+		\item The expected values of X and Y are equal.
+		\item The expected values of X and Z are equal.
+		\item The expected values of Y and Z are equal.
+	\end{enumerate}
+	
+Regarding null hypotheses one and two, we'd actually like to show that the expected value of X is higher than that of Y or Z in order to accept our hypothesis. Null hypothesis three is not strictly necessary, but we have all the data necessary to  less bearing on our hypothesis, but investigating it may help to provide a clearer picture of how multilingual encoders train.
+
+\subsection{Null Hypothesis 1}
+We would like to show that the expected value of random variables X and Y are not equal, i.e. that average interlingual similarity is not equal to average intralingual similarity. Since intralingual singularity experiments do not produce statistics by language pair, the first type of statistic produced for interlingual similarity (which does represent language pair encoding similarity) will not be directly useful. Rather, we will use the average similarity by language as well as dataset averages to compare interlingual and intralingual encoding similarities. 
+
+A graphical comparison of per language averages clearly shows a difference between interlingual and intralingual similarities.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/europarl_rv1.png}
+    \caption{Interlingual vs Intralingual similarity by language in the Europarl dataset}
+    \label{fig:europarl_rv1}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/seed_rv1.png}
+    
+    \caption{Interlingual vs Intralingual similarity by language in the Seed dataset}
+    \label{fig:seed_rv1}
+\end{figure}
+
+
+In the Europarl dataset, the average interlingual mean across languages, that is, the mean encoding similarity between encodings of sentences with the same meaning in different languages, is 0.699, while the mean intralingual similarity is 0.319. [insert stats here just to say that the result is significant based on a t-test]. For the Seed dataset, the mean interlingual encoding similarity is 0.545 while the mean intralingual encoding similarity is 0.359. [same stats work]. According to these t-tests, we reject the null hypothesis that the expected values of interlingual and intralingual similarity are equal.
+
+It is worth noting that the gap between these two values is significantly smaller in the Seed dataset than in the Europarl dataset. One of the Seed languages, knc\_Arab, even has higher intralingual similarity than interlingual similarity, which is not the case for any of the Europarl languages. These differences can most likely be explained by the fact that the Seed languages are all low-resource and that the Europarl languages are all high-resource (in the context of NLLB). Sentences from languages which are better understood by the NLLB models are better grouped by meaning than by language, and this phenomenon falls on a spectrum. The outlier in the Seed dataset, knc\_Arab (which stands for Central Kanuri in Arabic script) has among the worst performance in xx-English and English-xx translation tasks. On the other end of the spectrum, we could place Spanish, whose average interlingual similarity is more than double its intralingual similarity.
+
+
+\subsection{Null Hypothesis 2}
+In addition to showing that the expected values for average interlingual and average intralingual similarities are not equal, we would like to show that the expected values for interlingual and spurious similarity are not equal. Thus we must compare the average similarity of sentences with the same meaning in different languages to the average similarity of sentences with neither a common language nor meaning. 
+
+
+
+
+
+
+
+
+
+
+
+
+
