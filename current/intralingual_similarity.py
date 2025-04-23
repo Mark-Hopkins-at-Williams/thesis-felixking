@@ -131,7 +131,7 @@ def main():
                     lang_scores.append(token_pair_similarity(data, language, id))
                 mean = np.mean(lang_scores)
                 scores[language] = mean
-                file.write(f'{language}: {mean}')
+                file.write(f'{language}: {mean}\n')
                 
         plot_dict_to_bar(
             scores,

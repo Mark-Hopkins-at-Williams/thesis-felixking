@@ -7,4 +7,5 @@
 #SBATCH -e log_%j.err
 #SBATCH --gres=gpu:1
 
-python length_variance.py exp_configs/europarl.json rv2
+
+python intralingual_similarity.py exp_configs/seed.json

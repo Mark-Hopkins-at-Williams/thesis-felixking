@@ -51,7 +51,8 @@ def sample_by_distribution(mean, stdev, sents):
         if iters > 100000:
             print('tested 100,000 candidates with no successes. Exiting...')
             exit()
-        
+
+# different meaning, same language   
 def RV2(languages, input_dir, output_path, num_sents, mean_stdev_dict):
 
     dfA = pd.DataFrame()
@@ -157,7 +158,7 @@ def main():
     df = pd.read_csv(config['parallel_corpus_csv'])
     source_dir = config['line_by_line_dir']
     rv3_save_dir = f'{"/".join(source_dir.split("/")[:-1])}/scrambled_{source_dir.split("/")[-1]}'
-    rv2_save_path = config['parallel_corpus_csv'].split('.')[0] + '_intralingual_TEST'
+    rv2_save_path = config['parallel_corpus_csv'].split('.')[0] + '_intralingual'
 
     num_sents = range_end - range_start + 1
 

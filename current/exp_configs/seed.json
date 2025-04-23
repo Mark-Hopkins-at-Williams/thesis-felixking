@@ -1,6 +1,7 @@
 {
     "experiment_directory": "/mnt/storage/fking/thesis-felixking/experiments/seed",
-    "intralingual_pkl": "/mnt/storage/fking/data/seed/seed_intralingual.pkl",
+    "intralingual_A_pkl": "/mnt/storage/fking/data/seed/seed_intralingual_A.pkl",
+    "intralingual_B_pkl": "/mnt/storage/fking/data/seed/seed_intralingual_B.pkl",
     "line_by_line_dir": "/mnt/storage/fking/data/seed_line_by_line",
     "parallel_corpus_csv": "/mnt/storage/fking/data/seed/seed.csv",
     "parallel_corpus_pkl": "/mnt/storage/fking/data/seed/seed.pkl",

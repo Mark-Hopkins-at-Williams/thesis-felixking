@@ -1,5 +1,27 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
+
+def translate(
+    text, tokenizer, model, 
+    src_lang, tgt_lang, 
+    a=32, b=3, max_input_length=1024, num_beams=4, **kwargs
+):
+    model.eval() # turn off training mode
+    tokenizer.src_lang = src_lang
+    tokenizer.tgt_lang = tgt_lang
+    inputs = tokenizer(
+        text, return_tensors='pt', padding=True, truncation=True, 
+        max_length=max_input_length
+    )
+    result = model.generate(
+        **inputs.to(model.device),
+        forced_bos_token_id=tokenizer.convert_tokens_to_ids(tgt_lang),
+        max_new_tokens=int(a + b * inputs.input_ids.shape[1]),
+        num_beams=num_beams, **kwargs
+    )
+    print(result)
+    return tokenizer.batch_decode(result, skip_special_tokens=True)
+
 def tokenize(sents, lang, tokenizer, max_length, alt_pad_token=None):
     tokenizer.src_lang = lang
     tokens = tokenizer(sents, return_tensors='pt', padding=True, truncation=True, max_length=max_length)
@@ -20,16 +42,22 @@ def see_tokens(sents, lang):
         print(f"Sentence: {sentence}")
         print("Tokens:", [tokenizer.decode(token_id) for token_id in tokens.input_ids[sents.index(sentence)]])
 
-    print(tokens.attention_mask)
+    # print(tokens.attention_mask)
 
     
 
 if __name__ == '__main__':
     base_model = "facebook/nllb-200-distilled-600M"
     model = AutoModelForSeq2SeqLM.from_pretrained(base_model)
-    print(model)
+    tokenizer = AutoTokenizer.from_pretrained(base_model, clean_up_tokenization_spaces=False)
 
-    sents = ['it rained very hard today', 'the stock market fell one million points today and it rained cats.']
+    # print(model)
 
-    see_tokens(sents, 'eng_Latn')
+    en_sents = ['Happy birthday!']
+    sp_sents = ['¡Feliz cumpleaños!']
+
+    print(translate(en_sents, tokenizer, model, 'eng_Latn', 'spa_Latn'))
+
+    see_tokens(en_sents, 'eng_Latn')
+    # see_tokens(sp_sents, 'spa_Latn')
     print()
