@@ -90,8 +90,26 @@ It is worth noting that the gap between these two values is significantly smalle
 
 
 \subsection{Null Hypothesis 2}
-In addition to showing that the expected values for average interlingual and average intralingual similarities are not equal, we would like to show that the expected values for interlingual and spurious similarity are not equal. Thus we must compare the average similarity of sentences with the same meaning in different languages to the average similarity of sentences with neither a common language nor meaning. As outlined above, these unrelated sentences have been selected using rejection sampling which takes into account sentence length (according to measured characteristics of the Europarl and Seed datasets) and edit distance, so that paired sentences are both similar in length and sufficiently distant 
+In addition to showing that the expected values for average interlingual and average intralingual similarities are not equal, we would like to show that the expected values for interlingual and spurious similarity are not equal. Thus we must compare the average similarity of sentences with the same meaning in different languages to the average similarity of sentences with neither a common language nor meaning. As outlined above, these unrelated sentences were selected using rejection sampling, which takes into account sentence length (based on measured characteristics of the Europarl and Seed datasets) and edit distance, ensuring that paired sentences are both similar in length and lexically distant. 
 
+
+
+%\begin{figure}[htbp]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/europarl_geom_heatmap.png}
+%    \caption{Interlingual vs Intralingual similarity by language in the Europarl dataset}
+%    \label{fig:europarl_rv1}
+%\end{figure}
+%
+%
+%
+%\begin{figure}[htbp]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/seed_rv1.png}
+%    
+%    \caption{Interlingual vs Intralingual similarity by language in the Seed dataset}
+%    \label{fig:seed_rv1}
+%\end{figure}
 
 
 
