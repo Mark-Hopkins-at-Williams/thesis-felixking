@@ -9,7 +9,6 @@ Now that we have defined the encoding similarity between two sentences, we are a
 
 In order to show how encoding similarity and meaning are related, it is necessary to compare the encoding similarity among sentences grouped by some other feature to the similarity among sentences of the same meaning. We will calculate the similarity between pairs of sentences with three types of relationships:
 
-% would it be good to give these names? like affinity, sociability, coherence?
 \begin{enumerate}
   \item Sentences with the same meaning in different languages (interlingual)
   \item Sentences with different meanings in the same language (intralingual)
@@ -92,28 +91,47 @@ It is worth noting that the gap between these two values is significantly smalle
 \subsection{Null Hypothesis 2}
 In addition to showing that the expected values for average interlingual and average intralingual similarities are not equal, we would like to show that the expected values for interlingual and spurious similarity are not equal. Thus we must compare the average similarity of sentences with the same meaning in different languages to the average similarity of sentences with neither a common language nor meaning. As outlined above, these unrelated sentences were selected using rejection sampling, which takes into account sentence length (based on measured characteristics of the Europarl and Seed datasets) and edit distance, ensuring that paired sentences are both similar in length and lexically distant. 
 
+We calculate that the average interlingual similarity in the Europarl dataset is 0.699 and that the average spurious similarity is 0.359. In the Seed dataset, the average interlingual similarity is 0.545 and the average spurious similarity is 0.348. Using the method of t-testing described above, we find this these differences statistically significant with p-values FILLINBLANK and FILLINBLANK. Thus null hypothesis 2, that the random variables representing average interlingual and spurious similarity have the same expected values, can be rejected. 
+
+A heatmap makes an effective visual reference for interlingual and spurious similarity calculations by language pair. According to our hypothesis, we should see an overall brighter heatmaps representing interlingual similarity than ones representing spurious similarity. Of course, we can compare overall averages for each dataset, but more specific qualities of the data are legible in this two-dimensional format. The following clustered heatmaps display the interlingual and spurious similarities of language pair in both of our two datasets.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/rv2_europarl_inter.png}
+    \caption{Interlingual similarity by language pair in the Europarl dataset}
+    \label{fig:europarl_rv2_inter}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/rv2_europarl_spurious.png}
+    
+    \caption{Spurious similarity by language pair in the Europarl dataset}
+    \label{fig:europarl_rv2_spurious}
+\end{figure}
 
 
-%\begin{figure}[htbp]
-%    \centering
-%    \includegraphics[width=\textwidth]{images/europarl_geom_heatmap.png}
-%    \caption{Interlingual vs Intralingual similarity by language in the Europarl dataset}
-%    \label{fig:europarl_rv1}
-%\end{figure}
-%
-%
-%
-%\begin{figure}[htbp]
-%    \centering
-%    \includegraphics[width=\textwidth]{images/seed_rv1.png}
-%    
-%    \caption{Interlingual vs Intralingual similarity by language in the Seed dataset}
-%    \label{fig:seed_rv1}
-%\end{figure}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/rv2_seed_inter.png}
+    \caption{Interlingual similarity by language pair in the Seed dataset}
+    \label{fig:europarl_rv2_inter}
+\end{figure}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/rv2_seed_spurious.png}
+    
+    \caption{Spurious similarity by language pair in the Seed dataset}
+    \label{fig:europarl_rv2_spurious}
+\end{figure}
 
+The interlingual heatmaps clearly show brighter, i.e. higher, values than the spurious ones, but they also display patterns in the data. There is greater differentiation by language in the interlingual heatmap. This is a good indication that spurious similarity has the behavior we expect -- sentences with neither a common language nor meaning follow no pattern clearly governed by language. We can observe some noise, but that is entirely to be expected. Corresponding graphs for the 1.3 billion parameter NLLB model can be found in the appendix.
 
+\subsection{Null Hypothesis 3}
+
+Null hypothesis 3 states that the expected values of random variables Y (intralingual similarity) and Z (spurious similarity) are equal. The meaning of this statement and of its rejection are less crucial to our main hypothesis than null hypotheses 1 and 2, but since we have the data and expect these values to differ, it is worth comparing these two random variables. 
 
 
 
