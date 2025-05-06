@@ -1,0 +1,59 @@
+%%%%%%%% Chapters %%%%%%%%%%%%
+%% Methodology
+\chapter{Methodology}
+\label{chap:methodology}
+
+\section{Encoding Similarity: First Attempt}
+
+Our initial attempt to compare the NLLB encodings of sentences was to average the encodings of each of the tokens in a sentence. To produce a single vector representation of a sentence, it would first be tokenized (adding a language tag and end-of-sentence token), then each token would encoded, then those token encodings would be averaged. With sentences represented as single tokens, it was easy to compare them using cosine similarity, which is a measure of the angle between vectors. 
+
+Before even comparing these averaged vector encodings of sentences, we sought to plot them just to observe visual patterns. Plotting 1,024-dimensional vectors on a 2-dimensional plot has problems though. Think of a 3D example, where the Y axis goes up and down, the X axis goes left and right, and the Z axis goes forward and backward. Viewed orthogonally, the points (0, 0, 50) and (0, 0, -50) would appear to be in the same location, despite being a distance of 100 units apart. A good representation of the relationship between points in space would preserve relative distances, rather than simply projecting all points onto a 2D plane. Solutions to this problem already existed. An algorithm called t-distributed Stochastic Neighbor Embedding (t-SNE)\cite{van2008visualizing} creates reductions of sets of high-dimensional vectors while preserving some of the structure of the original space. 
+
+The resulting plots showed interesting patterns - most clusters were defined by sentence ID (corresponding to a unique meaning) whereas others were defined by the language its sentences were written in. These results were promising, but partially opaque. We knew that our method of averaging the token encoding of a sentence to a create a single encoding vector for each sentence was erasing information. In theory, two sentences with distinct meanings could be represented in this form as very similar vectors. So while plotting the averaged encodings was valuable for the sake of getting a sense of how the NLLB model(s) placed sentences in space with relation to one another, we had to come up with a more nuanced method of comparison. 
+
+\section{Improved Encoding Similarity}
+
+In order to preserve each token encoding vector, it was necessary to come up with a method of comparison that dealt with two problems: First, the length of an encoding of a sentence is variable - each token is encoded into a 1,024-dimensional vector, and the number of tokens in a sentence grows with its length. Second, the order of token encodings is arbitrary; although they are encoded in the order they appear in the original sentence, the decoder determines the position of each token using the positional information (a sum of sinusoids) added during encoding. Word order also varies from language to language, so token encodings representing words with the same meaning would not necessarily appear in the same position across translations anyway. 
+
+Arranging the token encodings of two sentences in a bipartite graph allowed us to address these problems. We could calculate the cosine similarity between every pair of token encodings across two sets, regardless of the size of each set. If sentence A has 10 tokens and sentence B has 8, then we calculate 80 cosine similarities. We should expect to see great variation in the similarities between, for example, the third token encoding of A and each of the token encodings of B, since token three of A most likely corresponds to in meaning to one or two tokens in B. By choosing the maximum similarity per token, we get 10 values for sentence A and 8 for sentence B. An arithmetic average of the averages on both sides would do a good job at capturing the similarity between two sentence encodings; the method allows for variable-length inputs and its results are independent of the order of the tokens. 
+
+But we can tweak the final calculation a little further to account for a particular case. If the average of the maximums on one side of the bipartite graph is 0.9 and the average on the other side is 0.1, we would get a final average of averages of 0.5, but common sense would tell us that the two sentences are probably not very similar. This case is possible when all of the tokens in sentence A are very similar to one token in sentence B, but the other tokens in sentence B have very low similarity with any token in sentence A. To penalize such mismatches, we take the geometric average as the last step instead of the arithmetic average. In this example, we'd get the result $\sqrt{0.9*0.1}=0.3$. Even with one value fixed at 1.0, the geometric mean approaches 0.0 as the second value does.  
+
+Thus we calculate the average maximum similarity from side A to side B (which we can call X) and from side B to side A (which we can call Y), then take the geometric average of X and Y. We'll let $max$ denote the function which returns the maximum element of those given to it and let $sim$ denote cosine similarity. Thus the calculations of X and Y using vectors \textbf{A} and \textbf{B} with token encodings 
+$\textbf{A}_0, \textbf{A}_1, \dots, \textbf{A}_n$ and 
+$\textbf{B}_0, \textbf{B}_1, \dots, \textbf{B}_m$ is as follows:
+
+\[ X(\textbf{A},\textbf{B}) = \sum_{i=0}^{n} max[sim(\textbf{A}_{i}, \textbf{B}_0), sim(\textbf{A}_{i}, \textbf{B}_1), \dots , sim(\textbf{A}_{i}, \textbf{B}_m)]\]
+
+\[ Y(\textbf{A}, \textbf{B}) = \sum_{i=0}^{m} max[sim(\textbf{A}_{0}, \textbf{B}_i), sim(\textbf{A}_{1}, \textbf{B}_i), \dots , sim(\textbf{A}_{n}, \textbf{B}_{i})]\]
+
+Finally the encoding similarity between \textbf{A} and \textbf{B}, denoted by $SIM(\textbf{{A}, \textbf{B})}$ is defined simply as:
+
+\[SIM(\textbf{A}, \textbf{B}) = \sqrt{X(\textbf{A}, \textbf{B}) * Y(\textbf{A}, \textbf{B})}\]
+
+\section{Faiss} 
+
+This method of calculating encoding similarity involves many cosine similarity calculations between 1,024-dimensional vectors. The maximum number of tokens per sentence is 128 in the NLLB architecture, so in the worst case, one encoding similarity calculation requires $2^{14} \approx$ 16,000 cosine similarity calculations. If we aim to compare tens of thousands of pairs of sentences in this way, a naive approach turns out to be too slow. 
+
+Meta's Faiss (Facebook AI Similarity Search) [CITE?] is a library for quickly searching through sets of vectors for similarity, whether this be in terms of Euclidean distance, dot product, or cosine similarity. Its use involves creating an index (a set of vectors) and designating a query vector. The index is searched with the query vector a list of vectors from the index is returned, ranked in order of similarity with the query vector. This operating could be expanded to matrix form, allowing for all the pairwise calculations to be performed with a single function call. To calculate the similarity between sentence encodings, we make indices from the token encodings of one sentence, then use the other's token encodings as query vectors. We do this in both directions to calculate all necessary cosine similarities. 
+
+\section{Model Modification}
+
+The data needed for this project was not the output of an NLLB translation model, but rather an intermediate state, which is not saved at any point in translation. Thus it was necessary to modify the models we were working with to capture the state of the data after encoding and before decoding. This can be achieved by cloning an NLLB model and inserting a layer after the encoder which simply saves a "snapshot" of the encodings and passes them forward unchanged. Harvesting data just requires that we run sentences through the model and store the snapshots with their source sentences afterward. Throughout the project, we used the pandas library to work with tables of data. Since the encoding of a single sentence is a list of lists (a list of token embeddings, which are each lists of 1,024 floats) and the csv file format does not support this datatype in a single cell of a table, we used the pickle file format for encoding storage.
+
+4096 % 7 = 1
+243 % 7 = 5
+
+
+241 % 7 = 3
+4098 % 7 = 3
+
+
+
+
+
+
+
+
+
+

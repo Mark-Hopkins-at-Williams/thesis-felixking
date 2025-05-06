@@ -1,7 +1,7 @@
 
 
 %%%%%%%% Chapters %%%%%%%%%%%%
-%% Introduction
+%% Results
 \chapter{Results}
 \label{chap:results}
 
@@ -68,7 +68,7 @@ A graphical comparison of per language averages clearly shows a difference betwe
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{images/europarl_rv1.png}
-    \caption{Interlingual vs Intralingual similarity by language in the Europarl dataset}
+    \caption{Interlingual vs intralingual similarity by language in the Europarl dataset}
     \label{fig:europarl_rv1}
 \end{figure}
 
@@ -78,7 +78,7 @@ A graphical comparison of per language averages clearly shows a difference betwe
     \centering
     \includegraphics[width=\textwidth]{images/seed_rv1.png}
     
-    \caption{Interlingual vs Intralingual similarity by language in the Seed dataset}
+    \caption{Interlingual vs intralingual similarity by language in the Seed dataset}
     \label{fig:seed_rv1}
 \end{figure}
 
@@ -93,7 +93,7 @@ In addition to showing that the expected values for average interlingual and ave
 
 We calculate that the average interlingual similarity in the Europarl dataset is 0.699 and that the average spurious similarity is 0.359. In the Seed dataset, the average interlingual similarity is 0.545 and the average spurious similarity is 0.348. Using the method of t-testing described above, we find this these differences statistically significant with p-values FILLINBLANK and FILLINBLANK. Thus null hypothesis 2, that the random variables representing average interlingual and spurious similarity have the same expected values, can be rejected. 
 
-A heatmap makes an effective visual reference for interlingual and spurious similarity calculations by language pair. According to our hypothesis, we should see an overall brighter heatmaps representing interlingual similarity than ones representing spurious similarity. Of course, we can compare overall averages for each dataset, but more specific qualities of the data are legible in this two-dimensional format. The following clustered heatmaps display the interlingual and spurious similarities of language pair in both of our two datasets.
+A heatmap makes an effective visual reference for interlingual and spurious similarity calculations by language pair. According to our hypothesis, we should see an overall brighter heatmaps representing interlingual similarity than ones representing spurious similarity. Of course, we can compare overall averages for each dataset, but more specific qualities of the data are legible in this two-dimensional format. The following clustered heatmaps display the interlingual and spurious similarities of language pair in both of our two datasets. 
 
 \begin{figure}[htbp]
     \centering
@@ -131,7 +131,33 @@ The interlingual heatmaps clearly show brighter, i.e. higher, values than the sp
 
 \subsection{Null Hypothesis 3}
 
-Null hypothesis 3 states that the expected values of random variables Y (intralingual similarity) and Z (spurious similarity) are equal. The meaning of this statement and of its rejection are less crucial to our main hypothesis than null hypotheses 1 and 2, but since we have the data and expect these values to differ, it is worth comparing these two random variables. 
+Null hypothesis 3 states that the expected values of random variables Y (intralingual similarity) and Z (spurious similarity) are equal. The meaning of this statement and of its rejection are less crucial to our main hypothesis than null hypotheses 1 and 2, but since we have the data and expect these values to differ, it is worth comparing these two random variables. Is intralingual similarity higher on average or lower than spurious similarity? The answer to this question might indicate what effect grouping sentences in space based on their language has on the course of training.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/rv3_europarl.png}
+    \caption{Intralingual vs spurious similarity by language in the Europarl dataset}
+    \label{fig:europarl_rv3}
+\end{figure}
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{images/rv3_seed.png}
+    
+    \caption{Intralingual vs spurious similarity by language in the Seed dataset}
+    \label{fig:seed_rv3}
+\end{figure}
+
+
+Somewhat surprisingly, spurious similarity is higher for each of the Europarl languages than intralingual similarity. In other words, randomly matching sentences across languages results shows higher average encoding similarity than randomly matching sentences within each language. Given that each of the Europarl languages is high-resource, it is likely that this behavior is learned during training, and that contrary behavior would lead to higher loss. To put an intuitive gloss on this result, we could speculate that the encoder learns early in training that the language tag of a sentence (e.g. "eng\_Latn") is very important to its job -- encoding an English sentence should be treated as a different task than encoding a Finnish one. After beginning with a naive language-based grouping of sentences, the model eventually shifts its behavior so as to group sentences by their meaning, a strategy which results in the distribution of sentences from the same language across the encoding space. By that point, the similarity of encodings of sentences from the same language is lower on average than the similarity between two random sentences (of similar length). 
+
+The average intralingual similarity in the Europarl dataset is 0.319, while the average spurious similarity is 0.359. [insert same statistical results as above]. In the Seed dataset, the intralingual average is 0.359\footnote{I did double-check these two appearances of 0.359, and it's not a typo, just a numerical coincidence.} and the spurious similarity is 0.348. Intralingual similarity is higher than spurious similarity in the Seed dataset, but not the Europarl one. Again, the resource level of each dataset's languages in NLLB training should be remembered. If we believe the narrative laid out in the previous paragraph, we could place the low-resource Seed languages at an earlier stage of model understanding than the high-resource Europarl languages. The model did not reach a point of mastery with some of the Seed languages to be able to apply its advanced strategy of organizing sentences in space according to their meaning. 
+
+Another feature of the data displayed in the two graphs above is a difference in variance. Both intralingual and spurious similarity seems to vary more greatly across languages in the Seed dataset than in the Europarl dataset. Indeed, the Europarl dataset has a variance of $1.559 * 10^{-4}$ in intralingual similarities, an order of magnitude lower than that of the Seed dataset, $2.542 * 10^{-3}$. The same holds for spurious similarity: in Europarl, $1.220 * 10^{-5}$, and in Seed, $2.911 * 10^{-4}$. What emerges from these observations is a sense that the NLLB model's treatment of Europarl sentences is more stable and consistent than its treatment of Seed sentences. 
+
+
 
 
 
