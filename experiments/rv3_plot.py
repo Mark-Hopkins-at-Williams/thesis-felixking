@@ -71,7 +71,11 @@ if __name__ == '__main__':
     vals1 = [intra[k] for k in keys]
     vals2 = [spur[k] for k in keys]
 
-    print('intralingual mean: ', np.mean(vals1))
-    print('spurious mean:     ', np.mean(vals2))
+    print(f'intralingual mean: {np.mean(vals1):.3f}')
+    print(f'spurious mean:     {np.mean(vals2):.3f}')
+
+    print(f'intralingual variance: {np.var(vals1):.3E}')
+    print(f'spurious variance:     {np.var(vals2):.3E}')
+
 
     plot(keys, vals1, vals2, '.')

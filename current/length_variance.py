@@ -159,6 +159,8 @@ def main():
     source_dir = config['line_by_line_dir']
     rv3_save_dir = f'{"/".join(source_dir.split("/")[:-1])}/scrambled_{source_dir.split("/")[-1]}'
     rv2_save_path = config['parallel_corpus_csv'].split('.')[0] + '_intralingual'
+    rv2_save_path = '/mnt/storage/fking/thesis-felixking/current/test_data/europarl_small_intralingual'
+
 
     num_sents = range_end - range_start + 1
 

@@ -161,3 +161,8 @@ if __name__ == '__main__':
 
 # python make_dataframe.py 6193 /mnt/storage/fking/data/scrambled_seed_line_by_line/ /mnt/storage/fking/data/scrambled_seed
 # python make_dataframe.py 10000 /mnt/storage/fking/data/scrambled_europarl_line_by_line/ /mnt/storage/fking/data/scrambled_europarl
+
+# python make_dataframe.py 100 /mnt/storage/fking/data/_seed_line_by_line/ /mnt/storage/fking/data/test/europarl_test
+# python make_dataframe.py 100 /mnt/storage/fking/data/_europarl_line_by_line/ /mnt/storage/fking/data/test/seed_test
+
+# python make_dataframe.py 100 /mnt/storage/fking/thesis-felixking/current/test_data/scrambled_europarl/ /mnt/storage/fking/thesis-felixking/current/test_data/scrambled_europarl
