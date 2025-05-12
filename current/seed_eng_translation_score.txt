@@ -1,0 +1,41 @@
+exp_configs/seed.json
+loading model...
+translating eng_Latn to eng_Latn
+6193
+6193
+253913
+/mnt/storage/fking/data/seed/seed.csv
+0         False
+1         False
+2         False
+3         False
+4         False
+          ...  
+253908    False
+253909    False
+253910    False
+253911    False
+253912    False
+Length: 253913, dtype: bool
+600M_eng_Latn_translations
+bleu: 93.443, chrf: 97.129
+loading model...
+translating eng_Latn to eng_Latn
+6193
+6193
+253913
+/mnt/storage/fking/data/seed/seed.csv
+0         False
+1         False
+2         False
+3         False
+4         False
+          ...  
+253908    False
+253909    False
+253910    False
+253911    False
+253912    False
+Length: 253913, dtype: bool
+1.3B_eng_Latn_translations
+bleu: 94.671, chrf: 97.816
