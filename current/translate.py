@@ -28,14 +28,12 @@ def translate(
     )
     return tokenizer.batch_decode(result, skip_special_tokens=True)
 
-
 def batched_translate(texts, batch_size=16, **kwargs):
     idxs, texts2 = zip(*sorted(enumerate(texts), key=lambda p: len(p[1]), reverse=True))
     results = []
     for i in range(0, len(texts2), batch_size):
         results.extend(translate(texts2[i: i+batch_size], **kwargs))
     return [p for _, p in sorted(zip(idxs, results))]
-
 
 def evaluate_translations(candidate_translations, reference_translations):
     bleu_calc = evaluate.load("sacrebleu")
@@ -63,10 +61,12 @@ if __name__ == "__main__":
     src = config['source']
     tgt = config['target']
     languages = config['languages']
+    other = [x for x in languages if x != src][0]
+    
     csv_file = config['parallel_corpus_csv']
     saving_translations = bool(config['save'])
 
-    for model_size in ['600M', '1.3B']:
+    for model_size in ['600M','1.3B']:
         save_dir = os.path.join(exp_dir, model_size)
         base_model = f"facebook/nllb-200-distilled-{model_size}"
         save_path = os.path.join(save_dir, f'{src}-{tgt}_scores.csv')
@@ -81,9 +81,9 @@ if __name__ == "__main__":
         if src == 'all' and tgt == 'all':
             pairs = [(s, t) for s in languages for t in languages]
         elif src == 'all':
-            pairs = [(s, tgt) for s in languages if s != tgt]
+            pairs = [(s, tgt) for s in languages]
         elif tgt == 'all':
-            pairs = [(src, t) for t in languages if t != src]
+            pairs = [(src, t) for t in languages]
         else:
             pairs = [(src, tgt)]
 
@@ -95,14 +95,17 @@ if __name__ == "__main__":
             df[save_col] = ''
 
         for (s, t) in tqdm(pairs):
-            if s == t:
-                scores.loc[len(scores)] = {'source': s, 'target': t, 'bleu': 100.0, 'chrf++': 100.0}
-                continue
-            dev_bitext = corpus.create_bitext(s, t, 'train')   
-            src_texts, tgt_texts = dev_bitext.lang1_sents, dev_bitext.lang2_sents
-
             print(f"translating {s} to {t}")
-            candidate_translations = batched_translate(src_texts, tokenizer=tokenizer, model=model, src_lang=dev_bitext.lang1_code, tgt_lang=dev_bitext.lang2_code)
+
+            if s != t:
+                dev_bitext = corpus.create_bitext(s, t, 'train')   
+                src_texts, tgt_texts = dev_bitext.lang1_sents, dev_bitext.lang2_sents
+                candidate_translations = batched_translate(src_texts, tokenizer=tokenizer, model=model, src_lang=dev_bitext.lang1_code, tgt_lang=dev_bitext.lang2_code)
+            else:
+                dev_bitext = corpus.create_bitext(s, other, 'train')   
+                src_texts, tgt_texts = dev_bitext.lang1_sents, dev_bitext.lang1_sents
+                candidate_translations = batched_translate(src_texts, tokenizer=tokenizer, model=model, src_lang=dev_bitext.lang1_code, tgt_lang=dev_bitext.lang1_code)
+
             if saving_translations:
                 lang, script = s.split('_')
                 mask = ((df['language'] == lang) & (df['script'] == script) & (df['split'] == 'train'))

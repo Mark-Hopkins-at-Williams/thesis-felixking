@@ -6,3 +6,6 @@ log*
 .eggs
 *.egg-info
 __pycache__
+experiments/*
+current/exp_configs/*
+current/test_data/*

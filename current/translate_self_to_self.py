@@ -80,8 +80,6 @@ if __name__ == "__main__":
 
         print(f"translating {src} to {tgt}")
 
-        print(len(src_texts))
-        print(len((tgt_texts)))
         df = pd.read_csv(csv_file)
         lang, script = src.split('_')
         save_col = f"{model_size}_{tgt}_translations"
@@ -89,14 +87,12 @@ if __name__ == "__main__":
 
         print(len(df))
         print(csv_file)
-        print(mask)
         print(save_col)
         candidate_translations = batched_translate(src_texts, tokenizer=tokenizer, model=model, src_lang=dev_bitext.lang1_code, tgt_lang=dev_bitext.lang1_code)
         
         # write translations to dataframe and saving to csv
         df.loc[mask, save_col] = candidate_translations
         df.to_csv(csv_file, index=False)
-
 
         bleu_score, chrf_score = evaluate_translations(candidate_translations, tgt_texts)
         print(f'bleu: {bleu_score}, chrf: {chrf_score}')

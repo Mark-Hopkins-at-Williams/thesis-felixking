@@ -76,6 +76,10 @@ class MultilingualCorpus:
 
         # filter out entries with only one language-text pair associated with the sentence id
         sents = {key: sents[key] for key in sents if len(sents[key]) > 1}
+
+        # print(len(sents))
+        # print(list(sents.keys()))
+        # print(sents[0])
         
         # compile all this into lists of all the sentences in lang1 and in lang2
         lang1_sents, lang2_sents = [], []
